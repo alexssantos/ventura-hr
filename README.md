@@ -10,6 +10,8 @@ Este documento tem o objetivo de facilitar ao vizualizador compreender a organiz
 
 * [Intesão](#intensao)
 * [Estrutura de Pastas](#estrutura-de-pastas)
+* [Fluxo de Implementação](#fluxo-de-implementacao)
+
 
 
 
@@ -27,3 +29,7 @@ Na pasta **documentoção** é mantida toda documentação do projeto, bem como 
 * prototypes - Protótipos produzidos para as Interfaces de Usuário.
 * references - Material de fornecido e coletado para estudo.
 * tasks - Tarefas pedidas.
+
+## Fluxo de Implementação
+
+***(em construção)***

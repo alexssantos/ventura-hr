@@ -8,7 +8,7 @@ Este documento tem o objetivo de facilitar ao vizualizador compreender a organiz
 
 ## Índice
 
-* [Intesão](#intensao)
+* [Intensão](#intensao)
 * [Estrutura de Pastas](#estrutura-de-pastas)
 * [Fluxo de Implementação](#fluxo-de-implementacao)
 

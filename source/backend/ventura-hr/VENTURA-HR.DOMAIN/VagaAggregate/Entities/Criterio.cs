@@ -4,7 +4,7 @@ using System.Text;
 
 namespace VENTURA_HR.DOMAIN.VagaAggregate.Entities
 {
-	class Criterio
+	public class Criterio : Shared.Entity
 	{
 	}
 }

@@ -4,7 +4,7 @@ namespace VENTURA_HR.DOMAIN.Shared
 {
 	public abstract class Entity
 	{
-		public Entity(Guid? id)
+		public Entity(Guid? id = null)
 		{
 			Id = id ?? Guid.NewGuid();
 		}

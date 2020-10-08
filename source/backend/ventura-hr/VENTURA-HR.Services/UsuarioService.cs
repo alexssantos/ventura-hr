@@ -4,5 +4,9 @@ namespace VENTURA_HR.Services
 {
 	public class UsuarioService : IUsuarioService
 	{
+		public UsuarioService()
+		{
+
+		}
 	}
 }

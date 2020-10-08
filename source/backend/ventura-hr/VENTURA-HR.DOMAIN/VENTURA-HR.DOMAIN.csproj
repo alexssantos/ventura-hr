@@ -6,10 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="UsuarioAggregate\Enums\" />
     <Folder Include="UsuarioAggregate\ValueObjects\" />
-    <Folder Include="UsuarioAggregate\Services\" />
     <Folder Include="VagaAggregate\Enums\" />
+    <Folder Include="VagaAggregate\Services\" />
     <Folder Include="VagaAggregate\ValueObjects\" />
     <Folder Include="VagaAggregate\Repositories\" />
   </ItemGroup>

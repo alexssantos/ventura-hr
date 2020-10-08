@@ -1,5 +1,6 @@
 ﻿using System;
 using VENTURA_HR.DOMAIN.Shared;
+using VENTURA_HR.DOMAIN.UsuarioAggregate.Enums;
 
 namespace VENTURA_HR.DOMAIN.UsuarioAggregate.Entities
 {
@@ -15,5 +16,6 @@ namespace VENTURA_HR.DOMAIN.UsuarioAggregate.Entities
 		public string Email { get; set; }
 		public string Nome { get; set; }
 		public DateTime BirthDate { get; set; }
+		public EUsuarioTipo Role { get; set; }
 	}
 }

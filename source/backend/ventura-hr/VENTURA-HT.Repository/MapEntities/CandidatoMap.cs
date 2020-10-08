@@ -8,7 +8,7 @@ namespace VENTURA_HT.Repository.MapEntities
 	{
 		public void Configure(EntityTypeBuilder<Candidato> builder)
 		{
-			builder.ToTable("Candidato");
+			//builder.ToTable("Candidato");
 		}
 	}
 }

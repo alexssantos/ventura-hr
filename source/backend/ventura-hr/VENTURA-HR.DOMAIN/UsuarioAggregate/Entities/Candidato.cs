@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using VENTURA_HR.DOMAIN.VagaAggregate.Entities;
 
 namespace VENTURA_HR.DOMAIN.UsuarioAggregate.Entities
 {
-	class Candidato
+	public class Candidato : Usuario
 	{
+		public string CPF { get; set; }
+		public IList<Resposta> Respostas { get; set; }
 	}
 }

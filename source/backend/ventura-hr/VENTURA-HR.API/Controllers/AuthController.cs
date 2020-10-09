@@ -44,29 +44,25 @@ namespace VENTURA_HR.API.Controllers
 			});
 		}
 
-		// GET api/<AuthControllerController>/5
-		[HttpGet("{id}")]
-		public string Get(int id)
-		{
-			return "value";
-		}
+		[HttpGet]
+		[Route("anonimo")]
+		[AllowAnonymous]
+		public string Anomino() => "Você está habilitado no modo anônimo.";
 
-		// POST api/<AuthControllerController>
-		[HttpPost]
-		public void Post([FromBody] string value)
-		{
-		}
+		[HttpGet]
+		[Route("autenticado")]
+		[Authorize]
+		public string Autenticado() => string.Format("Você está Autenticado - {0}.", User.Identity.Name);
 
-		// PUT api/<AuthControllerController>/5
-		[HttpPut("{id}")]
-		public void Put(int id, [FromBody] string value)
-		{
-		}
+		[HttpGet]
+		[Route("empresa")]
+		[Authorize(Roles = "EMPRESA")]
+		public string Empresa() => string.Format("Você é uma empresa autorizada - {0}.", User.Identity.Name);
 
-		// DELETE api/<AuthControllerController>/5
-		[HttpDelete("{id}")]
-		public void Delete(int id)
-		{
-		}
+		[HttpGet]
+		[Route("candidato")]
+		[Authorize(Roles = "CANDIDATO")]
+		public string Candidato() => string.Format("Você é um candidato autorizado - {0}.", User.Identity.Name);
+
 	}
 }

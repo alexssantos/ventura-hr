@@ -18,9 +18,9 @@ namespace VENTURA_HR.Services
 		}
 
 
-		public E Get(Guid id) => Repository.GetbyId(id);
+		public E Pegar(Guid id) => Repository.GetbyId(id);
 
-		public ICollection<E> GetAll() => Repository.GetAll();
+		public ICollection<E> PegarTodos() => Repository.GetAll();
 
 		public E Savar(E entity) => Repository.Save(entity);
 

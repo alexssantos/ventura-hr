@@ -6,8 +6,8 @@ namespace VENTURA_HR.DOMAIN.UsuarioAggregate.Services
 	public interface IServiceBase<T>
 	{
 
-		public abstract T Get(Guid id);
-		public abstract ICollection<T> GetAll();
+		public abstract T Pegar(Guid id);
+		public abstract ICollection<T> PegarTodos();
 
 		public abstract T Savar(T entity);
 

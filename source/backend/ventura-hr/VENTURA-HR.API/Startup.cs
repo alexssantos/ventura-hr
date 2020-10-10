@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Text.Json.Serialization;
 using VENTURA_HR.DOMAIN.UsuarioAggregate.Repositories;
 using VENTURA_HR.DOMAIN.UsuarioAggregate.Services;
 using VENTURA_HR.Services;
@@ -41,7 +42,8 @@ namespace VENTURA_HR.API
 
 			services.AddCors();
 
-			services.AddControllers();
+			services.AddControllers()
+				.AddJsonOptions(opt => opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
 			var key = Encoding.ASCII.GetBytes(Configuration.GetValue<string>("secret"));
 			//Token config schema (Bearer)
@@ -68,7 +70,7 @@ namespace VENTURA_HR.API
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IWebHostEnvironment env, VenturaContext dataContext)
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
 			if (env.IsDevelopment())
 			{
@@ -80,9 +82,6 @@ namespace VENTURA_HR.API
 				var context = serviceScope.ServiceProvider.GetRequiredService<VenturaContext>();
 				context.Database.EnsureCreated();
 			}
-
-			// Map Database
-			//dataContext.Database.Migrate();
 
 			app.UseHttpsRedirection();
 

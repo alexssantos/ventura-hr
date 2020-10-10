@@ -33,8 +33,7 @@ namespace VENTURA_HR.Services
 					new Claim(ClaimTypes.Role, usuario.Role.ToString()),
 				}),
 				// Tempo de expiração.
-				//Expires = DateTime.UtcNow.AddHours(2),
-				Expires = DateTime.UtcNow.AddMinutes(2),
+				Expires = DateTime.UtcNow.AddHours(2),
 				SigningCredentials = new SigningCredentials(
 					// Usando chave simetrica em bytes.
 					new SymmetricSecurityKey(key),

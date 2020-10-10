@@ -8,7 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using VENTURA_HR.DOMAIN.UsuarioAggregate.Repositories;
-using VENTURA_HR.DOMAIN.VagaAggregate.Services;
+using VENTURA_HR.DOMAIN.UsuarioAggregate.Services;
 using VENTURA_HR.Services;
 using VENTURA_HT.Repository.Context;
 using VENTURA_HT.Repository.Repositories;
@@ -34,9 +34,13 @@ namespace VENTURA_HR.API
 			services.AddScoped<IEmpresaRepository, EmpresaRepository>();
 			services.AddScoped<IAdministradorRepository, AdministradorRepository>();
 
-			services.AddDbContext<VenturaContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("ConnStr")));
+			services.AddDbContext<VenturaContext>(DbCtxBuilder =>
+			{
+				DbCtxBuilder.UseSqlServer(Configuration.GetConnectionString("ConnStr"));
+			});
 
 			services.AddCors();
+
 			services.AddControllers();
 
 			var key = Encoding.ASCII.GetBytes(Configuration.GetValue<string>("secret"));
@@ -64,12 +68,21 @@ namespace VENTURA_HR.API
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env, VenturaContext dataContext)
 		{
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
 			}
+
+			using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+			{
+				var context = serviceScope.ServiceProvider.GetRequiredService<VenturaContext>();
+				context.Database.EnsureCreated();
+			}
+
+			// Map Database
+			//dataContext.Database.Migrate();
 
 			app.UseHttpsRedirection();
 

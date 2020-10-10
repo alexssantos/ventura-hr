@@ -1,47 +1,55 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using VENTURA_HR.DOMAIN.UsuarioAggregate.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace VENTURA_HR.API.Controllers
 {
-	[Route("api/[controller]")]
+	[Route("api/usuario")]
 	[ApiController]
+	[Authorize]
 	public class UsuarioController : ControllerBase
 	{
-		// GET: api/<UsuarioController>
-		[HttpGet]
-		public IEnumerable<string> Get()
+		private IUsuarioService UsuarioService { get; set; }
+
+		public UsuarioController(IUsuarioService usuarioService)
 		{
-			return new string[] { "value1", "value2" };
+			UsuarioService = usuarioService;
 		}
+
+		// GET: api/<UsuarioController>
+		[HttpGet("{id}")]
+		public ActionResult Get(Guid id)
+		{
+			return Ok(UsuarioService.Get(id));
+		}
+
 
 		// GET api/<UsuarioController>/5
-		[HttpGet("{id}")]
-		public string Get(int id)
+		[HttpGet]
+		public ActionResult GetAll()
 		{
-			return "value";
+			return Ok(UsuarioService.GetAll());
 		}
 
-		// POST api/<UsuarioController>
-		[HttpPost]
-		public void Post([FromBody] string value)
-		{
-		}
+		//// POST api/<UsuarioController>
+		//[HttpPost]
+		//public void Post([FromBody] string value)
+		//{
+		//}
 
-		// PUT api/<UsuarioController>/5
-		[HttpPut("{id}")]
-		public void Put(int id, [FromBody] string value)
-		{
-		}
+		//// PUT api/<UsuarioController>/5
+		//[HttpPut("{id}")]
+		//public void Put(int id, [FromBody] string value)
+		//{
+		//}
 
-		// DELETE api/<UsuarioController>/5
-		[HttpDelete("{id}")]
-		public void Delete(int id)
-		{
-		}
+		//// DELETE api/<UsuarioController>/5
+		//[HttpDelete("{id}")]
+		//public void Delete(int id)
+		//{
+		//}
 	}
 }

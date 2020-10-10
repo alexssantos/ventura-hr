@@ -6,9 +6,9 @@ namespace VENTURA_HT.Repository.MapEntities
 {
 	public class CandidatoMap : IEntityTypeConfiguration<Candidato>
 	{
-		public void Configure(EntityTypeBuilder<Candidato> builder)
+		public void Configure(EntityTypeBuilder<Candidato> entity)
 		{
-			//builder.ToTable("Candidato");
+			entity.ToTable("Candidato").HasBaseType<Usuario>();
 		}
 	}
 }

@@ -6,9 +6,21 @@ namespace VENTURA_HT.Repository.MapEntities
 {
 	public class EmpresaMap : IEntityTypeConfiguration<Empresa>
 	{
-		public void Configure(EntityTypeBuilder<Empresa> builder)
+		public void Configure(EntityTypeBuilder<Empresa> entity)
 		{
-			builder.ToTable("Empresa").HasBaseType<Usuario>();
+			entity.ToTable("Empresa");
+
+			entity.HasOne(x => x.Usuario);
+
+			entity.HasKey(x => x.Id);
+			entity.Property(x => x.Id)
+				.HasColumnName("id_empresa")
+				.ValueGeneratedNever()
+				.IsRequired();
+
+			entity.Property(x => x.CNPJ)
+				.HasColumnName("str_cnpj")
+				.IsRequired();
 		}
 	}
 }

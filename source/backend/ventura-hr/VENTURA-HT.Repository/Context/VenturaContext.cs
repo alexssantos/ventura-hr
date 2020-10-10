@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VENTURA_HR.DOMAIN.UsuarioAggregate.Entities;
+using VENTURA_HT.Repository.MapEntities;
 
 namespace VENTURA_HT.Repository.Context
 {
@@ -41,21 +42,9 @@ namespace VENTURA_HT.Repository.Context
 		 */
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-
-			//modelBuilder.Entity<Usuario>().ToTable("Usuarios");
-			modelBuilder.Entity<Candidato>().HasBaseType<Usuario>();
-			modelBuilder.Entity<Empresa>().HasBaseType<Usuario>();
-			modelBuilder.Entity<Administrador>().HasBaseType<Usuario>();
-
-			//modelBuilder.ApplyConfiguration(new EmpresaMap());
-			//		.Entity<Empresa>().ToTable("").HasBaseType<Usuario>();
-
-			//modelBuilder.ApplyConfiguration(new EmpresaMap());
-			//modelBuilder.ApplyConfiguration(new CandidatoMap());
-
-
-			//modelBuilder.Entity<Empresa>().ToTable("Empresa");
-
+			modelBuilder.ApplyConfiguration(new UsuarioMap());
+			modelBuilder.ApplyConfiguration(new EmpresaMap());
+			modelBuilder.ApplyConfiguration(new CandidatoMap());
 
 			base.OnModelCreating(modelBuilder);
 		}

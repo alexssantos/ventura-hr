@@ -8,7 +8,18 @@ namespace VENTURA_HT.Repository.MapEntities
 	{
 		public void Configure(EntityTypeBuilder<Candidato> entity)
 		{
-			entity.ToTable("Candidato").HasBaseType<Usuario>();
+			entity.ToTable("Candidato");
+			entity.HasOne(x => x.Usuario);
+
+			entity.HasKey(x => x.Id);
+			entity.Property(x => x.Id)
+				.HasColumnName("id_candidato")
+				.ValueGeneratedNever()
+				.IsRequired();
+
+			entity.Property(x => x.CPF)
+				.HasColumnName("str_cpf")
+				.IsRequired();
 		}
 	}
 }

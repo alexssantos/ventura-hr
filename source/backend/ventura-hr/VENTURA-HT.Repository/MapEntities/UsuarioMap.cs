@@ -8,15 +8,37 @@ namespace VENTURA_HT.Repository.MapEntities
 	{
 		public void Configure(EntityTypeBuilder<Usuario> builder)
 		{
-			builder.ToTable("Usuario");
-			builder.HasKey(x => x.Id);
-			builder.Property(x => x.Id).ValueGeneratedNever().IsRequired();
+			builder.ToTable("Usuarios");
 
-			builder.Property(x => x.Login).IsRequired();
-			builder.Property(x => x.Password).IsRequired();
-			builder.Property(x => x.Email).IsRequired();
-			builder.Property(x => x.Nome).IsRequired();
-			builder.Property(x => x.BirthDate).IsRequired();
+			builder.HasKey(x => x.Id);
+			builder.Property(x => x.Id)
+				.HasColumnName("id_usuario")
+				.ValueGeneratedNever()
+				.IsRequired();
+
+			builder.Property(x => x.Login)
+				.HasColumnName("str_login")
+				.IsRequired();
+
+			builder.Property(x => x.Password)
+				.HasColumnName("str_password")
+				.IsRequired();
+
+			builder.Property(x => x.Email)
+				.HasColumnName("str_email")
+				.IsRequired();
+
+			builder.Property(x => x.Nome)
+				.HasColumnName("str_nome")
+				.IsRequired();
+
+			builder.Property(x => x.DataNascimento)
+				.HasColumnName("dt_nascimento")
+				.IsRequired();
+
+			builder.Property(x => x.TipoUsuario)
+				.HasColumnName("int_tipo")
+				.IsRequired();
 		}
 	}
 }

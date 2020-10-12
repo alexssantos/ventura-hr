@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using VENTURA_HR.DOMAIN.VagaAggregate.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -9,11 +9,18 @@ namespace VENTURA_HR.API.Controllers
 	[ApiController]
 	public class VagaController : ControllerBase
 	{
-		// GET: api/<VagasController>
-		[HttpGet]
-		public IEnumerable<string> Get()
+		private IVagaService VagaService { get; set; }
+
+		public VagaController(IVagaService vagaService)
 		{
-			return new string[] { "value1", "value2" };
+			VagaService = vagaService;
+		}
+
+		[HttpGet]
+		public ActionResult Get()
+		{
+			var result = VagaService.PegarTodos();
+			return Ok(result);
 		}
 
 		// GET api/<VagasController>/5

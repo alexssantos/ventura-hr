@@ -26,6 +26,9 @@ using System.Text;
 using System.Text.Json.Serialization;
 using VENTURA_HR.DOMAIN.UsuarioAggregate.Repositories;
 using VENTURA_HR.DOMAIN.UsuarioAggregate.Services;
+using VENTURA_HR.DOMAIN.VagaAggregate.Repositories;
+using VENTURA_HR.DOMAIN.VagaAggregate.Services;
+using VENTURA_HR.Repository.Repositories;
 using VENTURA_HR.Services;
 using VENTURA_HT.Repository.Context;
 using VENTURA_HT.Repository.Repositories;
@@ -51,16 +54,18 @@ namespace VENTURA_HR.API
 				//DbCtxBuilder.UseLazyLoadingProxies();
 			});
 
-
-			//services DI
-			services.AddTransient<AuthService>();
-			services.AddTransient<IUsuarioService, UsuarioService>();
-
 			//repositories DI
 			services.AddTransient<IUsuarioRepository, UsuarioRepository>();
 			services.AddTransient<ICandidatoRepository, CandidatoRepository>();
 			services.AddTransient<IEmpresaRepository, EmpresaRepository>();
 			services.AddTransient<IAdministradorRepository, AdministradorRepository>();
+			services.AddTransient<IVagaRepository, VagaRepository>();
+
+			//services DI
+			services.AddTransient<AuthService>();
+			services.AddTransient<IUsuarioService, UsuarioService>();
+			services.AddTransient<IVagaService, VagaService>();
+
 
 			services.AddCors();
 			services.AddControllers()

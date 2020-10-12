@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace VENTURA_HR.DOMAIN.UsuarioAggregate.Repositories
+namespace VENTURA_HR.DOMAIN.Shared
 {
-	public interface IRepositoryBase<T> where T : Shared.Entity
+	public interface IRepositoryBase<T> where T : Entity
 	{
 		IList<T> GetAll();
 		T GetbyId(Guid id);

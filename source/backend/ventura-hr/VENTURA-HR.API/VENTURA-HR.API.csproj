@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\VENTURA-HR.Repository\VENTURA-HR.Repository.csproj" />
     <ProjectReference Include="..\VENTURA-HR.Services\VENTURA-HR.Services.csproj" />
-    <ProjectReference Include="..\VENTURA-HT.Repository\VENTURA-HT.Repository.csproj" />
   </ItemGroup>
 
 

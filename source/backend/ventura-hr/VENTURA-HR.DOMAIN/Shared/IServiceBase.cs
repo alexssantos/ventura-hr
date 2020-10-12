@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace VENTURA_HR.DOMAIN.UsuarioAggregate.Services
+namespace VENTURA_HR.DOMAIN.Shared
 {
 	public interface IServiceBase<T>
 	{

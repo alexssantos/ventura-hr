@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>VENTURA_HT.Repository</RootNamespace>
+    <RootNamespace>VENTURA_HR.Repository</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

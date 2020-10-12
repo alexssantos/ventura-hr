@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VENTURA_HR.DOMAIN.UsuarioAggregate.Entities;
+using VENTURA_HR.DOMAIN.VagaAggregate.Entities;
 using VENTURA_HR.Repository.MapEntities;
 using VENTURA_HT.Repository.MapEntities;
 
@@ -21,7 +22,10 @@ namespace VENTURA_HT.Repository.Context
 		public DbSet<Candidato> Candidatos { get; set; }
 		public DbSet<Empresa> Empresas { get; set; }
 		public DbSet<Administrador> Administradores { get; set; }
-
+		public DbSet<Vaga> Vagas { get; set; }
+		public DbSet<Resposta> Respostas { get; set; }
+		public DbSet<Criterio> Criterios { get; set; }
+		public DbSet<RespostaCriterio> RespostaCriterios { get; set; }
 
 
 		/* Mapping ways to inheranced entities:

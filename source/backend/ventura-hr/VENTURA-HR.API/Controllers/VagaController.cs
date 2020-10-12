@@ -20,7 +20,7 @@ namespace VENTURA_HR.API.Controllers
 		[HttpGet]
 		public ActionResult Get()
 		{
-			var result = VagaService.PegarTodos();
+			var result = VagaService.PegarTodosComInclusos();
 			return Ok(result);
 		}
 

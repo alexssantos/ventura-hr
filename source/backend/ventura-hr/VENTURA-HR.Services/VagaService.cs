@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using VENTURA_HR.DOMAIN.UsuarioAggregate.Entities;
 using VENTURA_HR.DOMAIN.UsuarioAggregate.Services;
 using VENTURA_HR.DOMAIN.VagaAggregate.Entities;
@@ -32,5 +33,8 @@ namespace VENTURA_HR.Services
 
 			return Repository.Save(vaga);
 		}
+
+		public IList<Vaga> PegarTodosComInclusos() => Repository.GetAllWitIncludes();
+
 	}
 }

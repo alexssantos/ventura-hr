@@ -60,11 +60,15 @@ namespace VENTURA_HR.API
 			services.AddTransient<IEmpresaRepository, EmpresaRepository>();
 			services.AddTransient<IAdministradorRepository, AdministradorRepository>();
 			services.AddTransient<IVagaRepository, VagaRepository>();
+			services.AddTransient<IEmpresaRepository, EmpresaRepository>();
+			services.AddTransient<ICandidatoRepository, CandidatoRepository>();
 
 			//services DI
 			services.AddTransient<AuthService>();
 			services.AddTransient<IUsuarioService, UsuarioService>();
 			services.AddTransient<IVagaService, VagaService>();
+			services.AddTransient<IEmpresaService, EmpresaService>();
+			services.AddTransient<ICandidatoService, CandidatoService>();
 
 
 			services.AddCors();

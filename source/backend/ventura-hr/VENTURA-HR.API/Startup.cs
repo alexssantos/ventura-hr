@@ -1,3 +1,19 @@
+/* Observaçoes:
+ * 
+ * Dependence Injection
+ * - Services, Repositories e DbContext
+ * 
+ * Lazy Loading Data: Não usando.
+ *	- habilitado usando VIRTUAL 
+ *	- 3 Jeitos: https://docs.microsoft.com/en-us/ef/core/querying/related-data/#lazy-loading-without-proxies
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
+
+
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,23 +44,33 @@ namespace VENTURA_HR.API
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddScoped<AuthService>();
-			services.AddScoped<IUsuarioService, UsuarioService>();
-			services.AddScoped<IUsuarioRepository, UsuarioRepository>();
-			services.AddScoped<ICandidatoRepository, CandidatoRepository>();
-			services.AddScoped<IEmpresaRepository, EmpresaRepository>();
-			services.AddScoped<IAdministradorRepository, AdministradorRepository>();
-
+			//database context DI
 			services.AddDbContext<VenturaContext>(DbCtxBuilder =>
 			{
 				DbCtxBuilder.UseSqlServer(Configuration.GetConnectionString("ConnStr"));
+				//DbCtxBuilder.UseLazyLoadingProxies();
 			});
 
+
+			//services DI
+			services.AddTransient<AuthService>();
+			services.AddTransient<IUsuarioService, UsuarioService>();
+
+			//repositories DI
+			services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+			services.AddTransient<ICandidatoRepository, CandidatoRepository>();
+			services.AddTransient<IEmpresaRepository, EmpresaRepository>();
+			services.AddTransient<IAdministradorRepository, AdministradorRepository>();
+
 			services.AddCors();
-
 			services.AddControllers()
-				.AddJsonOptions(opt => opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+				.AddJsonOptions(opt =>
+				{
+					opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+				});
 
+
+			//TODO: PASSA PARA SERVICE PROJECT
 			var key = Encoding.ASCII.GetBytes(Configuration.GetValue<string>("secret"));
 			//Token config schema (Bearer)
 			services.AddAuthentication(x =>
@@ -57,11 +83,13 @@ namespace VENTURA_HR.API
 			{
 				x.RequireHttpsMetadata = false;
 				x.SaveToken = true;
+
 				// Precisa validar a chave (simetrica)
 				x.TokenValidationParameters = new TokenValidationParameters
 				{
 					ValidateIssuerSigningKey = true,
 					IssuerSigningKey = new SymmetricSecurityKey(key),
+
 					// Não vamos usar uma aplicaçao distribuida pra outras.
 					ValidateIssuer = false,
 					ValidateAudience = false
@@ -77,11 +105,13 @@ namespace VENTURA_HR.API
 				app.UseDeveloperExceptionPage();
 			}
 
-			using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
-			{
-				var context = serviceScope.ServiceProvider.GetRequiredService<VenturaContext>();
-				context.Database.EnsureCreated();
-			}
+			//Validate Database is created.
+			//using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+			//{
+			//	var context = serviceScope.ServiceProvider.GetRequiredService<VenturaContext>();
+			//	//context.Database.Migrate();
+			//	//context.Database.EnsureCreated();
+			//}
 
 			app.UseHttpsRedirection();
 
@@ -92,13 +122,11 @@ namespace VENTURA_HR.API
 				.AllowAnyMethod()
 				.AllowAnyOrigin());
 
+			//Auth Configs
 			app.UseAuthentication();
 			app.UseAuthorization();
 
-			app.UseEndpoints(endpoints =>
-			{
-				endpoints.MapControllers();
-			});
+			app.UseEndpoints(endpoints => endpoints.MapControllers());
 		}
 	}
 }

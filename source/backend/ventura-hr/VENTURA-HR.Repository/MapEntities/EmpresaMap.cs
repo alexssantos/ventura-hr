@@ -10,8 +10,6 @@ namespace VENTURA_HT.Repository.MapEntities
 		{
 			entity.ToTable("Empresa");
 
-			entity.HasOne(x => x.Usuario);
-
 			entity.HasKey(x => x.Id);
 			entity.Property(x => x.Id)
 				.HasColumnName("id_empresa")
@@ -21,6 +19,15 @@ namespace VENTURA_HT.Repository.MapEntities
 			entity.Property(x => x.CNPJ)
 				.HasColumnName("str_cnpj")
 				.IsRequired();
+
+
+			// ==== relationshiop ====
+
+			entity.HasOne(x => x.Usuario);
+
+			entity.HasMany(x => x.Vagas)
+				.WithOne(x => x.Empresa)
+				.HasForeignKey(x => x.EmpresaId);
 		}
 	}
 }

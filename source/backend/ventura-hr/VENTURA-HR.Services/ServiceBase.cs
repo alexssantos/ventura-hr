@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using VENTURA_HR.DOMAIN.Shared;
-using VENTURA_HR.DOMAIN.UsuarioAggregate.Repositories;
-using VENTURA_HR.DOMAIN.UsuarioAggregate.Services;
 
 namespace VENTURA_HR.Services
 {

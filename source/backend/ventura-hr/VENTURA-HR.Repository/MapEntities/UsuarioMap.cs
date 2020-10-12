@@ -8,7 +8,7 @@ namespace VENTURA_HT.Repository.MapEntities
 	{
 		public void Configure(EntityTypeBuilder<Usuario> builder)
 		{
-			builder.ToTable("Usuarios");
+			builder.ToTable("Usuario");
 
 			builder.HasKey(x => x.Id);
 			builder.Property(x => x.Id)
@@ -39,6 +39,10 @@ namespace VENTURA_HT.Repository.MapEntities
 			builder.Property(x => x.TipoUsuario)
 				.HasColumnName("int_tipo")
 				.IsRequired();
+
+			// ==== relationshiops ====
+
+			//Nao maperar para baixo entidade com relação de herança: Admin, Candidato, Empresa.
 		}
 	}
 }

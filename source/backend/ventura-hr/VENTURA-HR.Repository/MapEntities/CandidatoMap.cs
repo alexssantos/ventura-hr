@@ -9,7 +9,6 @@ namespace VENTURA_HT.Repository.MapEntities
 		public void Configure(EntityTypeBuilder<Candidato> entity)
 		{
 			entity.ToTable("Candidato");
-			entity.HasOne(x => x.Usuario);
 
 			entity.HasKey(x => x.Id);
 			entity.Property(x => x.Id)
@@ -20,6 +19,14 @@ namespace VENTURA_HT.Repository.MapEntities
 			entity.Property(x => x.CPF)
 				.HasColumnName("str_cpf")
 				.IsRequired();
+
+			// ==== relatoinsiops =====
+
+			entity.HasOne(x => x.Usuario);
+
+			entity.HasMany(x => x.Respostas)
+				.WithOne(x => x.Candidato)
+				.HasForeignKey(x => x.CandidatoId);
 		}
 	}
 }

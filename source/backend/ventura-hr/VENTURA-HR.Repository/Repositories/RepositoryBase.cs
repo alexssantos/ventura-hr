@@ -9,7 +9,8 @@ using VENTURA_HT.Repository.Context;
 
 namespace VENTURA_HT.Repository.Repositories
 {
-	public class RepositoryBase<T> : IRepositoryBase<T> where T : Entity
+	public class RepositoryBase<T> : IRepositoryBase<T>
+		where T : Entity
 	{
 		protected DbSet<T> Query { get; set; }
 		protected VenturaContext Context { get; set; }
@@ -20,12 +21,12 @@ namespace VENTURA_HT.Repository.Repositories
 			Query = Context.Set<T>();
 		}
 
-		public bool Delete(Guid id)
+		public T Delete(Guid id)
 		{
 			var entity = Query.Find(id);
 			Query.Remove(entity);
 			Context.SaveChanges();
-			return true;
+			return entity;
 		}
 
 		public IList<T> GetAll()
@@ -48,19 +49,25 @@ namespace VENTURA_HT.Repository.Repositories
 			return this.Query.FirstOrDefault(expression);
 		}
 
-		public bool Save(T entity)
+		public T Save(T entity)
 		{
 			Query.Add(entity);
 			Context.SaveChanges();
-			return true;
+			return entity;
 		}
 
-		public bool Update(Guid id, T entity)
+		public T Update(Guid id, T entity)
 		{
 			Query.Update(entity);
 			Context.Entry(entity).State = EntityState.Modified;
 			Context.SaveChanges();
-			return true;
+			return entity;
+		}
+
+		public int SaveMany(ICollection<T> entities)
+		{
+			Query.AddRange(entities);
+			return Context.SaveChanges();
 		}
 	}
 }

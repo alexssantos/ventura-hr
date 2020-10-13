@@ -1,47 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using VENTURA_HR.API.ViewModel.Requests;
+using VENTURA_HR.DOMAIN.UsuarioAggregate.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace VENTURA_HR.API.Controllers
 {
-	[Route("api/[controller]")]
+	[Route("api/usuario")]
 	[ApiController]
+	[Authorize]
 	public class UsuarioController : ControllerBase
 	{
-		// GET: api/<UsuarioController>
-		[HttpGet]
-		public IEnumerable<string> Get()
+		private IUsuarioService UsuarioService { get; set; }
+
+		public UsuarioController(IUsuarioService usuarioService)
 		{
-			return new string[] { "value1", "value2" };
+			UsuarioService = usuarioService;
 		}
+
+		// GET: api/<UsuarioController>
+		[HttpGet("{id}")]
+		public ActionResult Get(Guid id)
+		{
+			return Ok(UsuarioService.Pegar(id));
+		}
+
 
 		// GET api/<UsuarioController>/5
-		[HttpGet("{id}")]
-		public string Get(int id)
+		[HttpGet]
+		public ActionResult GetAll()
 		{
-			return "value";
+			return Ok(UsuarioService.PegarTodos());
 		}
 
-		// POST api/<UsuarioController>
 		[HttpPost]
-		public void Post([FromBody] string value)
+		[Route("cadastro")]
+		[AllowAnonymous]
+		public ActionResult Cadastro([FromBody] CadastroForm form)
 		{
-		}
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(new { message = "Formulário de cadastro inválido." });
+			}
+			var usuario = UsuarioService.Cadastrar(form.Login, form.Senha, form.Tipo);
 
-		// PUT api/<UsuarioController>/5
-		[HttpPut("{id}")]
-		public void Put(int id, [FromBody] string value)
-		{
-		}
+			if (usuario == null)
+				return NotFound(new { message = "Usuário já cadastrado." });
 
-		// DELETE api/<UsuarioController>/5
-		[HttpDelete("{id}")]
-		public void Delete(int id)
-		{
+
+			return Ok(new
+			{
+				usuario = usuario,
+				message = $"Foi cadastrado com sucesso o usuário: {form.Login}"
+			});
 		}
 	}
 }

@@ -29,7 +29,9 @@ namespace VENTURA_HR.API.Controllers
 		[AllowAnonymous]
 		public ActionResult Login([FromBody] LoginForm loginForm)
 		{
-			var user = UsuarioRepository.GetUsuarioTeste(loginForm.Login, loginForm.Senha);
+			var user = UsuarioRepository.GetOneByCriteria(x =>
+				(x.Login == loginForm.Login)
+				&& (x.Password == loginForm.Senha));
 
 			if (user == null)
 				return NotFound(new { message = "Usuário ou senha inválidos." });
@@ -43,6 +45,7 @@ namespace VENTURA_HR.API.Controllers
 				token = token
 			});
 		}
+
 
 		[HttpGet]
 		[Route("anonimo")]

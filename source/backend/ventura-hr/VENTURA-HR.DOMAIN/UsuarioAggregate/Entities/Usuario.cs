@@ -4,7 +4,7 @@ using VENTURA_HR.DOMAIN.UsuarioAggregate.Enums;
 
 namespace VENTURA_HR.DOMAIN.UsuarioAggregate.Entities
 {
-	public abstract class Usuario : Entity
+	public class Usuario : Entity
 	{
 		public Usuario() : base()
 		{
@@ -15,7 +15,7 @@ namespace VENTURA_HR.DOMAIN.UsuarioAggregate.Entities
 		public string Password { get; set; }
 		public string Email { get; set; }
 		public string Nome { get; set; }
-		public DateTime BirthDate { get; set; }
-		public EUsuarioTipo Role { get; set; }
+		public DateTime DataNascimento { get; set; }
+		public EUsuarioTipo TipoUsuario { get; set; }
 	}
 }

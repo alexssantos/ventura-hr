@@ -30,11 +30,10 @@ namespace VENTURA_HR.Services
 				Subject = new ClaimsIdentity(new Claim[]
 				{
 					new Claim(ClaimTypes.Name, usuario.Login.ToString()),
-					new Claim(ClaimTypes.Role, usuario.Role.ToString()),
+					new Claim(ClaimTypes.Role, usuario.TipoUsuario.ToString()),
 				}),
 				// Tempo de expiração.
-				//Expires = DateTime.UtcNow.AddHours(2),
-				Expires = DateTime.UtcNow.AddMinutes(2),
+				Expires = DateTime.UtcNow.AddHours(2),
 				SigningCredentials = new SigningCredentials(
 					// Usando chave simetrica em bytes.
 					new SymmetricSecurityKey(key),

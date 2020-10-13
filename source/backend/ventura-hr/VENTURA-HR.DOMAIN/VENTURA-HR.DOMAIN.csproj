@@ -7,10 +7,7 @@
 
   <ItemGroup>
     <Folder Include="UsuarioAggregate\ValueObjects\" />
-    <Folder Include="VagaAggregate\Enums\" />
-    <Folder Include="VagaAggregate\Services\" />
     <Folder Include="VagaAggregate\ValueObjects\" />
-    <Folder Include="VagaAggregate\Repositories\" />
   </ItemGroup>
 
 </Project>

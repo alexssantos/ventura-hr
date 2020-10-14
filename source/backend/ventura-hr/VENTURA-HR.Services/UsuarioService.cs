@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using VENTURA_HR.DOMAIN.UsuarioAggregate.Entities;
 using VENTURA_HR.DOMAIN.UsuarioAggregate.Enums;
 using VENTURA_HR.DOMAIN.UsuarioAggregate.Repositories;
@@ -52,19 +51,11 @@ namespace VENTURA_HR.Services
 					CandidatoService.Savar(candidato);
 					break;
 				case EUsuarioTipo.ADMINISTRADOR:
-
+					//TODO: not implemented
 					break;
 			}
 
-			return null; // Repository.Save(usuario);
-		}
-
-		public void CriarUsuarios()
-		{
-			var userList = new List<Usuario>();
-			userList.Add(new Usuario { Login = "alex", Password = "alex", TipoUsuario = EUsuarioTipo.CANDIDATO });
-			userList.Add(new Usuario { Login = "alice", Password = "alice", TipoUsuario = EUsuarioTipo.EMPRESA });
-			Repository.SaveMany(userList);
+			return usuario;
 		}
 	}
 }

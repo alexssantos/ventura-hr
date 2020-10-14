@@ -24,6 +24,12 @@ namespace VENTURA_HR.Repository.MapEntities
 				.HasColumnName("int_peso")
 				.IsRequired();
 
+			entity.Property(x => x.DataCriacao)
+				.HasColumnName("dt_criacao")
+				.IsRequired();
+
+			entity.Property(x => x.DataUltimaAtualizacao)
+				.HasColumnName("dt_atualizacao");
 
 			// ==== relatoinsiops =====
 

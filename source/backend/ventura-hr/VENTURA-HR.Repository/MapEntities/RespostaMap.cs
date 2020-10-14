@@ -20,6 +20,12 @@ namespace VENTURA_HR.Repository.MapEntities
 				.HasColumnName("str_campo_teste")
 				.IsRequired();
 
+			entity.Property(x => x.DataCriacao)
+				.HasColumnName("dt_criacao")
+				.IsRequired();
+
+			entity.Property(x => x.DataUltimaAtualizacao)
+				.HasColumnName("dt_atualizacao");
 
 			// ==== relationships =====
 

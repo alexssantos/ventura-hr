@@ -17,8 +17,16 @@ namespace VENTURA_HR.Repository.MapEntities
 				.ValueGeneratedNever()
 				.IsRequired();
 
+			entity.Property(x => x.DataCriacao)
+				.HasColumnName("dt_criacao")
+				.IsRequired();
 
+			entity.Property(x => x.DataUltimaAtualizacao)
+				.HasColumnName("dt_atualizacao");
 
+			entity.Property(x => x.DataExpiracao)
+				.HasColumnName("dt_expiracao")
+				.IsRequired();
 
 			//====== REALATONSHIPS ======
 

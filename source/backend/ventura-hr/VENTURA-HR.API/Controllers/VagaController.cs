@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using VENTURA_HR.API.ViewModel.Requests;
 using VENTURA_HR.DOMAIN.VagaAggregate.Services;
 
@@ -8,6 +10,7 @@ namespace VENTURA_HR.API.Controllers
 {
 	[Route("api/vaga")]
 	[ApiController]
+	[Authorize(Roles = "EMPRESA")]
 	public class VagaController : ControllerBase
 	{
 		private IVagaService VagaService { get; set; }
@@ -18,19 +21,20 @@ namespace VENTURA_HR.API.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult Get()
+		public ActionResult PegarTodas()
 		{
 			var result = VagaService.PegarTodosComInclusos();
 			return Ok(result);
 		}
 
-		[HttpGet("{id}")]
-		public string Get(int id)
+		[HttpGet("{vagaId}")]
+		public ActionResult PegarVaga(Guid vagaId)
 		{
-			return "value";
+			//não retorna empresa agregada, somente empresaId.
+			var result = VagaService.Pegar(vagaId);
+			return Ok(result);
 		}
 
-		// POST api/<VagasController>
 		[HttpPost]
 		public ActionResult Post([FromBody] CadastroVagaRequest vagaNova)
 		{

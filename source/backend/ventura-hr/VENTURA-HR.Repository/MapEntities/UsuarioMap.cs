@@ -40,6 +40,13 @@ namespace VENTURA_HT.Repository.MapEntities
 				.HasColumnName("int_tipo")
 				.IsRequired();
 
+			builder.Property(x => x.DataCriacao)
+				.HasColumnName("dt_criacao")
+				.IsRequired();
+
+			builder.Property(x => x.DataUltimaAtualizacao)
+				.HasColumnName("dt_atualizacao");
+
 			// ==== relationshiops ====
 
 			//Nao maperar para baixo entidade com relação de herança: Admin, Candidato, Empresa.

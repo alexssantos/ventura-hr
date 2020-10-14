@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VENTURA_HT.Repository.Context;
 
 namespace VENTURA_HR.Repository.Migrations
 {
     [DbContext(typeof(VenturaContext))]
-    partial class VenturaContextModelSnapshot : ModelSnapshot
+    [Migration("20201013222503_updateEntityBaseAndVaga")]
+    partial class updateEntityBaseAndVaga
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,7 +30,7 @@ namespace VENTURA_HR.Repository.Migrations
                     b.Property<DateTime>("DataCriacao")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DataUltimaAtualizacao")
+                    b.Property<DateTime>("DataUltimaAtualizacao")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Segredo")
@@ -59,7 +61,7 @@ namespace VENTURA_HR.Repository.Migrations
                         .HasColumnName("dt_criacao")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DataUltimaAtualizacao")
+                    b.Property<DateTime>("DataUltimaAtualizacao")
                         .HasColumnName("dt_atualizacao")
                         .HasColumnType("datetime2");
 
@@ -88,7 +90,7 @@ namespace VENTURA_HR.Repository.Migrations
                         .HasColumnName("dt_criacao")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DataUltimaAtualizacao")
+                    b.Property<DateTime>("DataUltimaAtualizacao")
                         .HasColumnName("dt_atualizacao")
                         .HasColumnType("datetime2");
 
@@ -116,7 +118,7 @@ namespace VENTURA_HR.Repository.Migrations
                         .HasColumnName("dt_nascimento")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DataUltimaAtualizacao")
+                    b.Property<DateTime>("DataUltimaAtualizacao")
                         .HasColumnName("dt_atualizacao")
                         .HasColumnType("datetime2");
 
@@ -159,7 +161,7 @@ namespace VENTURA_HR.Repository.Migrations
                         .HasColumnName("dt_criacao")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DataUltimaAtualizacao")
+                    b.Property<DateTime>("DataUltimaAtualizacao")
                         .HasColumnName("dt_atualizacao")
                         .HasColumnType("datetime2");
 
@@ -195,7 +197,7 @@ namespace VENTURA_HR.Repository.Migrations
                         .HasColumnName("dt_criacao")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DataUltimaAtualizacao")
+                    b.Property<DateTime>("DataUltimaAtualizacao")
                         .HasColumnName("dt_atualizacao")
                         .HasColumnType("datetime2");
 
@@ -228,7 +230,7 @@ namespace VENTURA_HR.Repository.Migrations
                     b.Property<DateTime>("DataCriacao")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DataUltimaAtualizacao")
+                    b.Property<DateTime>("DataUltimaAtualizacao")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("RespostaId")
@@ -257,7 +259,7 @@ namespace VENTURA_HR.Repository.Migrations
                         .HasColumnName("dt_expiracao")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DataUltimaAtualizacao")
+                    b.Property<DateTime>("DataUltimaAtualizacao")
                         .HasColumnName("dt_atualizacao")
                         .HasColumnType("datetime2");
 

@@ -20,6 +20,14 @@ namespace VENTURA_HT.Repository.MapEntities
 				.HasColumnName("str_cpf")
 				.IsRequired();
 
+			entity.Property(x => x.DataCriacao)
+				.HasColumnName("dt_criacao")
+				.IsRequired();
+
+			entity.Property(x => x.DataUltimaAtualizacao)
+				.HasColumnName("dt_atualizacao");
+
+
 			// ==== relatoinsiops =====
 
 			entity.HasOne(x => x.Usuario);

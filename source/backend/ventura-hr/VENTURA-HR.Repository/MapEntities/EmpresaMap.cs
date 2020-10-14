@@ -20,6 +20,12 @@ namespace VENTURA_HT.Repository.MapEntities
 				.HasColumnName("str_cnpj")
 				.IsRequired();
 
+			entity.Property(x => x.DataCriacao)
+				.HasColumnName("dt_criacao")
+				.IsRequired();
+
+			entity.Property(x => x.DataUltimaAtualizacao)
+				.HasColumnName("dt_atualizacao");
 
 			// ==== relationshiop ====
 

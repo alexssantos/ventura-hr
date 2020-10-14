@@ -1,13 +1,19 @@
-﻿namespace VENTURA_HR.DOMAIN.UsuarioAggregate.Enums
+﻿/* DataContract necessary to use srting value in Autorization.
+ * 
+ */
+
+using System.Runtime.Serialization;
+
+namespace VENTURA_HR.DOMAIN.UsuarioAggregate.Enums
 {
-	//[DataContract]
+	[DataContract]
 	public enum EUsuarioTipo
 	{
-		//[EnumMember(Value = "ADMINISTRADOR")]
+		[EnumMember(Value = "ADMINISTRADOR")]
 		ADMINISTRADOR = 1,
-		//[EnumMember(Value = "CANDIDATO")]
+		[EnumMember(Value = "CANDIDATO")]
 		CANDIDATO = 2,
-		//[EnumMember(Value = "EMPRESA")]
+		[EnumMember(Value = "EMPRESA")]
 		EMPRESA = 3
 	}
 }

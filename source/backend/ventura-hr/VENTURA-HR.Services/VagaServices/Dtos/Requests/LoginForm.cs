@@ -1,11 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
-using VENTURA_HR.DOMAIN.UsuarioAggregate.Enums;
 
-namespace VENTURA_HR.API.ViewModel.Requests
+namespace VENTURA_HR.Services.Dtos.Requests
 {
 	[DataContract]
-	public class CadastroForm
+	public class LoginForm
 	{
 		[Required]
 		[DataMember(Name = "login")]
@@ -14,11 +13,5 @@ namespace VENTURA_HR.API.ViewModel.Requests
 		[Required]
 		[DataMember(Name = "senha")]
 		public string Senha { get; set; }
-
-		//Nao atribuir DataMember
-		[Required]
-		[Range(1, 3)]
-		[DataMember(Name = "tipo")]
-		public EUsuarioTipo Tipo { get; set; }
 	}
 }

@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using VENTURA_HR.API.ViewModel.Requests;
-using VENTURA_HR.DOMAIN.UsuarioAggregate.Services;
+using VENTURA_HR.Services.Dtos.Requests;
+using VENTURA_HR.Services.UsuarioServices;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace VENTURA_HR.API.Controllers
 {

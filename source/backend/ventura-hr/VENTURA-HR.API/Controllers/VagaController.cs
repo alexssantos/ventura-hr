@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using VENTURA_HR.API.ViewModel.Requests;
-using VENTURA_HR.DOMAIN.VagaAggregate.Services;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using VENTURA_HR.Services.Dtos.Requests;
+using VENTURA_HR.Services.VagaServices;
 
 namespace VENTURA_HR.API.Controllers
 {
@@ -40,7 +38,7 @@ namespace VENTURA_HR.API.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var vaga = VagaService.CadastrarVaga(vagaNova.Descricao, vagaNova.EmpresaId);
+				var vaga = VagaService.CadastrarVaga(vagaNova);
 
 				return Ok(new
 				{
@@ -49,6 +47,18 @@ namespace VENTURA_HR.API.Controllers
 				});
 			}
 			return BadRequest(vagaNova);
+		}
+
+		[HttpGet]
+		[Route("criterios/{empresaId}")]
+		public ActionResult PegarCriteriosEPesos(Guid empresaId)
+		{
+			var result = VagaService.PegarCriteriosEPesos(empresaId);
+			return Ok(new
+			{
+				criterios = result.Item1,
+				pesos = result.Item2
+			});
 		}
 
 		//// PUT api/<VagasController>/5

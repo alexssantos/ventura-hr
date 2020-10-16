@@ -16,11 +16,15 @@ namespace VENTURA_HR.Repository.MapEntities
 				.ValueGeneratedNever()
 				.IsRequired();
 
-			entity.Property(x => x.Descricao)
+			entity.Property(x => x.PesoDescricao)
 				.HasColumnName("str_desc")
 				.IsRequired();
 
-			entity.Property(x => x.Valor)
+			entity.Property(x => x.Titulo)
+				.HasColumnName("str_titulo")
+				.IsRequired();
+
+			entity.Property(x => x.Peso)
 				.HasColumnName("int_peso")
 				.IsRequired();
 

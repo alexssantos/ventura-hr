@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using VENTURA_HR.DOMAIN.Shared;
-using VENTURA_HR.DOMAIN.UsuarioAggregate.Repositories;
 using VENTURA_HT.Repository.Context;
 
 namespace VENTURA_HT.Repository.Repositories

@@ -6,7 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using VENTURA_HR.DOMAIN.UsuarioAggregate.Entities;
 
-namespace VENTURA_HR.Services
+namespace VENTURA_HR.Services.AuthServices
 {
 	public class AuthService
 	{

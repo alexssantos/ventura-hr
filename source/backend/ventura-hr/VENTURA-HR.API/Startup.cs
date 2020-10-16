@@ -25,11 +25,11 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Text.Json.Serialization;
 using VENTURA_HR.DOMAIN.UsuarioAggregate.Repositories;
-using VENTURA_HR.DOMAIN.UsuarioAggregate.Services;
 using VENTURA_HR.DOMAIN.VagaAggregate.Repositories;
-using VENTURA_HR.DOMAIN.VagaAggregate.Services;
 using VENTURA_HR.Repository.Repositories;
-using VENTURA_HR.Services;
+using VENTURA_HR.Services.AuthServices;
+using VENTURA_HR.Services.UsuarioServices;
+using VENTURA_HR.Services.VagaServices;
 using VENTURA_HT.Repository.Context;
 using VENTURA_HT.Repository.Repositories;
 
@@ -58,14 +58,16 @@ namespace VENTURA_HR.API
 			services.AddTransient<ICandidatoRepository, CandidatoRepository>();
 			services.AddTransient<IEmpresaRepository, EmpresaRepository>();
 			services.AddTransient<IAdministradorRepository, AdministradorRepository>();
-			services.AddTransient<IVagaRepository, VagaRepository>();
 			services.AddTransient<IEmpresaRepository, EmpresaRepository>();
 			services.AddTransient<ICandidatoRepository, CandidatoRepository>();
+			services.AddTransient<IVagaRepository, VagaRepository>();
+			services.AddTransient<ICriterioRepository, CriterioRepository>();
 
 			//services DI
 			services.AddTransient<AuthService>();
-			services.AddTransient<IUsuarioService, UsuarioService>();
 			services.AddTransient<IVagaService, VagaService>();
+			services.AddTransient<ICriterioService, CriterioService>();
+			services.AddTransient<IUsuarioService, UsuarioService>();
 			services.AddTransient<IEmpresaService, EmpresaService>();
 			services.AddTransient<ICandidatoService, CandidatoService>();
 

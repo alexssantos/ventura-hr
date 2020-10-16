@@ -13,7 +13,7 @@ namespace VENTURA_HT.Repository.Context
 		{
 		}
 
-		//fallback ctor
+		// fallback ctor for 'Design-time DbContext Creation'
 		public VenturaContext()
 		{
 		}
@@ -28,13 +28,15 @@ namespace VENTURA_HT.Repository.Context
 		public DbSet<RespostaCriterio> RespostaCriterios { get; set; }
 
 
-		/* Mapping ways to inheranced entities:
+		/* Mapping ways to inheranced entities (3):
+		 * 
 		 *	WARNING: only TPH supported for EFCore v3.x: https://docs.microsoft.com/en-us/ef/efcore-and-ef6/
 		 *	
 		 * 1. Table per Hierarchy (TPH) (https://entityframeworkcore.com/model-inheritance)
 		 *		* An entire class hierarchy can be mapped to a single table.
 		 *		* The table includes columns for all properties of all classes in the hierarchy.
 		 *		* The concrete subclass represented by a particular row is identified by the value of a type discriminator column.
+		 *		
 		 *		
 		 * 2. Table per Concrete (TPC)
 		 *		* 
@@ -48,6 +50,7 @@ namespace VENTURA_HT.Repository.Context
 		 *		*
 		 *		*
 		 * 
+		 * last update: 16/10/20
 		 */
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{

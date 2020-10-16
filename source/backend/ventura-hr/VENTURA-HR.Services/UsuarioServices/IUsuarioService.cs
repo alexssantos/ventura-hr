@@ -2,7 +2,7 @@
 using VENTURA_HR.DOMAIN.UsuarioAggregate.Entities;
 using VENTURA_HR.DOMAIN.UsuarioAggregate.Enums;
 
-namespace VENTURA_HR.DOMAIN.UsuarioAggregate.Services
+namespace VENTURA_HR.Services.UsuarioServices
 {
 	public interface IUsuarioService : IServiceBase<Usuario>
 	{

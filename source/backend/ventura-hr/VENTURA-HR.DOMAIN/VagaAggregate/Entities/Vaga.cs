@@ -6,6 +6,8 @@ namespace VENTURA_HR.DOMAIN.VagaAggregate.Entities
 {
 	public class Vaga : Shared.Entity
 	{
+		public static readonly int DEFAULT_EXPIRE_DAYS_AMOUNT = 4;
+
 		public string Descricao { get; set; }
 
 		public DateTime DataExpiracao
@@ -30,6 +32,5 @@ namespace VENTURA_HR.DOMAIN.VagaAggregate.Entities
 
 		public virtual IList<Resposta> Respostas { get; set; }
 
-		public static readonly int DEFAULT_EXPIRE_DAYS_AMOUNT = 4;
 	}
 }

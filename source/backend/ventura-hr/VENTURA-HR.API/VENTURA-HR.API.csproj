@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>VENTURA_HR.API</RootNamespace>
+    <UserSecretsId>481c7223-ad02-4888-a1bd-96d046767076</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

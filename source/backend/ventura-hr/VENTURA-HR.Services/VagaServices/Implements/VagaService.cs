@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using VENTURA_HR.DOMAIN.UsuarioAggregate.Entities;
+using VENTURA_HR.DOMAIN.UsuarioAggregate.Enums;
 using VENTURA_HR.DOMAIN.VagaAggregate.Entities;
 using VENTURA_HR.DOMAIN.VagaAggregate.Enums;
 using VENTURA_HR.DOMAIN.VagaAggregate.Repositories;
@@ -68,6 +69,17 @@ namespace VENTURA_HR.Services.VagaServices
 				return new List<string>();
 
 			return criteriosDaEmpresaList;
+		}
+
+		/*
+		 * Busca por palavras 
+		 * Vagas: válidas tanto para Candidato como Empresa.
+		 */
+		public List<Vaga> Busca(List<string> buscaTermos, Guid idUsuario, EUsuarioTipo usuarioTipo)
+		{
+			//buscar id usuario especifico
+			var vagasLista = Repository.BuscaPorPalavras(buscaTermos);
+			return vagasLista;
 		}
 	}
 }

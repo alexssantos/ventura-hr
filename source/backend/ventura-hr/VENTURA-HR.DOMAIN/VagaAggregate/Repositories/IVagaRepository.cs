@@ -11,5 +11,6 @@ namespace VENTURA_HR.DOMAIN.VagaAggregate.Repositories
 	{
 		IList<Vaga> GetAllWitIncludes();
 		List<string> GetAllCriteriosByEmpresaId(Guid empresaId);
+		List<Vaga> BuscaPorPalavras(List<string> buscaTermos);
 	}
 }

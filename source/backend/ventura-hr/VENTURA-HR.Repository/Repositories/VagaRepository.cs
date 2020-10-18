@@ -40,5 +40,35 @@ namespace VENTURA_HR.Repository.Repositories
 				.ToList();
 			return critoriosLista;
 		}
+
+		public List<Vaga> BuscaPorPalavras(List<string> buscaTermos)
+		{
+
+			IQueryable<Vaga> queryVaga = null;
+
+			if (buscaTermos.Any())
+			{
+				foreach (string busca in buscaTermos)
+				{
+					var queryBusca = Query.Where(obj => obj.Descricao.Contains(busca));
+					queryVaga = (queryVaga == null)
+						? queryBusca
+						: queryVaga.Concat(queryBusca);
+				}
+
+				queryVaga = queryVaga.Distinct();
+			}
+			else
+			{
+				queryVaga = Query;
+			}
+
+			queryVaga = queryVaga
+				.Include(vaga => vaga.Criterios)
+				.AsNoTracking();
+
+			var resultado = queryVaga.ToList();
+			return resultado;
+		}
 	}
 }

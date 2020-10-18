@@ -5,7 +5,6 @@ namespace VENTURA_HR.DOMAIN.Shared
 {
 	public interface IServiceBase<T>
 	{
-
 		public abstract T Pegar(Guid id);
 		public abstract ICollection<T> PegarTodos();
 

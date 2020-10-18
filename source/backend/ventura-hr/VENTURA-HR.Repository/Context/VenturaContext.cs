@@ -61,6 +61,8 @@ namespace VENTURA_HT.Repository.Context
 			modelBuilder.ApplyConfiguration(new VagaMap());
 			modelBuilder.ApplyConfiguration(new CriterioMap());
 
+			// Allow Soft delete = vagas expiradas.
+			//modelBuilder.Entity<Vaga>().HasQueryFilter(x => x.DataExpiracao > DateTime.Now);
 
 			base.OnModelCreating(modelBuilder);
 		}

@@ -31,6 +31,8 @@ namespace VENTURA_HR.Services.AuthServices
 				{
 					new Claim(ClaimTypes.Name, usuario.Login.ToString()),
 					new Claim(ClaimTypes.Role, usuario.TipoUsuario.ToString()),
+					new Claim(ClaimTypes.NameIdentifier, usuario.Id.ToString()),
+					new Claim(ClaimTypes.Email, usuario.Email.ToString()),
 				}),
 				// Tempo de expiração.
 				Expires = DateTime.UtcNow.AddHours(2),
@@ -46,7 +48,5 @@ namespace VENTURA_HR.Services.AuthServices
 			return tokenHandler.WriteToken(token);
 
 		}
-
-
 	}
 }

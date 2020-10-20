@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using VENTURA_HR.DOMAIN.Shared;
-using VENTURA_HR.DOMAIN.UsuarioAggregate.Enums;
 using VENTURA_HR.DOMAIN.VagaAggregate.Entities;
 using VENTURA_HR.Services.Dtos.Requests;
 

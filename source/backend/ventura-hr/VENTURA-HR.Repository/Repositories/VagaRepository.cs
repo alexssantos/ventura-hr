@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using VENTURA_HR.DOMAIN.VagaAggregate.Entities;
@@ -25,22 +24,6 @@ namespace VENTURA_HR.Repository.Repositories
 			return result;
 		}
 
-		/* Pegando Titulo de Criterio pela entidade vaga
-		 * por causa do empresa Id.
-		 */
-		public List<string> GetAllCriteriosByEmpresaId(Guid empresaId)
-		{
-			var critoriosLista = this.Query
-				.Include(x => x.Criterios)
-				.AsNoTracking()
-				.Where(x => x.EmpresaId == empresaId)
-				.SelectMany(vaga => vaga.Criterios)
-				.Select(criterio => criterio.Titulo)
-				.Distinct()
-				.ToList();
-			return critoriosLista;
-		}
-
 		public List<Vaga> BuscaPorPalavras(List<string> buscaTermos)
 		{
 
@@ -64,7 +47,8 @@ namespace VENTURA_HR.Repository.Repositories
 			}
 
 			queryVaga = queryVaga
-				.Include(vaga => vaga.Criterios)
+				.Include(vaga => vaga.VagaCriterios)
+					.ThenInclude(vc => vc.Select(vc => vc.Criterio))
 				.AsNoTracking();
 
 			var resultado = queryVaga.ToList();

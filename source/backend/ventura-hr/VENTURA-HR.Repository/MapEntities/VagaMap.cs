@@ -17,6 +17,17 @@ namespace VENTURA_HR.Repository.MapEntities
 				.ValueGeneratedNever()
 				.IsRequired();
 
+			entity.Property(x => x.Descricao)
+				.HasColumnName("str_descricao")
+				.IsRequired();
+
+			entity.Property(x => x.DataExpiracao)
+				.HasColumnName("dt_expiracao")
+				.IsRequired();
+
+
+			//====== Aditamento ======
+
 			entity.Property(x => x.DataCriacao)
 				.HasColumnName("dt_criacao")
 				.IsRequired();
@@ -24,9 +35,7 @@ namespace VENTURA_HR.Repository.MapEntities
 			entity.Property(x => x.DataUltimaAtualizacao)
 				.HasColumnName("dt_atualizacao");
 
-			entity.Property(x => x.DataExpiracao)
-				.HasColumnName("dt_expiracao")
-				.IsRequired();
+
 
 			//====== REALATONSHIPS ======
 
@@ -35,7 +44,10 @@ namespace VENTURA_HR.Repository.MapEntities
 				.HasForeignKey(x => x.VagaId)
 				.OnDelete(DeleteBehavior.NoAction);
 
-			entity.HasMany(x => x.Criterios);
+			entity.HasMany(x => x.VagaCriterios)
+				.WithOne(x => x.Vaga)
+				.HasForeignKey(x => x.VagaId)
+				.OnDelete(DeleteBehavior.Restrict);
 		}
 	}
 }

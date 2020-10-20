@@ -4,28 +4,28 @@ using VENTURA_HR.DOMAIN.VagaAggregate.Entities;
 
 namespace VENTURA_HR.Repository.MapEntities
 {
-	public class CriterioMap : IEntityTypeConfiguration<Criterio>
+	public class VagaCriterioMap : IEntityTypeConfiguration<VagaCriterio>
 	{
-		public void Configure(EntityTypeBuilder<Criterio> entity)
+		public void Configure(EntityTypeBuilder<VagaCriterio> entity)
 		{
-			entity.ToTable("Criterio");
+			entity.ToTable("VagaCriterio");
 
 			entity.HasKey(x => x.Id);
 			entity.Property(x => x.Id)
-				.HasColumnName("id_criterio")
+				.HasColumnName("id_vaga_criterio")
 				.ValueGeneratedNever()
 				.IsRequired();
 
-			entity.Property(x => x.Cargo)
-				.HasColumnName("str_cargo")
+			entity.Property(x => x.Peso)
+				.HasColumnName("int_peso")
 				.IsRequired();
 
-			entity.Property(x => x.Descricao)
-				.HasColumnName("str_desc")
+			entity.Property(x => x.PMD)
+				.HasColumnName("int_pmd")
 				.IsRequired();
 
-			entity.Property(x => x.Ativo)
-				.HasColumnName("bl_ativo")
+			entity.Property(x => x.PMDDescricao)
+				.HasColumnName("str_pmd_desc")
 				.IsRequired();
 
 
@@ -38,17 +38,13 @@ namespace VENTURA_HR.Repository.MapEntities
 			entity.Property(x => x.DataUltimaAtualizacao)
 				.HasColumnName("dt_atualizacao");
 
-
 			// ==== relatoinsiops =====
 
-			entity.HasMany(x => x.VagaCriterios)
-				.WithOne(x => x.Criterio)
-				.HasForeignKey(x => x.CriterioId)
-				.OnDelete(DeleteBehavior.Restrict);
 
 			// ==== Keys =====
 
-			//entity.HasIndex(p => new { p.Peso, p.RespostaCriterios, p.Titulo }).IsUnique();
+			entity.HasIndex(p => new { p.VagaId, p.CriterioId })
+				.IsUnique();
 		}
 	}
 }

@@ -16,10 +16,6 @@ namespace VENTURA_HR.Repository.MapEntities
 				.ValueGeneratedNever()
 				.IsRequired();
 
-			entity.Property(x => x.NovoCampoTesteMigration)
-				.HasColumnName("str_campo_teste")
-				.IsRequired();
-
 			entity.Property(x => x.DataCriacao)
 				.HasColumnName("dt_criacao")
 				.IsRequired();

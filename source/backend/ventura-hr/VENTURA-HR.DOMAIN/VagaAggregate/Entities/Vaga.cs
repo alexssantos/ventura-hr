@@ -24,11 +24,12 @@ namespace VENTURA_HR.DOMAIN.VagaAggregate.Entities
 
 		private DateTime? _dataExpiracao { get; set; }
 
-		public Guid EmpresaId { get; set; }
 
+
+		public Guid EmpresaId { get; set; }
 		public Empresa Empresa { get; set; }
 
-		public virtual IList<Criterio> Criterios { get; set; }
+		public virtual IList<VagaCriterio> VagaCriterios { get; set; }
 
 		public virtual IList<Resposta> Respostas { get; set; }
 

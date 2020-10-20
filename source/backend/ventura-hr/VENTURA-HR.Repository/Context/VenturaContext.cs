@@ -26,6 +26,7 @@ namespace VENTURA_HT.Repository.Context
 		public DbSet<Resposta> Respostas { get; set; }
 		public DbSet<Criterio> Criterios { get; set; }
 		public DbSet<RespostaCriterio> RespostaCriterios { get; set; }
+		public DbSet<VagaCriterio> VagaCriterios { get; set; }
 
 
 		/* Mapping ways to inheranced entities (3):

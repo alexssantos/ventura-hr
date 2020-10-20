@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using VENTURA_HR.DOMAIN.UsuarioAggregate.Entities;
 using VENTURA_HR.DOMAIN.UsuarioAggregate.Enums;
 using VENTURA_HR.DOMAIN.VagaAggregate.Entities;
-using VENTURA_HR.DOMAIN.VagaAggregate.Enums;
 using VENTURA_HR.DOMAIN.VagaAggregate.Repositories;
 using VENTURA_HR.Services.Dtos.Requests;
 using VENTURA_HR.Services.UsuarioServices;
@@ -14,17 +12,14 @@ namespace VENTURA_HR.Services.VagaServices
 	public class VagaService : ServiceBase<Vaga, IVagaRepository>, IVagaService
 	{
 		private IEmpresaService EmpresaService;
-		private ICriterioService CriterioService;
 
 		public VagaService(
 			IVagaRepository vagaRepository,
-			IEmpresaService empresaService,
-			ICriterioService criterioService
+			IEmpresaService empresaService
 		)
 			: base(vagaRepository)
 		{
 			EmpresaService = empresaService;
-			CriterioService = criterioService;
 		}
 
 		public Vaga CadastrarVaga(CadastroVagaRequest vagaNova)
@@ -38,38 +33,37 @@ namespace VENTURA_HR.Services.VagaServices
 
 			//Factory - vaga precisa ser criada com Criterios
 			Vaga vaga = new Vaga();
-			vaga.Criterios = vagaNova.Criterios
-				.Select(x => new Criterio
-				{
-					Titulo = x.Titulo,
-					Peso = (ECriterioPeso)x.Peso,
-				})
-				.ToList();
-			vaga.Descricao = vagaNova.Descricao;
-			vaga.Empresa = empresa;
 
-			return Repository.Save(vaga);
+			/* Nunca atualizar um criterios na base nesse fluxo.
+			 * 1. Buscar na base: caso Criterios Existentes
+			 * 2. Criar e salvar: caso Criterios Novos
+			 * WARNING: Unique Key = Peso + PMD + Descricao
+			 */
+
+			//buscar criterios
+			//var listaCriteriosNaBase = CriterioService.Pegar()
+
+			//vaga.VagaCriterios = vagaNova.Criterios
+			//	.Select(x => new VagaCriterio
+			//	{
+			//		Criterio =
+			//		Peso = x.Peso,
+			//		PMD = (ECriterioPMD)x.PerfilMinDesejado,
+			//		Vaga = vaga
+
+			//	}
+
+			//	)
+			//	.ToList();
+			//vaga.Descricao = vagaNova.Descricao;
+			//vaga.Empresa = empresa;
+
+			//return Repository.Save(vaga);
+			return new Vaga();
 		}
 
 		public IList<Vaga> PegarTodosComInclusos() => Repository.GetAllWitIncludes();
 
-		public Tuple<List<string>, Dictionary<int, string>> PegarCriteriosEPesos(Guid empresaId)
-		{
-			List<string> listaCriterios = PegarCriteriosSalvosPorEmpresaId(empresaId);
-			Dictionary<int, string> dictPesos = CriterioService.PegarPesosDeCriterios();
-
-			return new Tuple<List<string>, Dictionary<int, string>>(listaCriterios, dictPesos);
-		}
-
-		private List<string> PegarCriteriosSalvosPorEmpresaId(Guid empresaId)
-		{
-			var criteriosDaEmpresaList = Repository.GetAllCriteriosByEmpresaId(empresaId);
-
-			if ((criteriosDaEmpresaList == null) || (!criteriosDaEmpresaList.Any()))
-				return new List<string>();
-
-			return criteriosDaEmpresaList;
-		}
 
 		/*
 		 * Busca por palavras 

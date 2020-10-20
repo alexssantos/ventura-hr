@@ -9,21 +9,17 @@
  */
 
 using System.Collections.Generic;
-using VENTURA_HR.DOMAIN.VagaAggregate.Enums;
 
 namespace VENTURA_HR.DOMAIN.VagaAggregate.Entities
 {
 	public class Criterio : Shared.Entity
 	{
-		public ECriterioPeso Peso { get; set; }
-		public string PesoDescricao
-		{
-			get { return Peso.ToString(); }
-			set { }
-		}
+		public string Cargo { get; set; }
 
-		public string Titulo { get; set; }
+		public string Descricao { get; set; }
 
-		public virtual IList<RespostaCriterio> RespostaCriterios { get; set; }
+		public bool Ativo { get; set; }
+
+		public virtual IList<VagaCriterio> VagaCriterios { get; set; }
 	}
 }

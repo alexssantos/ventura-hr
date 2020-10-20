@@ -3,7 +3,7 @@
 namespace VENTURA_HR.DOMAIN.VagaAggregate.Enums
 {
 	[DataContract]
-	public enum ECriterioPeso
+	public enum EPerfilCriterio
 	{
 		[DataMember(Name = "Erro")]
 		ERRO = 0,

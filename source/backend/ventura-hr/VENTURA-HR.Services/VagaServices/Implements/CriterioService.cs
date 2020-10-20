@@ -14,16 +14,36 @@ namespace VENTURA_HR.Services.VagaServices
 		{
 		}
 
-		public Dictionary<int, string> PegarPesosDeCriterios()
+		public Tuple<List<string>, Dictionary<int, string>> PegarCriteriosEPesos(Guid empresaId)
 		{
-			var pesosNomesDict = Enum.GetValues(typeof(ECriterioPeso))
-				.Cast<ECriterioPeso>()
+			List<string> listaCriterios = PegarCriteriosSalvosPorEmpresaId(empresaId);
+			Dictionary<int, string> dictPesos = PegarPerfisDeCriterios();
+
+			return new Tuple<List<string>, Dictionary<int, string>>(listaCriterios, dictPesos);
+		}
+
+
+		private Dictionary<int, string> PegarPerfisDeCriterios()
+		{
+			var pesosNomesDict = Enum.GetValues(typeof(EPerfilCriterio))
+				.Cast<EPerfilCriterio>()
 				.ToDictionary(
 					peso => (int)peso,
 					pesoNome => pesoNome.ToString());
 
-			pesosNomesDict.Remove((int)ECriterioPeso.ERRO);
+			pesosNomesDict.Remove((int)EPerfilCriterio.ERRO);
 			return pesosNomesDict;
+		}
+
+
+		private List<string> PegarCriteriosSalvosPorEmpresaId(Guid empresaId)
+		{
+			var criteriosDaEmpresaList = Repository.GetAllCriteriosByEmpresaId(empresaId);
+
+			if ((criteriosDaEmpresaList == null) || (!criteriosDaEmpresaList.Any()))
+				return new List<string>();
+
+			return criteriosDaEmpresaList;
 		}
 	}
 }

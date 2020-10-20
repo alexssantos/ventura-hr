@@ -53,17 +53,6 @@ namespace VENTURA_HR.API.Controllers
 			return BadRequest(vagaNova);
 		}
 
-		[HttpGet]
-		[Route("criterios/{empresaId}")]
-		public ActionResult PegarCriteriosEPesos(Guid empresaId)
-		{
-			var result = VagaService.PegarCriteriosEPesos(empresaId);
-			return Ok(new
-			{
-				criterios = result.Item1,
-				pesos = result.Item2
-			});
-		}
 
 		[HttpGet("busca")]
 		public ActionResult PesquisarVagas(

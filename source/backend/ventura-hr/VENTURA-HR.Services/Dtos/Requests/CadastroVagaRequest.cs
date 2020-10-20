@@ -24,6 +24,9 @@ namespace VENTURA_HR.Services.Dtos.Requests
 		[DataContract]
 		public partial class CriterioItem
 		{
+			[DataMember(Name = "criterioId")]
+			public Guid CriterioId { get; set; }
+
 			[Required]
 			[DataMember(Name = "titulo")]
 			public string Titulo { get; set; }
@@ -32,6 +35,11 @@ namespace VENTURA_HR.Services.Dtos.Requests
 			[Range(1, 5)]
 			[DataMember(Name = "peso")]
 			public int Peso { get; set; }
+
+			[Required]
+			[Range(1, 5)]
+			[DataMember(Name = "perfilMIn")]
+			public int PerfilMinDesejado { get; set; }
 		}
 	}
 }

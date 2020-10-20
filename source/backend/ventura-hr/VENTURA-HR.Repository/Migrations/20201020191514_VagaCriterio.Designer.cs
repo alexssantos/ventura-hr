@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VENTURA_HT.Repository.Context;
 
 namespace VENTURA_HR.Repository.Migrations
 {
     [DbContext(typeof(VenturaContext))]
-    partial class VenturaContextModelSnapshot : ModelSnapshot
+    [Migration("20201020191514_VagaCriterio")]
+    partial class VagaCriterio
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -260,8 +262,6 @@ namespace VENTURA_HR.Repository.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasColumnName("str_descricao")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("EmpresaId")

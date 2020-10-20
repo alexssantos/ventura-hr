@@ -18,14 +18,6 @@ namespace VENTURA_HR.API.Controllers
 			this.CriterioService = criterioService;
 		}
 
-
-		// GET: api/<CriterioController>
-		[HttpGet]
-		public ActionResult Get()
-		{
-			return Ok(new string[] { "Get", "value2" });
-		}
-
 		[HttpGet]
 		[Route("{empresaId}")]
 		public ActionResult PegarCriteriosEPesos(Guid empresaId)
@@ -47,25 +39,21 @@ namespace VENTURA_HR.API.Controllers
 				return BadRequest();
 			}
 
-
 			var result = CriterioService.Criar(request);
 			return Ok(result);
 		}
 
-
-		// GET api/<CriterioController>/5
-		//[HttpGet("{id}")]
-		//public ActionResult Get(int id)
-		//{
-		//	return Ok("Get");
-		//}
-
-
 		// PUT api/<CriterioController>/5
-		[HttpPut("{id}")]
-		public ActionResult Put(int id, [FromBody] string value)
+		[HttpPut("{criterioId}")]
+		public ActionResult Put(Guid criterioId, [FromBody] AddCriterioRequest request)
 		{
-			return Ok("Put");
+			if (!ModelState.IsValid)
+			{
+				return BadRequest();
+			}
+
+			var result = CriterioService.Atualizar(criterioId, request);
+			return Ok(result);
 		}
 
 		// DELETE api/<CriterioController>/5

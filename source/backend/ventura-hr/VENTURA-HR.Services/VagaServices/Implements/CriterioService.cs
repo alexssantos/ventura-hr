@@ -56,5 +56,16 @@ namespace VENTURA_HR.Services.VagaServices
 
 			return criteriosDaEmpresaList;
 		}
+
+		public Criterio Atualizar(Guid id, AddCriterioRequest request)
+		{
+			var criterio = Repository.GetbyId(id);
+
+			if (criterio == null) return criterio;
+
+			criterio.Cargo = request.Cargo;
+			criterio.Descricao = request.Descricao;
+			return Repository.Update(id, criterio);
+		}
 	}
 }

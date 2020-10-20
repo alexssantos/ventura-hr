@@ -10,5 +10,6 @@ namespace VENTURA_HR.Services.VagaServices
 	{
 		Tuple<List<string>, Dictionary<int, string>> PegarCriteriosEPesos(Guid empresaId);
 		Criterio Criar(AddCriterioRequest request);
+		Criterio Atualizar(Guid id, AddCriterioRequest request);
 	}
 }

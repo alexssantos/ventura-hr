@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using VENTURA_HR.DOMAIN.Shared;
 
 namespace VENTURA_HR.Services
@@ -26,5 +27,9 @@ namespace VENTURA_HR.Services
 		public E Editar(Guid id, E entity) => Repository.Update(id, entity);
 
 		public Guid Apagar(Guid id) => Repository.Delete(id).Id;
+
+		public E PegarUmPorCriterio(Expression<Func<E, bool>> exp) => Repository.GetOneByCriteria(exp);
+
+		public IList<E> PegarListaPorCriterio(Expression<Func<E, bool>> exp) => Repository.GetAllByCriteria(exp);
 	}
 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VENTURA_HT.Repository.Context;
 
 namespace VENTURA_HR.Repository.Migrations
 {
     [DbContext(typeof(VenturaContext))]
-    partial class VenturaContextModelSnapshot : ModelSnapshot
+    [Migration("20201020213218_empresa-criterios")]
+    partial class empresacriterios
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -205,7 +207,6 @@ namespace VENTURA_HR.Repository.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<Guid?>("VagaId")
-                        .HasColumnName("vaga_id")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -283,31 +284,25 @@ namespace VENTURA_HR.Repository.Migrations
             modelBuilder.Entity("VENTURA_HR.DOMAIN.VagaAggregate.Entities.VagaCriterio", b =>
                 {
                     b.Property<Guid>("Id")
-                        .HasColumnName("id_vaga_criterio")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CriterioId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DataCriacao")
-                        .HasColumnName("dt_criacao")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DataUltimaAtualizacao")
-                        .HasColumnName("dt_atualizacao")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("PMD")
-                        .HasColumnName("int_pmd")
                         .HasColumnType("int");
 
                     b.Property<string>("PMDDescricao")
-                        .IsRequired()
-                        .HasColumnName("str_pmd_desc")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Peso")
-                        .HasColumnName("int_peso")
                         .HasColumnType("int");
 
                     b.Property<Guid>("VagaId")
@@ -317,10 +312,9 @@ namespace VENTURA_HR.Repository.Migrations
 
                     b.HasIndex("CriterioId");
 
-                    b.HasIndex("VagaId", "CriterioId")
-                        .IsUnique();
+                    b.HasIndex("VagaId");
 
-                    b.ToTable("VagaCriterio");
+                    b.ToTable("VagaCriterios");
                 });
 
             modelBuilder.Entity("VENTURA_HR.DOMAIN.UsuarioAggregate.Entities.Administrador", b =>
@@ -378,7 +372,7 @@ namespace VENTURA_HR.Repository.Migrations
                     b.HasOne("VENTURA_HR.DOMAIN.VagaAggregate.Entities.Resposta", "Resposta")
                         .WithMany("RespostaCriterios")
                         .HasForeignKey("RespostaId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("VENTURA_HR.DOMAIN.VagaAggregate.Entities.VagaCriterio", "VagaCriterio")

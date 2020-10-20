@@ -9,7 +9,7 @@ namespace VENTURA_HR.Services.VagaServices
 	public interface ICriterioService : IServiceBase<Criterio>
 	{
 		Tuple<List<string>, Dictionary<int, string>> PegarCriteriosEPesos(Guid empresaId);
-		Criterio Criar(AddCriterioRequest request);
+		Criterio Criar(AddCriterioRequest request, Guid usuarioId);
 		Criterio Atualizar(Guid id, AddCriterioRequest request);
 	}
 }

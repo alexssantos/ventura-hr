@@ -10,5 +10,6 @@ namespace VENTURA_HR.DOMAIN.UsuarioAggregate.Entities
 		public Usuario Usuario { get; set; }
 		public Guid UsuarioId { get; set; }
 		public virtual IList<Vaga> Vagas { get; set; }
+		public virtual IList<Criterio> Criterios { get; set; }
 	}
 }

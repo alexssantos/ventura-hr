@@ -16,6 +16,9 @@ namespace VENTURA_HR.Repository.MapEntities
 				.ValueGeneratedNever()
 				.IsRequired();
 
+			//entity.Property(x => x.EmpresaId)
+			//	.HasColumnName("empresa_id");
+
 			entity.Property(x => x.Cargo)
 				.HasColumnName("str_cargo")
 				.IsRequired();

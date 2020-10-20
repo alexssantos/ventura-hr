@@ -5,22 +5,31 @@ using VENTURA_HR.DOMAIN.VagaAggregate.Entities;
 using VENTURA_HR.DOMAIN.VagaAggregate.Enums;
 using VENTURA_HR.DOMAIN.VagaAggregate.Repositories;
 using VENTURA_HR.Services.Dtos.Requests;
+using VENTURA_HR.Services.UsuarioServices;
 
 namespace VENTURA_HR.Services.VagaServices
 {
 	public class CriterioService : ServiceBase<Criterio, ICriterioRepository>, ICriterioService
 	{
-		public CriterioService(ICriterioRepository repository) : base(repository)
+		IEmpresaService EmpresaService;
+
+		public CriterioService(
+			ICriterioRepository repository,
+			IEmpresaService empresaService
+		) : base(repository)
 		{
+			EmpresaService = empresaService;
 		}
 
-		public Criterio Criar(AddCriterioRequest request)
+		public Criterio Criar(AddCriterioRequest request, Guid usuarioId)
 		{
+			var empresa = this.EmpresaService.PegarUmPorCriterio(emp => emp.UsuarioId == usuarioId);
 
 			var criterio = new Criterio();
 			criterio.Cargo = request.Cargo;
 			criterio.Descricao = request.Descricao;
 			criterio.Ativo = true;
+			criterio.Empresa = empresa;
 
 			return Savar(criterio);
 		}

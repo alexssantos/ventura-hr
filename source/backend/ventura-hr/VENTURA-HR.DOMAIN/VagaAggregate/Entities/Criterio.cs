@@ -8,7 +8,9 @@
  * ditar: editado ao buscar e editar a descrição passando criterioID.
  */
 
+using System;
 using System.Collections.Generic;
+using VENTURA_HR.DOMAIN.UsuarioAggregate.Entities;
 
 namespace VENTURA_HR.DOMAIN.VagaAggregate.Entities
 {
@@ -19,6 +21,10 @@ namespace VENTURA_HR.DOMAIN.VagaAggregate.Entities
 		public string Descricao { get; set; }
 
 		public bool Ativo { get; set; }
+
+
+		public Guid EmpresaId { get; set; }
+		public virtual Empresa Empresa { get; set; }
 
 		public virtual IList<VagaCriterio> VagaCriterios { get; set; }
 	}

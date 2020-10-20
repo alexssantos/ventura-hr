@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Security.Claims;
 using VENTURA_HR.Services.Dtos.Requests;
 using VENTURA_HR.Services.VagaServices;
 
@@ -9,6 +11,7 @@ namespace VENTURA_HR.API.Controllers
 {
 	[Route("api/criterio")]
 	[ApiController]
+	[Authorize(Roles = "EMPRESA")]
 	public class CriterioController : ControllerBase
 	{
 		ICriterioService CriterioService;
@@ -39,7 +42,9 @@ namespace VENTURA_HR.API.Controllers
 				return BadRequest();
 			}
 
-			var result = CriterioService.Criar(request);
+			string idUsuario = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+			var result = CriterioService.Criar(request, new Guid(idUsuario));
 			return Ok(result);
 		}
 

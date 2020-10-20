@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using VENTURA_HR.Services.Dtos.Requests;
 using VENTURA_HR.Services.VagaServices;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -39,9 +40,16 @@ namespace VENTURA_HR.API.Controllers
 
 		// POST api/<CriterioController>
 		[HttpPost]
-		public ActionResult Post([FromBody] string value)
+		public ActionResult Post([FromBody] AddCriterioRequest request)
 		{
-			return Ok("Post");
+			if (!ModelState.IsValid)
+			{
+				return BadRequest();
+			}
+
+
+			var result = CriterioService.Criar(request);
+			return Ok(result);
 		}
 
 

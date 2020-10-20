@@ -4,7 +4,7 @@ using System.Linq;
 using VENTURA_HR.DOMAIN.VagaAggregate.Entities;
 using VENTURA_HR.DOMAIN.VagaAggregate.Enums;
 using VENTURA_HR.DOMAIN.VagaAggregate.Repositories;
-
+using VENTURA_HR.Services.Dtos.Requests;
 
 namespace VENTURA_HR.Services.VagaServices
 {
@@ -12,6 +12,17 @@ namespace VENTURA_HR.Services.VagaServices
 	{
 		public CriterioService(ICriterioRepository repository) : base(repository)
 		{
+		}
+
+		public Criterio Criar(AddCriterioRequest request)
+		{
+
+			var criterio = new Criterio();
+			criterio.Cargo = request.Cargo;
+			criterio.Descricao = request.Descricao;
+			criterio.Ativo = true;
+
+			return Savar(criterio);
 		}
 
 		public Tuple<List<string>, Dictionary<int, string>> PegarCriteriosEPesos(Guid empresaId)

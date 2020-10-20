@@ -34,9 +34,15 @@ namespace VENTURA_HR.Services.VagaServices
 			return Savar(criterio);
 		}
 
-		public Tuple<List<string>, Dictionary<int, string>> PegarCriteriosEPesos(Guid empresaId)
+		public Tuple<List<string>, Dictionary<int, string>> PegarCriteriosEPesos(Guid usuarioId)
 		{
-			List<string> listaCriterios = PegarCriteriosSalvosPorEmpresaId(empresaId);
+			var empresa = this.EmpresaService.PegarUmPorCriterio(emp => emp.UsuarioId == usuarioId);
+			if (empresa == null)
+			{
+				return null;
+			}
+
+			List<string> listaCriterios = PegarCriteriosSalvosPorEmpresaId(empresa.Id);
 			Dictionary<int, string> dictPesos = PegarPerfisDeCriterios();
 
 			return new Tuple<List<string>, Dictionary<int, string>>(listaCriterios, dictPesos);

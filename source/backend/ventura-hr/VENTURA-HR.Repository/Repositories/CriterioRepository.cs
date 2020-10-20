@@ -21,11 +21,9 @@ namespace VENTURA_HR.Repository.Repositories
 		public List<string> GetAllCriteriosByEmpresaId(Guid empresaId)
 		{
 			var critoriosLista = this.Query
-				.Include(x => x.VagaCriterios)
-					.ThenInclude(vc => vc.Vaga)
-				.Where(criterio => criterio.VagaCriterios.Any(vc => vc.Vaga.EmpresaId == empresaId))
-				//.AsNoTracking()
+				.Where(criterio => criterio.EmpresaId == empresaId)
 				.Select(criterio => criterio.Cargo)
+				.AsNoTracking()
 				.ToList();
 			return critoriosLista;
 		}

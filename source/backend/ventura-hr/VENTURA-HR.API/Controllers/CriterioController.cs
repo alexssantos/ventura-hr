@@ -22,10 +22,10 @@ namespace VENTURA_HR.API.Controllers
 		}
 
 		[HttpGet]
-		[Route("{empresaId}")]
-		public ActionResult PegarCriteriosEPesos(Guid empresaId)
+		public ActionResult PegarCriteriosEPesos()
 		{
-			var result = CriterioService.PegarCriteriosEPesos(empresaId);
+			string idUsuario = User.FindFirstValue(ClaimTypes.NameIdentifier);
+			var result = CriterioService.PegarCriteriosEPesos(new Guid(idUsuario));
 			return Ok(new
 			{
 				criterios = result.Item1,

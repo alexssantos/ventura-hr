@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using VENTURA_HR.DOMAIN.VagaAggregate.Entities;
 using VENTURA_HR.Services.Dtos.Requests;
 using VENTURA_HR.Services.VagaServices;
 
@@ -41,9 +44,6 @@ namespace VENTURA_HR.API.Controllers
 				return BadRequest(vagaNova);
 			}
 
-			var role = GetLoggedUserRole();
-			var type = GetLoggedTypeUser();
-
 			var vaga = VagaService.CadastrarVaga(vagaNova, GetLoggedUserId());
 
 			return Ok(new
@@ -51,6 +51,24 @@ namespace VENTURA_HR.API.Controllers
 				message = "Vaga criada com sucesso.",
 				id = vaga.Id
 			});
+		}
+
+		[HttpGet("busca")]
+		public ActionResult PesquisarVagas(
+			[FromQuery(Name = "words")] List<string> palavrasQuery)
+		{
+			palavrasQuery = palavrasQuery.Where(WORD => !string.IsNullOrWhiteSpace(WORD)).ToList();
+			IList<Vaga> result;
+			if (!palavrasQuery.Any())
+			{
+				result = VagaService.PegarTodosComInclusos();
+			}
+			else
+			{
+				result = VagaService.Busca(palavrasQuery, GetLoggedUserId(), GetLoggedTypeUser());
+			}
+
+			return Ok(result);
 		}
 
 

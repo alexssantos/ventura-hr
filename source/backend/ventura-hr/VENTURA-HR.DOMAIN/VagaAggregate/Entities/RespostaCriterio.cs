@@ -10,11 +10,15 @@ namespace VENTURA_HR.DOMAIN.VagaAggregate.Entities
 	public class RespostaCriterio : Shared.Entity
 	{
 		public int Valor { get; set; }
-		public Guid RespostaId { get; set; }
-		public Guid VagaCriterioId { get; set; }
 
+
+		public Guid RespostaId { get; set; }
 
 		public virtual Resposta Resposta { get; set; }
-		public virtual VagaCriterio VagaCriterio { get; set; }
+
+		public Guid CriterioId { get; set; }
+
+		public virtual Criterio Criterio { get; set; }
+
 	}
 }

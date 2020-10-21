@@ -33,7 +33,12 @@ namespace VENTURA_HR.Repository.Repositories
 			{
 				foreach (string busca in buscaTermos)
 				{
-					var queryBusca = Query.Where(obj => obj.Descricao.Contains(busca));
+					var queryBusca = Query
+						.Include(vaga => vaga.Criterios)
+						.Where(obj =>
+								obj.Titulo.Contains(busca)
+								|| obj.Criterios.Any(ctr => ctr.Titulo.Contains(busca)));
+
 					queryVaga = (queryVaga == null)
 						? queryBusca
 						: queryVaga.Concat(queryBusca);

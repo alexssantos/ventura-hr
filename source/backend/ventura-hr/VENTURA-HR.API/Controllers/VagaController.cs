@@ -9,7 +9,7 @@ namespace VENTURA_HR.API.Controllers
 	[Route("api/vaga")]
 	[ApiController]
 	[Authorize(Roles = "EMPRESA")]
-	public class VagaController : ControllerBase
+	public class VagaController : GenericController
 	{
 		private IVagaService VagaService { get; set; }
 
@@ -36,17 +36,21 @@ namespace VENTURA_HR.API.Controllers
 		[HttpPost]
 		public ActionResult Post([FromBody] CadastroVagaRequest vagaNova)
 		{
-			if (ModelState.IsValid)
+			if (!ModelState.IsValid)
 			{
-				var vaga = VagaService.CadastrarVaga(vagaNova);
-
-				return Ok(new
-				{
-					message = "Vaga criada com sucesso.",
-					id = vaga.Id
-				});
+				return BadRequest(vagaNova);
 			}
-			return BadRequest(vagaNova);
+
+			var role = GetLoggedUserRole();
+			var type = GetLoggedTypeUser();
+
+			var vaga = VagaService.CadastrarVaga(vagaNova, GetLoggedUserId());
+
+			return Ok(new
+			{
+				message = "Vaga criada com sucesso.",
+				id = vaga.Id
+			});
 		}
 
 

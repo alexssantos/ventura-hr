@@ -13,8 +13,9 @@ namespace VENTURA_HR.Services.Dtos.Requests
 		public string Descricao { get; set; }
 
 		[Required]
-		[DataMember(Name = "empresaId")]
-		public Guid EmpresaId { get; set; }
+		[DataMember(Name = "titulo")]
+		public string Titulo { get; set; }
+
 
 		[Required]
 		[DataMember(Name = "criterios")]
@@ -24,12 +25,13 @@ namespace VENTURA_HR.Services.Dtos.Requests
 		[DataContract]
 		public partial class CriterioItem
 		{
-			[DataMember(Name = "criterioId")]
-			public Guid CriterioId { get; set; }
-
 			[Required]
 			[DataMember(Name = "titulo")]
 			public string Titulo { get; set; }
+
+			[Required]
+			[DataMember(Name = "descricao")]
+			public string Descricao { get; set; }
 
 			[Required]
 			[Range(1, 5)]

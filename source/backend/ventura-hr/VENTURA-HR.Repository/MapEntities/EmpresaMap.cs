@@ -20,6 +20,8 @@ namespace VENTURA_HT.Repository.MapEntities
 				.HasColumnName("str_cnpj")
 				.IsRequired();
 
+
+
 			entity.Property(x => x.DataCriacao)
 				.HasColumnName("dt_criacao")
 				.IsRequired();
@@ -34,12 +36,6 @@ namespace VENTURA_HT.Repository.MapEntities
 			entity.HasMany(x => x.Vagas)
 				.WithOne(x => x.Empresa)
 				.HasForeignKey(x => x.EmpresaId);
-
-			entity.HasMany(x => x.Criterios)
-				.WithOne(x => x.Empresa)
-				.HasForeignKey(x => x.EmpresaId)
-				.OnDelete(DeleteBehavior.Cascade);
-
 		}
 	}
 }

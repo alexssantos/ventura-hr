@@ -26,10 +26,9 @@ namespace VENTURA_HR.Services.VagaServices
 			var empresa = this.EmpresaService.PegarUmPorCriterio(emp => emp.UsuarioId == usuarioId);
 
 			var criterio = new Criterio();
-			criterio.Cargo = request.Cargo;
+			criterio.Titulo = request.Cargo;
 			criterio.Descricao = request.Descricao;
 			criterio.Ativo = true;
-			criterio.Empresa = empresa;
 
 			return Savar(criterio);
 		}
@@ -78,7 +77,7 @@ namespace VENTURA_HR.Services.VagaServices
 
 			if (criterio == null) return criterio;
 
-			criterio.Cargo = request.Cargo;
+			criterio.Titulo = request.Cargo;
 			criterio.Descricao = request.Descricao;
 			return Repository.Update(id, criterio);
 		}

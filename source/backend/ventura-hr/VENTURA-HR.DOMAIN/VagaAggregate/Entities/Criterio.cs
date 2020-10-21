@@ -10,22 +10,26 @@
 
 using System;
 using System.Collections.Generic;
-using VENTURA_HR.DOMAIN.UsuarioAggregate.Entities;
+using VENTURA_HR.DOMAIN.VagaAggregate.Enums;
 
 namespace VENTURA_HR.DOMAIN.VagaAggregate.Entities
 {
 	public class Criterio : Shared.Entity
 	{
-		public string Cargo { get; set; }
+		public string Titulo { get; set; }
 
 		public string Descricao { get; set; }
 
 		public bool Ativo { get; set; }
 
+		public int Peso { get; set; }
 
-		public Guid EmpresaId { get; set; }
-		public virtual Empresa Empresa { get; set; }
+		public EPerfilCriterio PMD { get; set; }
 
-		public virtual IList<VagaCriterio> VagaCriterios { get; set; }
+		public Guid VagaId { get; set; }
+		public virtual Vaga Vaga { get; set; }
+
+		public virtual List<RespostaCriterio> RespostaCriterios { get; set; }
+
 	}
 }

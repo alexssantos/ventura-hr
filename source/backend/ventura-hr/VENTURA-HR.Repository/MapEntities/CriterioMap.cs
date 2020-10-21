@@ -16,11 +16,8 @@ namespace VENTURA_HR.Repository.MapEntities
 				.ValueGeneratedNever()
 				.IsRequired();
 
-			//entity.Property(x => x.EmpresaId)
-			//	.HasColumnName("empresa_id");
-
-			entity.Property(x => x.Cargo)
-				.HasColumnName("str_cargo")
+			entity.Property(x => x.Titulo)
+				.HasColumnName("str_titulo")
 				.IsRequired();
 
 			entity.Property(x => x.Descricao)
@@ -29,6 +26,18 @@ namespace VENTURA_HR.Repository.MapEntities
 
 			entity.Property(x => x.Ativo)
 				.HasColumnName("bl_ativo")
+				.IsRequired();
+
+			entity.Property(x => x.Peso)
+				.HasColumnName("int_peso")
+				.IsRequired();
+
+			entity.Property(x => x.PMD)
+				.HasColumnName("bl_pmd")
+				.IsRequired();
+
+			entity.Property(x => x.VagaId)
+				.HasColumnName("id_vagaid")
 				.IsRequired();
 
 
@@ -44,10 +53,10 @@ namespace VENTURA_HR.Repository.MapEntities
 
 			// ==== relatoinsiops =====
 
-			entity.HasMany(x => x.VagaCriterios)
-				.WithOne(x => x.Criterio)
-				.HasForeignKey(x => x.CriterioId)
-				.OnDelete(DeleteBehavior.Restrict);
+			entity.HasMany(x => x.RespostaCriterios)
+					.WithOne(x => x.Criterio)
+					.HasForeignKey(x => x.CriterioId)
+					.OnDelete(DeleteBehavior.Cascade);
 
 			// ==== Keys =====
 

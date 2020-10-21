@@ -23,10 +23,9 @@ namespace VENTURA_HT.Repository.Context
 		public DbSet<Empresa> Empresas { get; set; }
 		public DbSet<Administrador> Administradores { get; set; }
 		public DbSet<Vaga> Vagas { get; set; }
-		public DbSet<Resposta> Respostas { get; set; }
 		public DbSet<Criterio> Criterios { get; set; }
+		public DbSet<Resposta> Respostas { get; set; }
 		public DbSet<RespostaCriterio> RespostaCriterios { get; set; }
-		public DbSet<VagaCriterio> VagaCriterios { get; set; }
 
 
 		/* Mapping ways to inheranced entities (3):
@@ -58,10 +57,10 @@ namespace VENTURA_HT.Repository.Context
 			modelBuilder.ApplyConfiguration(new UsuarioMap());
 			modelBuilder.ApplyConfiguration(new EmpresaMap());
 			modelBuilder.ApplyConfiguration(new CandidatoMap());
-			modelBuilder.ApplyConfiguration(new RespostaMap());
 			modelBuilder.ApplyConfiguration(new VagaMap());
 			modelBuilder.ApplyConfiguration(new CriterioMap());
-			modelBuilder.ApplyConfiguration(new VagaCriterioMap());
+			modelBuilder.ApplyConfiguration(new RespostaMap());
+			modelBuilder.ApplyConfiguration(new RespostaCriterioMap());
 
 
 			base.OnModelCreating(modelBuilder);

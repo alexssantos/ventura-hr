@@ -47,8 +47,7 @@ namespace VENTURA_HR.Repository.Repositories
 			}
 
 			queryVaga = queryVaga
-				.Include(vaga => vaga.VagaCriterios)
-					.ThenInclude(vc => vc.Select(vc => vc.Criterio))
+				.Include(vaga => vaga.Criterios)
 				.AsNoTracking();
 
 			var resultado = queryVaga.ToList();

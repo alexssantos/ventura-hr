@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using VENTURA_HR.DOMAIN.UsuarioAggregate.Entities;
+using VENTURA_HR.DOMAIN.UsuarioAggregate.Enums;
 using VENTURA_HR.DOMAIN.VagaAggregate.Entities;
+using VENTURA_HR.DOMAIN.VagaAggregate.Enums;
 using VENTURA_HR.DOMAIN.VagaAggregate.Repositories;
 using VENTURA_HR.Services.Dtos.Requests;
 using VENTURA_HR.Services.UsuarioServices;
@@ -21,44 +24,32 @@ namespace VENTURA_HR.Services.VagaServices
 			EmpresaService = empresaService;
 		}
 
-		public Vaga CadastrarVaga(CadastroVagaRequest vagaNova)
+		public Vaga CadastrarVaga(CadastroVagaRequest vagaNova, Guid usuarioId)
 		{
-			Empresa empresa = EmpresaService.Pegar(vagaNova.EmpresaId);
+			Empresa empresa = EmpresaService.PegarUmPorCriterio(x => x.UsuarioId == usuarioId);
 			if (empresa == null)
 			{
 				throw new Exception("Empresa não Existe.");
 			}
 
-
-			//Factory - vaga precisa ser criada com Criterios
+			//TODO: Factory - vaga precisa ser criada com Criterios
 			Vaga vaga = new Vaga();
 
-			/* Nunca atualizar um criterios na base nesse fluxo.
-			 * 1. Buscar na base: caso Criterios Existentes
-			 * 2. Criar e salvar: caso Criterios Novos
-			 * WARNING: Unique Key = Peso + PMD + Descricao
-			 */
+			vaga.Criterios = vagaNova.Criterios
+				.Select(x => new Criterio
+				{
+					Peso = x.Peso,
+					PMD = (EPerfilCriterio)x.PerfilMinDesejado,
+					Descricao = x.Descricao,
+					Titulo = x.Titulo
+				}).ToList();
 
-			//buscar criterios
-			//var listaCriteriosNaBase = CriterioService.Pegar()
 
-			//vaga.VagaCriterios = vagaNova.Criterios
-			//	.Select(x => new VagaCriterio
-			//	{
-			//		Criterio =
-			//		Peso = x.Peso,
-			//		PMD = (ECriterioPMD)x.PerfilMinDesejado,
-			//		Vaga = vaga
+			vaga.Descricao = vagaNova.Descricao;
+			vaga.Titulo = vagaNova.Titulo;
+			vaga.Empresa = empresa;
 
-			//	}
-
-			//	)
-			//	.ToList();
-			//vaga.Descricao = vagaNova.Descricao;
-			//vaga.Empresa = empresa;
-
-			//return Repository.Save(vaga);
-			return new Vaga();
+			return Repository.Save(vaga);
 		}
 
 		public IList<Vaga> PegarTodosComInclusos() => Repository.GetAllWitIncludes();

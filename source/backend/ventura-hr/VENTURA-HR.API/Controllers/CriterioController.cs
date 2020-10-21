@@ -12,7 +12,7 @@ namespace VENTURA_HR.API.Controllers
 	[Route("api/criterio")]
 	[ApiController]
 	[Authorize(Roles = "EMPRESA")]
-	public class CriterioController : ControllerBase
+	public class CriterioController : GenericController
 	{
 		ICriterioService CriterioService;
 

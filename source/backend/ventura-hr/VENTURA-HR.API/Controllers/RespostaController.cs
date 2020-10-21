@@ -12,7 +12,7 @@ namespace VENTURA_HR.API.Controllers
 	[Route("api/resposta")]
 	[ApiController]
 	[Authorize]
-	public class RespostaController : ControllerBase
+	public class RespostaController : GenericController
 	{
 		IRespostaService RespostaService;
 

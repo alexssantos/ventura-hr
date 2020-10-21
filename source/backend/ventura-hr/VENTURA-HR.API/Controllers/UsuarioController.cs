@@ -10,7 +10,7 @@ namespace VENTURA_HR.API.Controllers
 	[Route("api/usuario")]
 	[ApiController]
 	[Authorize]
-	public class UsuarioController : ControllerBase
+	public class UsuarioController : GenericController
 	{
 		private IUsuarioService UsuarioService { get; set; }
 

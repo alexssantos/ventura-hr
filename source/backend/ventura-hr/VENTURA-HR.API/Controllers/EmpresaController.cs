@@ -7,7 +7,7 @@ namespace VENTURA_HR.API.Controllers
 {
 	[Route("api/empresa")]
 	[ApiController]
-	public class EmpresaController : ControllerBase
+	public class EmpresaController : GenericController
 	{
 		// GET: api/<EmpresaController>
 		[HttpGet]

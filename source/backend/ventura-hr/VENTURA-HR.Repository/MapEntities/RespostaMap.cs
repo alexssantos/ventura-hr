@@ -17,11 +17,11 @@ namespace VENTURA_HR.Repository.MapEntities
 				.IsRequired();
 
 
-			//entity.Property(x => x.CandidatoId)
-			//	.HasColumnName("candidato_id");
-
 			entity.Property(x => x.VagaId)
-				.HasColumnName("vaga_id");
+				.HasColumnName("id_vagaid");
+
+			entity.Property(x => x.CandidatoId)
+				.HasColumnName("id_candidatoid");
 
 
 			// ===========================

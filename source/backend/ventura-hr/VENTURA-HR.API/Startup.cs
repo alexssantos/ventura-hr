@@ -30,6 +30,7 @@ using VENTURA_HR.Repository.Repositories;
 using VENTURA_HR.Services.AuthServices;
 using VENTURA_HR.Services.UsuarioServices;
 using VENTURA_HR.Services.VagaServices;
+using VENTURA_HR.Services.VagaServices.Implements;
 using VENTURA_HT.Repository.Context;
 using VENTURA_HT.Repository.Repositories;
 
@@ -62,6 +63,7 @@ namespace VENTURA_HR.API
 			services.AddTransient<ICandidatoRepository, CandidatoRepository>();
 			services.AddTransient<IVagaRepository, VagaRepository>();
 			services.AddTransient<ICriterioRepository, CriterioRepository>();
+			services.AddTransient<IRespostaRepository, RespostaRepository>();
 
 			//services DI
 			services.AddTransient<AuthService>();
@@ -70,6 +72,7 @@ namespace VENTURA_HR.API
 			services.AddTransient<IUsuarioService, UsuarioService>();
 			services.AddTransient<IEmpresaService, EmpresaService>();
 			services.AddTransient<ICandidatoService, CandidatoService>();
+			services.AddTransient<IRespostaService, RespostaService>();
 
 
 			services.AddCors();

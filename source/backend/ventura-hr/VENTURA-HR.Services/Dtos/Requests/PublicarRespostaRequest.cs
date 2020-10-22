@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using VENTURA_HR.DOMAIN.VagaAggregate.Entities;
 
 namespace VENTURA_HR.Services.Dtos.Requests
 {
@@ -9,15 +8,19 @@ namespace VENTURA_HR.Services.Dtos.Requests
 	public class PublicarRespostaRequest
 	{
 		[DataMember(Name = "criterios")]
-		public List<Criterio> Criterios { get; set; }
+		public List<PairResposta> Criterios { get; set; }
 
-		[DataMember(Name = "reposta")]
-		public string Resposta { get; set; }
+		[DataMember(Name = "observacao")]
+		public string Observacao { get; set; }
 
+		[DataContract]
+		public partial class PairResposta
+		{
+			[DataMember(Name = "criterioId")]
+			public Guid CriterioId { get; set; }
 
-		public Guid UsuarioId { get; set; }
-		public Guid VagaId { get; set; }
-
-
+			[DataMember(Name = "valor")]
+			public int Valor { get; set; }
+		}
 	}
 }

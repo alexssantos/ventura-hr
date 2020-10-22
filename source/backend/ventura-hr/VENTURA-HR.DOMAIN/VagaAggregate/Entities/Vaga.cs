@@ -8,6 +8,12 @@ namespace VENTURA_HR.DOMAIN.VagaAggregate.Entities
 	{
 		public static readonly int DEFAULT_EXPIRE_DAYS_AMOUNT = 4;
 
+		public Vaga()
+		{
+			if (this.Respostas == null)
+				this.Respostas = new List<Resposta>();
+		}
+
 		public string Titulo { get; set; }
 		public string Descricao { get; set; }
 

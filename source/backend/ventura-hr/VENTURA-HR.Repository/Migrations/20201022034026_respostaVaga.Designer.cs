@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VENTURA_HT.Repository.Context;
 
 namespace VENTURA_HR.Repository.Migrations
 {
     [DbContext(typeof(VenturaContext))]
-    partial class VenturaContextModelSnapshot : ModelSnapshot
+    [Migration("20201022034026_respostaVaga")]
+    partial class respostaVaga
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -203,7 +205,6 @@ namespace VENTURA_HR.Repository.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CandidatoId")
-                        .HasColumnName("id_candidatoid")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DataCriacao")

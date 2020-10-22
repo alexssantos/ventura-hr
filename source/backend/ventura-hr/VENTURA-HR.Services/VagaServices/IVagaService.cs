@@ -12,5 +12,7 @@ namespace VENTURA_HR.Services.VagaServices
 		Vaga CadastrarVaga(CadastroVagaRequest vagaNova, Guid empresaId);
 		public IList<Vaga> PegarTodosComInclusos();
 		public List<Vaga> Busca(List<string> buscaTermos, Guid guid, EUsuarioTipo tipoUsuario);
+		public Vaga PegarComCriterios(Guid vagaId);
+		public IList<Vaga> PegarRespondidasPorCandidato(Guid usuarioId);
 	}
 }

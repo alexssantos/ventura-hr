@@ -11,7 +11,7 @@ namespace VENTURA_HR.API.Controllers
 {
 	[Route("api/vaga")]
 	[ApiController]
-	[Authorize(Roles = "EMPRESA")]
+	[Authorize(Roles = "EMPRESA, CANDIDATO")]
 	public class VagaController : GenericController
 	{
 		private IVagaService VagaService { get; set; }
@@ -72,16 +72,13 @@ namespace VENTURA_HR.API.Controllers
 		}
 
 
-		//// PUT api/<VagasController>/5
-		//[HttpPut("{id}")]
-		//public void Put(int id, [FromBody] string value)
-		//{
-		//}
+		[HttpGet("respondidas")]
+		public ActionResult ListarVagasRespondidas()
+		{
 
-		//// DELETE api/<VagasController>/5
-		//[HttpDelete("{id}")]
-		//public void Delete(int id)
-		//{
-		//}
+			IList<Vaga> result = VagaService.PegarRespondidasPorCandidato(GetLoggedUserId());
+
+			return Ok(result);
+		}
 	}
 }

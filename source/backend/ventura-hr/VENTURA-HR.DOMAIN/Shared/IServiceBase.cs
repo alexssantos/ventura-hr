@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace VENTURA_HR.DOMAIN.Shared
 {
@@ -14,5 +15,8 @@ namespace VENTURA_HR.DOMAIN.Shared
 		public abstract T Editar(Guid id, T entity);
 
 		public abstract Guid Apagar(Guid id);
+
+		public abstract T PegarUmPorCriterio(Expression<Func<T, bool>> exp);
+		public abstract IList<T> PegarListaPorCriterio(Expression<Func<T, bool>> exp);
 	}
 }

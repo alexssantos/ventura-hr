@@ -16,17 +16,29 @@ namespace VENTURA_HR.Repository.MapEntities
 				.ValueGeneratedNever()
 				.IsRequired();
 
-			entity.Property(x => x.NovoCampoTesteMigration)
-				.HasColumnName("str_campo_teste")
+
+			//entity.Property(x => x.CandidatoId)
+			//	.HasColumnName("candidato_id");
+
+			entity.Property(x => x.VagaId)
+				.HasColumnName("vaga_id");
+
+
+			// ===========================
+
+			entity.Property(x => x.DataCriacao)
+				.HasColumnName("dt_criacao")
 				.IsRequired();
 
+			entity.Property(x => x.DataUltimaAtualizacao)
+				.HasColumnName("dt_atualizacao");
 
 			// ==== relationships =====
 
 			entity.HasMany(x => x.RespostaCriterios)
 				.WithOne(x => x.Resposta)
 				.HasForeignKey(x => x.RespostaId)
-				.OnDelete(DeleteBehavior.Cascade);
+				.OnDelete(DeleteBehavior.NoAction);
 		}
 	}
 }

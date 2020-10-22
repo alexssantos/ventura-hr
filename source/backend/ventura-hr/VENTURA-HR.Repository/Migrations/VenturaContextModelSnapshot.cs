@@ -25,6 +25,12 @@ namespace VENTURA_HR.Repository.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DataUltimaAtualizacao")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Segredo")
                         .HasColumnType("nvarchar(max)");
 
@@ -49,6 +55,14 @@ namespace VENTURA_HR.Repository.Migrations
                         .HasColumnName("str_cpf")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnName("dt_criacao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DataUltimaAtualizacao")
+                        .HasColumnName("dt_atualizacao")
+                        .HasColumnType("datetime2");
+
                     b.Property<Guid>("UsuarioId")
                         .HasColumnType("uniqueidentifier");
 
@@ -70,6 +84,14 @@ namespace VENTURA_HR.Repository.Migrations
                         .HasColumnName("str_cnpj")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnName("dt_criacao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DataUltimaAtualizacao")
+                        .HasColumnName("dt_atualizacao")
+                        .HasColumnType("datetime2");
+
                     b.Property<Guid>("UsuarioId")
                         .HasColumnType("uniqueidentifier");
 
@@ -86,8 +108,16 @@ namespace VENTURA_HR.Repository.Migrations
                         .HasColumnName("id_usuario")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnName("dt_criacao")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("DataNascimento")
                         .HasColumnName("dt_nascimento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DataUltimaAtualizacao")
+                        .HasColumnName("dt_atualizacao")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
@@ -125,17 +155,39 @@ namespace VENTURA_HR.Repository.Migrations
                         .HasColumnName("id_criterio")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("Ativo")
+                        .HasColumnName("bl_ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnName("dt_criacao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DataUltimaAtualizacao")
+                        .HasColumnName("dt_atualizacao")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Descricao")
                         .IsRequired()
                         .HasColumnName("str_desc")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("VagaId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("PMD")
+                        .HasColumnName("bl_pmd")
+                        .HasColumnType("int");
 
-                    b.Property<int>("Valor")
+                    b.Property<int>("Peso")
                         .HasColumnName("int_peso")
                         .HasColumnType("int");
+
+                    b.Property<string>("Titulo")
+                        .IsRequired()
+                        .HasColumnName("str_titulo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("VagaId")
+                        .HasColumnName("id_vagaid")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -153,7 +205,16 @@ namespace VENTURA_HR.Repository.Migrations
                     b.Property<Guid>("CandidatoId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnName("dt_criacao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DataUltimaAtualizacao")
+                        .HasColumnName("dt_atualizacao")
+                        .HasColumnType("datetime2");
+
                     b.Property<Guid?>("VagaId")
+                        .HasColumnName("vaga_id")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -168,22 +229,36 @@ namespace VENTURA_HR.Repository.Migrations
             modelBuilder.Entity("VENTURA_HR.DOMAIN.VagaAggregate.Entities.RespostaCriterio", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id_resp_crit")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CritérioId")
+                    b.Property<Guid>("CriterioId")
+                        .HasColumnName("id_criterioid")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnName("dt_criacao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DataUltimaAtualizacao")
+                        .HasColumnName("dt_atualizacao")
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("RespostaId")
+                        .HasColumnName("id_respostaid")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Valor")
+                        .HasColumnName("int_valor")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CritérioId");
+                    b.HasIndex("CriterioId");
 
                     b.HasIndex("RespostaId");
 
-                    b.ToTable("RespostaCriterio");
+                    b.ToTable("RepostaCriterio");
                 });
 
             modelBuilder.Entity("VENTURA_HR.DOMAIN.VagaAggregate.Entities.Vaga", b =>
@@ -192,11 +267,30 @@ namespace VENTURA_HR.Repository.Migrations
                         .HasColumnName("id_vaga")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnName("dt_criacao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataExpiracao")
+                        .HasColumnName("dt_expiracao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DataUltimaAtualizacao")
+                        .HasColumnName("dt_atualizacao")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Descricao")
+                        .HasColumnName("str_descricao")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("EmpresaId")
+                        .HasColumnName("id_empresaid")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Titulo")
+                        .IsRequired()
+                        .HasColumnName("str_titulo")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -234,9 +328,11 @@ namespace VENTURA_HR.Repository.Migrations
 
             modelBuilder.Entity("VENTURA_HR.DOMAIN.VagaAggregate.Entities.Criterio", b =>
                 {
-                    b.HasOne("VENTURA_HR.DOMAIN.VagaAggregate.Entities.Vaga", null)
+                    b.HasOne("VENTURA_HR.DOMAIN.VagaAggregate.Entities.Vaga", "Vaga")
                         .WithMany("Criterios")
-                        .HasForeignKey("VagaId");
+                        .HasForeignKey("VagaId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("VENTURA_HR.DOMAIN.VagaAggregate.Entities.Resposta", b =>
@@ -257,14 +353,14 @@ namespace VENTURA_HR.Repository.Migrations
                 {
                     b.HasOne("VENTURA_HR.DOMAIN.VagaAggregate.Entities.Criterio", "Criterio")
                         .WithMany("RespostaCriterios")
-                        .HasForeignKey("CritérioId")
+                        .HasForeignKey("CriterioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("VENTURA_HR.DOMAIN.VagaAggregate.Entities.Resposta", "Resposta")
                         .WithMany("RespostaCriterios")
                         .HasForeignKey("RespostaId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 

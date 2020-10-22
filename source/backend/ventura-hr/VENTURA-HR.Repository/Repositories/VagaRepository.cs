@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using VENTURA_HR.DOMAIN.VagaAggregate.Entities;
 using VENTURA_HR.DOMAIN.VagaAggregate.Repositories;
 using VENTURA_HT.Repository.Context;
@@ -16,10 +17,46 @@ namespace VENTURA_HR.Repository.Repositories
 
 		public IList<Vaga> GetAllWitIncludes()
 		{
-			var result = this.Query.Include(x => x.Empresa)
+			var result = this.Query
+				.Include(x => x.Empresa)
 				.AsNoTracking()
-				.ToListAsync();
-			return result.Result;
+				.ToList();
+			return result;
+		}
+
+		public List<Vaga> BuscaPorPalavras(List<string> buscaTermos)
+		{
+
+			IQueryable<Vaga> queryVaga = null;
+
+			if (buscaTermos.Any())
+			{
+				foreach (string busca in buscaTermos)
+				{
+					var queryBusca = Query
+						.Include(vaga => vaga.Criterios)
+						.Where(obj =>
+								obj.Titulo.Contains(busca)
+								|| obj.Criterios.Any(ctr => ctr.Titulo.Contains(busca)));
+
+					queryVaga = (queryVaga == null)
+						? queryBusca
+						: queryVaga.Concat(queryBusca);
+				}
+
+				queryVaga = queryVaga.Distinct();
+			}
+			else
+			{
+				queryVaga = Query;
+			}
+
+			queryVaga = queryVaga
+				.Include(vaga => vaga.Criterios)
+				.AsNoTracking();
+
+			var resultado = queryVaga.ToList();
+			return resultado;
 		}
 	}
 }

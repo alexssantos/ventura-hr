@@ -1,14 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using VENTURA_HR.API.ViewModel.Requests;
-using VENTURA_HR.DOMAIN.VagaAggregate.Services;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using VENTURA_HR.DOMAIN.VagaAggregate.Entities;
+using VENTURA_HR.Services.Dtos.Requests;
+using VENTURA_HR.Services.VagaServices;
 
 namespace VENTURA_HR.API.Controllers
 {
 	[Route("api/vaga")]
 	[ApiController]
-	public class VagaController : ControllerBase
+	[Authorize(Roles = "EMPRESA")]
+	public class VagaController : GenericController
 	{
 		private IVagaService VagaService { get; set; }
 
@@ -18,34 +22,55 @@ namespace VENTURA_HR.API.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult Get()
+		public ActionResult PegarTodas()
 		{
 			var result = VagaService.PegarTodosComInclusos();
 			return Ok(result);
 		}
 
-		[HttpGet("{id}")]
-		public string Get(int id)
+		[HttpGet("{vagaId}")]
+		public ActionResult PegarVaga(Guid vagaId)
 		{
-			return "value";
+			//não retorna empresa agregada, somente empresaId.
+			var result = VagaService.Pegar(vagaId);
+			return Ok(result);
 		}
 
-		// POST api/<VagasController>
 		[HttpPost]
 		public ActionResult Post([FromBody] CadastroVagaRequest vagaNova)
 		{
-			if (ModelState.IsValid)
+			if (!ModelState.IsValid)
 			{
-				var vaga = VagaService.CadastrarVaga(vagaNova.Descricao, vagaNova.EmpresaId);
-
-				return Ok(new
-				{
-					message = "Vaga criada com sucesso.",
-					id = vaga.Id
-				});
+				return BadRequest(vagaNova);
 			}
-			return BadRequest(vagaNova);
+
+			var vaga = VagaService.CadastrarVaga(vagaNova, GetLoggedUserId());
+
+			return Ok(new
+			{
+				message = "Vaga criada com sucesso.",
+				id = vaga.Id
+			});
 		}
+
+		[HttpGet("busca")]
+		public ActionResult PesquisarVagas(
+			[FromQuery(Name = "words")] List<string> palavrasQuery)
+		{
+			palavrasQuery = palavrasQuery.Where(WORD => !string.IsNullOrWhiteSpace(WORD)).ToList();
+			IList<Vaga> result;
+			if (!palavrasQuery.Any())
+			{
+				result = VagaService.PegarTodosComInclusos();
+			}
+			else
+			{
+				result = VagaService.Busca(palavrasQuery, GetLoggedUserId(), GetLoggedTypeUser());
+			}
+
+			return Ok(result);
+		}
+
 
 		//// PUT api/<VagasController>/5
 		//[HttpPut("{id}")]

@@ -21,6 +21,14 @@ namespace VENTURA_HT.Repository.MapEntities
 				.IsRequired();
 
 
+
+			entity.Property(x => x.DataCriacao)
+				.HasColumnName("dt_criacao")
+				.IsRequired();
+
+			entity.Property(x => x.DataUltimaAtualizacao)
+				.HasColumnName("dt_atualizacao");
+
 			// ==== relationshiop ====
 
 			entity.HasOne(x => x.Usuario);

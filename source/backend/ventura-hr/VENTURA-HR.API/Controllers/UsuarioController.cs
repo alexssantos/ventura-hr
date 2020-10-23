@@ -37,13 +37,13 @@ namespace VENTURA_HR.API.Controllers
 		[HttpPost]
 		[Route("cadastro")]
 		[AllowAnonymous]
-		public ActionResult Cadastro([FromBody] CadastroForm form)
+		public ActionResult Cadastro([FromBody] CadastroRequest form)
 		{
 			if (!ModelState.IsValid)
 			{
 				return BadRequest(new { message = "Formulário de cadastro inválido." });
 			}
-			var usuario = UsuarioService.Cadastrar(form.Login, form.Senha, form.Tipo);
+			var usuario = UsuarioService.Cadastrar(form);
 
 			if (usuario == null)
 				return NotFound(new { message = "Usuário já cadastrado." });

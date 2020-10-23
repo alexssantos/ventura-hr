@@ -15,7 +15,7 @@ namespace VENTURA_HR.DOMAIN.UsuarioAggregate.Entities
 		public string Password { get; set; }
 		public string Email { get; set; }
 		public string Nome { get; set; }
-		public DateTime DataNascimento { get; set; }
+		public DateTime? DataNascimento { get; set; }
 		public EUsuarioTipo TipoUsuario { get; set; }
 	}
 }

@@ -1,7 +1,8 @@
-﻿using System;
-using VENTURA_HR.DOMAIN.UsuarioAggregate.Entities;
+﻿using VENTURA_HR.DOMAIN.UsuarioAggregate.Entities;
 using VENTURA_HR.DOMAIN.UsuarioAggregate.Enums;
+using VENTURA_HR.DOMAIN.UsuarioAggregate.Factories;
 using VENTURA_HR.DOMAIN.UsuarioAggregate.Repositories;
+using VENTURA_HR.Services.Dtos.Requests;
 
 namespace VENTURA_HR.Services.UsuarioServices
 {
@@ -20,33 +21,23 @@ namespace VENTURA_HR.Services.UsuarioServices
 
 		}
 
-		public Usuario Cadastrar(string login, string senha, EUsuarioTipo tipoUsuario)
+		public Usuario Cadastrar(CadastroRequest form)
 		{
-			var usuario = Repository.GetOneByCriteria(x => x.Login == login);
+			var usuario = Repository.GetOneByCriteria(x => x.Login == form.Login);
 			if (usuario != null) return null;
 
 
-			//TODO: refactor
-			usuario = new Usuario();
-			usuario.Login = login;
-			usuario.Password = senha;
-			usuario.DataNascimento = DateTime.Now;
-			usuario.Email = $"{login}@gmail.com";
-			usuario.Nome = login;
-			usuario.TipoUsuario = tipoUsuario;
+			Usuario usuarioNovo = UsuarioFactory.Criar(
+				form.Login, form.Senha, form.Tipo, form.DataNascimento, form.Email, form.Nome);
 
-			switch (tipoUsuario)
+			switch (form.Tipo)
 			{
 				case EUsuarioTipo.EMPRESA:
-					Empresa empresa = new Empresa();
-					empresa.CNPJ = "ABC";
-					empresa.Usuario = usuario;
+					var empresa = EmpresaFactory.Criar(form.Documento, usuarioNovo);
 					EmpresaService.Savar(empresa);
 					break;
 				case EUsuarioTipo.CANDIDATO:
-					Candidato candidato = new Candidato();
-					candidato.CPF = "ABC";
-					candidato.Usuario = usuario;
+					var candidato = CandidatoFactory.Criar(form.Documento, usuarioNovo);
 					CandidatoService.Savar(candidato);
 					break;
 				case EUsuarioTipo.ADMINISTRADOR:
@@ -54,7 +45,7 @@ namespace VENTURA_HR.Services.UsuarioServices
 					break;
 			}
 
-			return usuario;
+			return usuarioNovo;
 		}
 	}
 }

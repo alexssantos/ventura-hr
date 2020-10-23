@@ -24,21 +24,20 @@ namespace VENTURA_HT.Repository.MapEntities
 				.HasColumnName("str_password")
 				.IsRequired();
 
-			builder.Property(x => x.Email)
-				.HasColumnName("str_email")
-				.IsRequired();
-
-			builder.Property(x => x.Nome)
-				.HasColumnName("str_nome")
-				.IsRequired();
-
-			builder.Property(x => x.DataNascimento)
-				.HasColumnName("dt_nascimento")
-				.IsRequired();
-
 			builder.Property(x => x.TipoUsuario)
 				.HasColumnName("int_tipo")
 				.IsRequired();
+
+			builder.Property(x => x.Email)
+				.HasColumnName("str_email");
+
+			builder.Property(x => x.Nome)
+				.HasColumnName("str_nome");
+
+			builder.Property(x => x.DataNascimento)
+				.HasColumnName("dt_nascimento");
+
+			// === aditamento ===
 
 			builder.Property(x => x.DataCriacao)
 				.HasColumnName("dt_criacao")

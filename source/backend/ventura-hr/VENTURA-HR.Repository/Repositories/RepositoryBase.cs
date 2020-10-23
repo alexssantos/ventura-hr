@@ -20,6 +20,15 @@ namespace VENTURA_HT.Repository.Repositories
 			Query = Context.Set<T>();
 		}
 
+		public IRepositoryBase<T> SetIncludes(IList<IncludeProperty<T>> includes)
+		{
+			foreach (var include in includes)
+			{
+				Query.Include(include.ExpProperty);
+			}
+			return this;
+		}
+
 		public T Delete(Guid id)
 		{
 			var entity = Query.Find(id);

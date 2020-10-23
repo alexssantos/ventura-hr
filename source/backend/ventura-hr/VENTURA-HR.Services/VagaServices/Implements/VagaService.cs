@@ -14,14 +14,17 @@ namespace VENTURA_HR.Services.VagaServices
 	public class VagaService : ServiceBase<Vaga, IVagaRepository>, IVagaService
 	{
 		private IEmpresaService EmpresaService;
+		private ICandidatoService CandidatoService;
 
 		public VagaService(
 			IVagaRepository vagaRepository,
-			IEmpresaService empresaService
+			IEmpresaService empresaService,
+			ICandidatoService candidatoService
 		)
 			: base(vagaRepository)
 		{
 			EmpresaService = empresaService;
+			CandidatoService = candidatoService;
 		}
 
 		public Vaga CadastrarVaga(CadastroVagaRequest vagaNova, Guid usuarioId)
@@ -54,6 +57,14 @@ namespace VENTURA_HR.Services.VagaServices
 
 		public IList<Vaga> PegarTodosComInclusos() => Repository.GetAllWitIncludes();
 
+		public Vaga PegarComCriterios(Guid vagaId) => Repository.GetIncludeCriterios(vagaId);
+
+		public IList<Vaga> PegarRespondidasPorCandidato(Guid usuarioId)
+		{
+			var candidato = CandidatoService.PegarUmPorCriterio(cand => cand.UsuarioId == usuarioId);
+			var vagaslist = Repository.GetAllAnsweredByCandidate(candidato.Id);
+			return vagaslist;
+		}
 
 		/*
 		 * Busca por palavras 

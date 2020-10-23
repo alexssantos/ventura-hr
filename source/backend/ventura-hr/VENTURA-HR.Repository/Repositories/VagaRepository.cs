@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using VENTURA_HR.DOMAIN.VagaAggregate.Entities;
@@ -19,7 +20,25 @@ namespace VENTURA_HR.Repository.Repositories
 		{
 			var result = this.Query
 				.Include(x => x.Empresa)
-				.AsNoTracking()
+				.Include(x => x.Respostas)
+				.ToList();
+			return result;
+		}
+
+		public Vaga GetIncludeCriterios(Guid vagaId)
+		{
+			var result = this.Query
+				.Where(vaga => vaga.Id == vagaId)
+				.Include(x => x.Criterios)
+				.FirstOrDefault();
+			return result;
+		}
+
+		public IList<Vaga> GetAllAnsweredByCandidate(Guid candidatoId)
+		{
+			var result = this.Query
+				.Include(x => x.Respostas)
+				.Where(x => x.Respostas.Any(resp => resp.CandidatoId == candidatoId))
 				.ToList();
 			return result;
 		}

@@ -16,5 +16,6 @@ namespace VENTURA_HR.DOMAIN.Shared
 		T GetOneByCriteria(Expression<Func<T, bool>> expression);
 		IList<T> GetAllByCriteria(Expression<Func<T, bool>> expression);
 
+		public IRepositoryBase<T> SetIncludes(IList<IncludeProperty<T>> includes);
 	}
 }

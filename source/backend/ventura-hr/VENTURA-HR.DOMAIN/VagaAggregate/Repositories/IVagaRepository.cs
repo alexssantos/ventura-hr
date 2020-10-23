@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using VENTURA_HR.DOMAIN.Shared;
 using VENTURA_HR.DOMAIN.VagaAggregate.Entities;
 
@@ -8,5 +9,7 @@ namespace VENTURA_HR.DOMAIN.VagaAggregate.Repositories
 	{
 		IList<Vaga> GetAllWitIncludes();
 		List<Vaga> BuscaPorPalavras(List<string> buscaTermos);
+		Vaga GetIncludeCriterios(Guid vagaId);
+		IList<Vaga> GetAllAnsweredByCandidate(Guid candidatoId);
 	}
 }

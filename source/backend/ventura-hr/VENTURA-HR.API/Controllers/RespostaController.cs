@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Security.Claims;
 using VENTURA_HR.Services.Dtos.Requests;
 using VENTURA_HR.Services.VagaServices;
 
@@ -30,16 +29,10 @@ namespace VENTURA_HR.API.Controllers
 			[FromBody] PublicarRespostaRequest request
 		)
 		{
-			if (!ModelState.IsValid)
-			{
-				return BadRequest();
-			}
+			if (!ModelState.IsValid) return BadRequest();
 
-			string usuarioId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-			request.UsuarioId = new Guid(usuarioId);
+			RespostaService.PublicarResposta(request, vagaid, GetLoggedUserId());
 
-
-			RespostaService.PublicarResposta(request);
 			return Ok(new
 			{
 				msg = $"Resposta publicada com sucesso para a vaga: {vagaid}"
@@ -50,7 +43,8 @@ namespace VENTURA_HR.API.Controllers
 		[HttpGet]
 		public ActionResult Get()
 		{
-			return Ok();
+			var respostas = RespostaService.PegarTodos();
+			return Ok(respostas);
 		}
 
 		// GET api/resposta/5

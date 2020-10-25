@@ -4,3 +4,12 @@
 
 @import 'tailwindcss/utilities';
 /* You can add global styles to this file, and also import other style files */
+
+body{
+	width: 100vw;
+    height: 100vh;
+}
+
+.debug-border{
+	@apply border-2 border-dashed border-gray-400;
+}

@@ -4,11 +4,11 @@
 -->
 <div>
     <nav class="bg-white shadow">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20 md:px-20">
             <div class="flex items-center justify-between h-16">
 
 				<!-- LOGO -->
-				<div class="flex-shrink-0">
+				<div class="flex-shrink-0" (click)="goToHome()">
 					<img	
 						class="h-8 w-8"
 						src="https://tailwindui.com/img/logos/workflow-mark-on-dark.svg"
@@ -76,7 +76,7 @@
 									To: "transform opacity-0 scale-95"
 							-->
                             <div
-								class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg"
+								class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg"									
 								*ngIf="onProfileDrop"								
                             >
                                 <div
@@ -88,21 +88,33 @@
                                     <a
                                         href="#"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                        role="menuitem"
-                                        >Your Profile</a
-                                    >
+										role="menuitem"
+										[routerLink]="[ '/access' ]"
+									>
+										Sign In
+									</a>
+
+									<a
+										href="#"
+										class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+										role="menuitem"
+										(click)="print('Settings')"
+										>Profile</a
+									>
 
                                     <a
                                         href="#"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                        role="menuitem"
+										role="menuitem"
+										(click)="print('Settings')"
                                         >Settings</a
                                     >
 
                                     <a
                                         href="#"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                        role="menuitem"
+										role="menuitem"
+										(click)="print('Sign out')"
                                         >Sign out</a
                                     >
                                 </div>

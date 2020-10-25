@@ -1,6 +1,31 @@
-<div class="w-full h-full flex">
-    <!-- <app-navigation [expanded]="expanded" (manualToggle)="manualToggle()"></app-navigation> -->
-    <div id="content">
-        Meu conteudos
+<div class="home-content debug-border p-2">
+    <!-- SEARCH BAR -->
+    <div class="search-bar debug-border">
+        <app-search-bar></app-search-bar>
+    </div>
+
+    <div class="main debug-border">
+        <!-- FILTERS -->
+        <div class="sidebar debug-border pr-8">
+			Filtros
+			<div class="filter">
+                <app-filter-box ></app-filter-box>
+			</div>
+			
+			<div class="filter">
+                <app-filter-box ></app-filter-box>
+			</div>
+			
+			<div class="filter">
+                <app-filter-box ></app-filter-box>
+			</div>
+			
+			<div class="filter">
+                <app-filter-box ></app-filter-box>
+            </div>
+        </div>
+
+        <!-- JOB CARDS -->
+        <div class="jobs-list debug-border w-full">Lista de vagas</div>
     </div>
 </div>

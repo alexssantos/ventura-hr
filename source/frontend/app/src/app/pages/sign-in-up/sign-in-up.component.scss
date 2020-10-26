@@ -1,0 +1,76 @@
+.sign-wrap{
+	@apply p-4 bg-gray-100;
+
+	.sign-content{
+		@apply min-h-screen flex justify-around py-4 px-4;
+		
+		.left-side{
+			@apply max-w-md w-full h-full bg-blue-200 hidden;		
+		}
+		
+		.right-side {
+			@apply max-w-md w-full bg-white rounded-lg px-10 py-24 shadow-lg;
+			height: fit-content;
+			
+			.brand{
+				.brand-title{
+					@apply mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900;
+				}
+				.brand-subtitle{
+					@apply text-center text-sm text-gray-500;
+				}
+			}
+			
+			form{
+				.input-email{
+					@apply appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-t-md;
+					&:focus{
+						@apply outline-none border-blue-300 z-10;
+					}
+				}
+				
+				.input-senha {
+					@apply appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-b-md;
+					&:focus{
+						@apply outline-none z-10;
+					}
+				}
+
+				.forgot-pasword{
+					@apply font-medium text-indigo-600 transition ease-in-out duration-150;
+					&:focus{
+						@apply outline-none underline;
+					}
+					&:hover{
+						@apply text-indigo-500;
+					}
+				}
+				.btn-login{
+					transition: ease-in-out 0.150s;
+					@apply relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600;
+					
+					&:focus{
+						@apply outline-none border-indigo-700;
+					}
+					&:active{
+						@apply bg-indigo-700;
+						
+					}
+					&:hover{
+						@apply bg-indigo-500;
+					}
+				}
+			}
+			.btn-cadastrar{
+				transition: ease-in-out 0.150s;
+				@apply w-full flex items-center justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-gray-700 bg-gray-200;
+				&:focus{
+					@apply outline-none border-gray-300;					 
+				}				
+				&:hover{
+					@apply text-gray-600 bg-gray-100; 					 
+				}
+			}
+		}
+	}
+}

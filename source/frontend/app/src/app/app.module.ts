@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -9,6 +9,9 @@ import { HeaderComponent } from './theme/components/header/header.component';
 import { FilterBoxComponent } from './theme/components/filter-box/filter-box.component';
 import { SearchBarComponent } from './theme/components/search-bar/search-bar.component';
 import { JobCardComponent } from './theme/components/job-card/job-card.component';
+import { SignInUpService } from './core/services/sign-in-up.service';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
 	declarations: [
@@ -22,9 +25,14 @@ import { JobCardComponent } from './theme/components/job-card/job-card.component
 	],
 	imports: [
 		BrowserModule,
-		AppRoutingModule
+		AppRoutingModule, 
+		FormsModule,
+		//WARNING:  import HttpClientModule after BrowserModule.
+		HttpClientModule
 	],
-	providers: [],
+	providers: [
+		SignInUpService
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

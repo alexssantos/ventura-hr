@@ -1,1 +1,79 @@
-<p>sign-in-up works!</p>
+<div class="sign-wrap debug-border">
+	<div class="sign-content sm:px-6 lg:px-8">
+		
+		<div class="left-side lg:block debug-border">
+			Lado esquerdo
+		</div>
+		
+		<div class="right-side my-8">
+			<div class="brand">
+				<img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-on-white.svg" alt="Workflow" />
+				<h2 class="brand-title">
+					Ventura HR
+				</h2>
+				<h5 class="brand-subtitle">
+					Conectando pessoas e empresas
+				</h5>
+				<h4 class="mt-12 text-center text-lg leading-5 text-gray-600">
+					Entre com a sua conta
+				</h4>
+				<!-- <p class="mt-2 text-center text-sm leading-5 text-gray-600">
+					Ou
+					<a href="#" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+						start your 14-day free trial
+					</a>
+				</p> -->
+			</div>
+			<form class="mt-2">
+				<input type="hidden" name="remember" value="true" />
+				<div class="rounded-md shadow-sm">
+					<div>
+						<input [(ngModel)]="loginForm.email" 
+							class="input-email sm:text-sm sm:leading-5"
+							aria-label="Email address" name="email" type="email" required placeholder="Email" 
+						/>
+					</div>
+					<div class="-mt-px">
+						<input [(ngModel)]="loginForm.senha" 
+							aria-label="Password" name="password" type="password" required placeholder="Password" 
+							class="input-senha sm:text-sm sm:leading-5" 
+						/>
+					</div>
+				</div>
+
+				<div class="mt-6 flex items-center justify-between">
+					<div class="flex items-center">
+						<input id="remember_me" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
+						<label for="remember_me" class="ml-2 block text-sm leading-5 text-gray-900">
+							Me lembre
+						</label>
+					</div>
+
+					<div class="text-sm leading-5">
+						<a href="#" class="forgot-password">
+							Esqueceu sua senha?
+						</a>
+					</div>
+				</div>
+
+				<div class="mt-6">
+					<button type="button" class="btn-login group" (click)="login()">
+						<span class="absolute left-0 inset-y-0 flex items-center pl-3">
+							<svg class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400 transition ease-in-out duration-150" 
+									fill="currentColor" viewBox="0 0 20 20"
+							>
+								<path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+							</svg>
+						</span>
+						Entrar
+					</button>
+				</div>
+			</form>
+			<div class="mt-6">
+				<a href="#" class="btn-cadastrar md:py-4">
+					Cadastrar
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

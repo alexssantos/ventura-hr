@@ -14,8 +14,12 @@ export class SignInUpService {
 		private http: HttpClient
 	) { }
 
-	public SignIn(form: any): Observable<any> {
-		let url = this.API_URL+ "usuario/cadastro";
-		return this.http.post(url, form);
+	public SignIn(email, senha): Observable<any> {
+		const body = {
+			login: email,
+			senha: senha
+		}
+		let url = this.API_URL+ "auth/login";
+		return this.http.post(url, body);
 	}
 }

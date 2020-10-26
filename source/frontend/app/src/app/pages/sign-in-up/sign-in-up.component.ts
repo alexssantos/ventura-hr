@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SignInUpService } from './../../core/services/sign-in-up.service';
 
 @Component({
 	selector: 'app-sign-in-up',
@@ -7,17 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignInUpComponent implements OnInit {
 
-	loginForm: any ={
+	public loginForm = {
 		email: "",
 		senha:""
 	}
 
-	constructor() { }
+	constructor(
+		private SignInUpService: SignInUpService
+	) { }
 
 	ngOnInit(): void {
 	}
 
 	public login():void {
-
+		this.SignInUpService.SignIn(this.loginForm.email, this.loginForm.senha).subscribe(
+			(res) => console.log(res),			
+			(error) => console.log(error)
+		);
 	}
 }

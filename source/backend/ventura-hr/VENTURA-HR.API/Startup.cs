@@ -74,8 +74,15 @@ namespace VENTURA_HR.API
 			services.AddTransient<ICandidatoService, CandidatoService>();
 			services.AddTransient<IRespostaService, RespostaService>();
 
+			services.AddCors(options =>
+			{
+				options.AddDefaultPolicy(builder =>
+					builder.SetIsOriginAllowed(_ => true)
+						.AllowAnyMethod()
+						.AllowAnyHeader()
+						.AllowCredentials());
+			});
 
-			services.AddCors();
 			services.AddControllers()
 				.AddNewtonsoftJson(options =>
 				{
@@ -112,6 +119,8 @@ namespace VENTURA_HR.API
 						ValidateAudience = false
 					};
 				});
+
+
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -134,10 +143,7 @@ namespace VENTURA_HR.API
 
 			app.UseRouting();
 
-			app.UseCors(x => x
-				.AllowAnyOrigin()
-				.AllowAnyMethod()
-				.AllowAnyOrigin());
+			app.UseCors();
 
 			//Auth Configs
 			app.UseAuthentication();

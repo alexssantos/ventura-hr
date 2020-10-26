@@ -12,6 +12,8 @@ import { JobCardComponent } from './theme/components/job-card/job-card.component
 import { SignInUpService } from './core/services/sign-in-up.service';
 import { HttpClientModule } from '@angular/common/http';
 
+import {MatButtonModule} from '@angular/material/button';
+
 
 @NgModule({
 	declarations: [
@@ -28,7 +30,8 @@ import { HttpClientModule } from '@angular/common/http';
 		AppRoutingModule, 
 		FormsModule,
 		//WARNING:  import HttpClientModule after BrowserModule.
-		HttpClientModule
+		HttpClientModule,
+		MatButtonModule
 	],
 	providers: [
 		SignInUpService

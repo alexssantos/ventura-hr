@@ -5,7 +5,11 @@
 		@apply min-h-screen flex justify-around py-4 px-4;
 		
 		.left-side{
-			@apply max-w-md w-full h-full bg-blue-200 hidden;		
+			//@apply max-w-md w-full h-full bg-blue-200 hidden;		
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			@apply max-w-md w-full h-full bg-blue-200 h-32;		
 		}
 		
 		.right-side {

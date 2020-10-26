@@ -12,8 +12,10 @@ import { JobCardComponent } from './theme/components/job-card/job-card.component
 import { SignInUpService } from './core/services/sign-in-up.service';
 import { HttpClientModule } from '@angular/common/http';
 
-import {MatButtonModule} from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {MatButtonModule} from '@angular/material/button';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
 	declarations: [
@@ -27,11 +29,17 @@ import {MatButtonModule} from '@angular/material/button';
 	],
 	imports: [
 		BrowserModule,
+		BrowserAnimationsModule,
 		AppRoutingModule, 
 		FormsModule,
 		//WARNING:  import HttpClientModule after BrowserModule.
 		HttpClientModule,
-		MatButtonModule
+		MatButtonModule,
+		ToastrModule.forRoot({  
+			timeOut: 4000,
+			positionClass:'toast-bottom-right',  
+			closeButton: true,  			  
+		}), // ToastrModule added
 	],
 	providers: [
 		SignInUpService

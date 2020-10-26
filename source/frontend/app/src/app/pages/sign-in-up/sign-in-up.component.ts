@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { SignInUpService } from './../../core/services/sign-in-up.service';
@@ -15,25 +16,22 @@ export class SignInUpComponent implements OnInit {
 	}
 
 	constructor(
-		private SignInUpService: SignInUpService,
-		private toastr: ToastrService
+		private SignInUpService: SignInUpService		
 	) { }
 
 	ngOnInit(): void {
 	}
 
 	public login():void {
+		
 
-		this.toastr.info("Login iniciado", "VenturaHR");
 		this.SignInUpService.SignIn(this.loginForm.email, this.loginForm.senha).subscribe(
-			(res) => {
-				console.log(res);
-				this.toastr.success("Login finalizado com secesso", "VenturaHR");
+			(res) => {				
+				console.log("sucesso: ", res);
 			},
-			(error) => {
-				console.log(error);
-				this.toastr.error("Login finalizado com erro", "VenturaHR");
-			}
-		);
+			(error: HttpErrorResponse) => {	
+				console.log("Erro: ", error);
+			}			
+		).add()
 	}
 }

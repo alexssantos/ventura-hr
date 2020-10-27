@@ -10,6 +10,8 @@ import { SignInUpService } from './../../core/services/sign-in-up.service';
 })
 export class SignInUpComponent implements OnInit {
 
+	public isSignIn: boolean = true;
+
 	public loginForm = {
 		email: "",
 		senha:""
@@ -23,8 +25,6 @@ export class SignInUpComponent implements OnInit {
 	}
 
 	public login():void {
-		
-
 		this.SignInUpService.SignIn(this.loginForm.email, this.loginForm.senha).subscribe(
 			(res) => {				
 				console.log("sucesso: ", res);
@@ -33,5 +33,9 @@ export class SignInUpComponent implements OnInit {
 				console.log("Erro: ", error);
 			}			
 		).add()
+	}
+
+	public signUpPage():void {
+		this.isSignIn = false;
 	}
 }

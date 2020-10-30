@@ -1,4 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { SignInUpService } from './../../core/services/sign-in-up.service';
 
 @Component({
@@ -8,13 +10,15 @@ import { SignInUpService } from './../../core/services/sign-in-up.service';
 })
 export class SignInUpComponent implements OnInit {
 
+	public isSignIn: boolean = true;
+
 	public loginForm = {
 		email: "",
 		senha:""
 	}
 
 	constructor(
-		private SignInUpService: SignInUpService
+		private SignInUpService: SignInUpService		
 	) { }
 
 	ngOnInit(): void {
@@ -22,8 +26,16 @@ export class SignInUpComponent implements OnInit {
 
 	public login():void {
 		this.SignInUpService.SignIn(this.loginForm.email, this.loginForm.senha).subscribe(
-			(res) => console.log(res),			
-			(error) => console.log(error)
-		);
+			(res) => {				
+				console.log("sucesso: ", res);
+			},
+			(error: HttpErrorResponse) => {	
+				console.log("Erro: ", error);
+			}			
+		).add()
+	}
+
+	public signUpPage():void {
+		this.isSignIn = false;
 	}
 }

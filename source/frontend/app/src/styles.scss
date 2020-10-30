@@ -5,6 +5,11 @@
 @import 'tailwindcss/utilities';
 /* You can add global styles to this file, and also import other style files */
 
+
+// regular style toast 
+@import './../node_modules/ngx-toastr/toastr';
+ 
+
 body{
 	width: 100vw;
     height: 100vh;

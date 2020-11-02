@@ -14,8 +14,13 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {MatButtonModule} from '@angular/material/button';
 import { ToastrModule } from 'ngx-toastr';
+
+//
+import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule}  from '@angular/material/icon';
+import { MatMenuModule } from "@angular/material/menu";
 
 @NgModule({
 	declarations: [
@@ -32,9 +37,10 @@ import { ToastrModule } from 'ngx-toastr';
 		BrowserAnimationsModule,
 		AppRoutingModule, 
 		FormsModule,
+		
 		//WARNING:  import HttpClientModule after BrowserModule.
 		HttpClientModule,
-		MatButtonModule,
+		MatToolbarModule, MatButtonModule,MatIconModule, MatMenuModule,
 		ToastrModule.forRoot({  
 			timeOut: 4000,
 			positionClass:'toast-bottom-right',  

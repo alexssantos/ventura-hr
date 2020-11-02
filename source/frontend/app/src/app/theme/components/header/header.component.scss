@@ -1,0 +1,17 @@
+.page-content{
+	
+	background-color: antiquewhite;
+
+	.spacer{
+		flex: 1 1 auto;
+	}
+
+	.center{
+	}
+}
+
+button{	
+	&:focus {
+		outline:none;
+	}
+}

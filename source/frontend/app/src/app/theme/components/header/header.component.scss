@@ -1,16 +1,17 @@
-.header-item {
-	@apply px-3 py-2 rounded-md text-sm font-medium text-gray-400;
+.page-content{
 	
-	&:focus { 
-		@apply outline-none bg-gray-300;
-		color: #0062FF;
+	background-color: antiquewhite;
+
+	.spacer{
+		flex: 1 1 auto;
 	}
-	&:hover {
-		@apply text-gray-700 bg-gray-200;
-	}
-	&.active{
-		//@apply bg-gray-900 text-gray-300;		
-		color: #0062FF;
+
+	.center{
 	}
 }
 
+button{	
+	&:focus {
+		outline:none;
+	}
+}

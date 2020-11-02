@@ -1,27 +1,24 @@
-.home-content {
-	@apply px-20 py-8 h-full;
+.page-content{
+	background-color: aqua;
 	overflow-y: auto;
 }
 
 .search-bar{
-	@apply mb-10;
+	
 }
 
-.main{
-	@apply flex flex-row;
-	
-	.sidebar{
-		@apply relative;
+.main{		
+	.sidebar{		
 		min-width: 250px;
 		max-height: fit-content;
 		
 		.filter{
-			@apply mb-4;					
+	
 		}
 	}
 	
 	.jobs-list{
-		@apply bg-blue-200;		
+		background-color: aquamarine;
 	}
 }	
 

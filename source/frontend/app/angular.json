@@ -15,9 +15,8 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "ngx-build-plus:browser",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "extraWebpackConfig": "webpack.config.js",
             "outputPath": "dist/app",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -29,10 +28,15 @@
               "src/assets"
             ],
             "styles": [
-			  "src/styles.scss",
-			  "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+			  "node_modules/bootstrap/scss/bootstrap.scss",			  
+              "src/styles.scss",
+              "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/popper.js/dist/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -66,9 +70,8 @@
           }
         },
         "serve": {
-          "builder": "ngx-build-plus:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "extraWebpackConfig": "webpack.config.js",
             "browserTarget": "app:build"
           },
           "configurations": {
@@ -84,9 +87,8 @@
           }
         },
         "test": {
-          "builder": "ngx-build-plus:karma",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "extraWebpackConfig": "webpack.config.js",
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
@@ -131,6 +133,6 @@
   },
   "defaultProject": "app",
   "cli": {
-    "analytics": "a932c5ae-431d-46f0-b606-f07314aa0a3b"
+    "analytics": "c51a3308-36d3-45cf-9b7d-8a936b7ca539"
   }
 }

@@ -33,8 +33,7 @@ export class SignInUpService {
 					},
 					(error: HttpErrorResponse) => {
 						this.toastr.clear(startRequestToast.toastId)
-
-						console.log("error")
+						
 						if (error.status == 404) {
 							let bodyError = error.error;
 							this.toastr.error(bodyError.message, "VenturaHR");	

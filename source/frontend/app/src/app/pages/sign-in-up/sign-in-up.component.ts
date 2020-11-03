@@ -1,5 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { SignInUpService } from './../../core/services/sign-in-up.service';
 
@@ -10,28 +12,28 @@ import { SignInUpService } from './../../core/services/sign-in-up.service';
 })
 export class SignInUpComponent implements OnInit {
 
+	signInFrom: FormGroup = new FormGroup({
+		username: new FormControl('', [Validators.required]),
+		password: new FormControl('', [Validators.required]),
+	});
+	  
 	public isSignIn: boolean = true;
 
-	public loginForm = {
-		email: "",
-		senha:""
-	}
-
 	constructor(
-		private SignInUpService: SignInUpService		
+		private SignInUpService: SignInUpService,
+		private router: Router
 	) { }
 
 	ngOnInit(): void {
 	}
 
 	public login():void {
-		this.SignInUpService.SignIn(this.loginForm.email, this.loginForm.senha).subscribe(
+		const {username, password} = this.signInFrom.value;
+		this.SignInUpService.SignIn(username, username).subscribe(
 			(res) => {				
-				console.log("sucesso: ", res);
+				this.router.navigate(['home']);
 			},
-			(error: HttpErrorResponse) => {	
-				console.log("Erro: ", error);
-			}			
+			(error: HttpErrorResponse) => {	}			
 		).add()
 	}
 

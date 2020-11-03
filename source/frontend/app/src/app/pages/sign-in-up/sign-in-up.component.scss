@@ -1,0 +1,16 @@
+//@import "node_modules/bootstrap/scss/variables";
+
+
+.sign-content{	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	.card-signin{
+		width: 370px;
+
+		.login-form{
+			padding: 4rem 2rem;
+		}
+	}
+}

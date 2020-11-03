@@ -1,12 +1,62 @@
-// regular style toast 
+// --------------------------------------------------------------------------------------------
+//			NGX TOASTR 
+// --------------------------------------------------------------------------------------------
 @import './../node_modules/ngx-toastr/toastr';
 
+
+
+// --------------------------------------------------------------------------------------------
+//			FONTS
+// --------------------------------------------------------------------------------------------
 //font-family: 'Poppins', sans-serif;
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
+
+
+
+// --------------------------------------------------------------------------------------------
+//			ANGULAR MATERIAL ICONS
+// --------------------------------------------------------------------------------------------
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 
+
+// --------------------------------------------------------------------------------------------
+//			BOOTSTRAP
+// --------------------------------------------------------------------------------------------
+
+
+// Option A: Include all of Bootstrap
+@import "node_modules/bootstrap/scss/bootstrap";
+
+// Option B: Include parts of Bootstrap
+// Required
+// @import "node_modules/bootstrap/scss/functions";
+// @import "node_modules/bootstrap/scss/variables";
+// @import "node_modules/bootstrap/scss/mixins";
+
+// Optional
+// @import "node_modules/bootstrap/scss/reboot";
+// @import "node_modules/bootstrap/scss/type";
+// @import "node_modules/bootstrap/scss/images";
+// @import "node_modules/bootstrap/scss/code";
+// @import "node_modules/bootstrap/scss/grid";
+
+// ------------- Colors ------------------------------
+// ref: https://getbootstrap.com/docs/4.0/getting-started/theming/#color 
+// scss/_variables.scss
+
+// 1 Variable
+//.alpha { color: $purple; }
+
+// 2. Sass map - `color()` function
+//.beta { color: color("purple"); }
+
+
+
+// --------------------------------------------------------------------------------------------
+//	 		ANGULAR MATERIAL
+// --------------------------------------------------------------------------------------------
 
 // CUSTOM FONT ANGUALR MATERIAL 
 // @import '~@angular/material/theming';
@@ -14,19 +64,32 @@
 // $custom-typography: mat-typography-config($font-family: '"Poppins", sans-serif');
 // @include mat-core($custom-typography);
 
-/////////////////////////////////////////////////
+
+
+// --------------------------------------------------------------------------------------------
+//	 		GLOBAL CONFIGS
+// --------------------------------------------------------------------------------------------
+
 
 * {
 	font-family: 'Poppins', sans-serif;
 	//font-weight: 600;
 }
 
-
 body{	
+	//@extend .h100;
+	//@extend .w-100;
 	width: 100vw;
     height: 100vh;
 }
 
-.debug-border{
-	@apply border-2 border-dashed border-gray-400;
+//debug-color
+// @each $color, $value in $theme-colors {
+// 	.debug-#{$color} {
+// 		//border: 1px dashed $color;	  
+// 		border: 1px dashed $color;	  
+// 	}
+// }
+.debug-border{	
+	border: 1px dashed $red;	
 }

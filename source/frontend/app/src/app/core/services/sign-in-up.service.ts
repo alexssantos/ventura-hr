@@ -42,6 +42,36 @@ export class SignInUpService {
 							this.toastr.error("Erro inesperado", "VenturaHR");
 						}
 					}),
+			)
+	}
+
+	public SignUp(form: any): Observable<any> {
+		
+		const body = {
+			nome: form.name,
+			login: form.login,
+			senha: form.password,
+			email: form.email,
+			dataNascimento: form.birthDate,
+			tipo: form.typeUser,
+			documento: form.document
+		}
+
+		let url = this.API_URL+ "usuario/cadastro";
+		return this.http.post(url, body)
+			.pipe(
+				tap((res) => {		
+						this.toastr.success("Cadastro finalizado com secesso", "VenturaHR");
+					},
+					(error: HttpErrorResponse) => {								
+						if (error.status == 404) {
+							let bodyError = error.error;
+							this.toastr.error(bodyError.message, "VenturaHR");	
+						}				
+						else{
+							this.toastr.error("Erro inesperado", "VenturaHR");
+						}
+					}),
 
 			)
 	}

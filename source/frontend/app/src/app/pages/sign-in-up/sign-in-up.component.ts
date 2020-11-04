@@ -3,18 +3,38 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AnimationService } from 'src/app/theme/animations/animation.service';
 import { SignInUpService } from './../../core/services/sign-in-up.service';
 
 @Component({
 	selector: 'app-sign-in-up',
 	templateUrl: './sign-in-up.component.html',
-	styleUrls: ['./sign-in-up.component.scss']
+	styleUrls: ['./sign-in-up.component.scss'],
+	animations:[
+		AnimationService.fadeInTrigger()
+	]
 })
 export class SignInUpComponent implements OnInit {
 
+	private readonly USER_TYPE_ADMIN = 1;
+	private readonly USER_TYPE_CANDIDATE = 2;
+	private readonly USER_TYPE_COMPANY = 3
+	
+	
+	
 	signInFrom: FormGroup = new FormGroup({
-		username: new FormControl('', [Validators.required]),
+		login: new FormControl('', [Validators.required]),
 		password: new FormControl('', [Validators.required]),
+	});
+
+	signUpForm: FormGroup = new FormGroup({
+		name: 		new FormControl('', [Validators.required]),
+		login: 		new FormControl('', [Validators.required]),
+		password: 	new FormControl('', [Validators.required]),
+		email: 		new FormControl('', [Validators.required, Validators.email]),
+		birthDate: 	new FormControl('', [Validators.required]),
+		typeUser: 	new FormControl('1', [Validators.required]),
+		document: 	new FormControl('', [Validators.required]),		
 	});
 	  
 	public isSignIn: boolean = true;
@@ -28,8 +48,9 @@ export class SignInUpComponent implements OnInit {
 	}
 
 	public login():void {
-		const {username, password} = this.signInFrom.value;
-		this.SignInUpService.SignIn(username, username).subscribe(
+		const {login, password} = this.signInFrom.value;		
+
+		this.SignInUpService.SignIn(login, password).subscribe(
 			(res) => {				
 				this.router.navigate(['home']);
 			},
@@ -37,7 +58,21 @@ export class SignInUpComponent implements OnInit {
 		).add()
 	}
 
-	public signUpPage():void {
-		this.isSignIn = false;
+	public signUp(): void {
+		
+		this.SignInUpService.SignUp(this.signUpForm.value).subscribe(
+			(res) => {				
+				this.router.navigate(['home']);
+			},
+			(error: HttpErrorResponse) => {	}
+		);
+	}
+
+	public checkTypeUser(): string {
+		return this.signUpForm.value.typeUser;
+	}
+
+	public switchForm():void {	
+		this.isSignIn = !this.isSignIn;	
 	}
 }

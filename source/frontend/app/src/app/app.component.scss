@@ -1,26 +1,48 @@
+// ----------------------------------------------
+//	 				Custom.scss
+// ----------------------------------------------
+
+// Option A: Include all of Bootstrap
+@import "node_modules/bootstrap/scss/bootstrap";
+
+// Option B: Include parts of Bootstrap
+// Required
+// @import "node_modules/bootstrap/scss/functions";
+// @import "node_modules/bootstrap/scss/variables";
+// @import "node_modules/bootstrap/scss/mixins";
+
+// Optional
+// @import "node_modules/bootstrap/scss/reboot";
+// @import "node_modules/bootstrap/scss/type";
+// @import "node_modules/bootstrap/scss/images";
+// @import "node_modules/bootstrap/scss/code";
+// @import "node_modules/bootstrap/scss/grid";
+// ----------------------------------------------
+
+
+// ----------------------------------------------
+//	 				GLOBAL CONFIGS
+// ----------------------------------------------
+
 button {
     &.btn-scss {
         color: green;
     }
 }
 
-.tailwind-button {
-    @apply bg-transparent text-blue-700 font-semibold py-2 px-4 border border-blue-500 rounded;
 
-    &:hover {
-        @apply bg-blue-500 border-transparent text-white;
-    }
-}
-
-.app-frame {
+.app-content {
     position: absolute;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
     display: flex;
 	flex-direction: column;
-
-	@apply bg-gray-100;
+	
+	.page-content{
+		@extend .h-100;
+		background-color: gray("200");	
+	}
 }
 
 app-home {

@@ -30,6 +30,9 @@ export class SignInUpService {
 				tap((res) => {
 						this.toastr.clear(startRequestToast.toastId)
 						this.toastr.success("Login finalizado com secesso", "VenturaHR");
+						
+						sessionStorage.setItem('token_access', res.token);
+						sessionStorage.setItem('type_user', res.tipoUsuario);
 					},
 					(error: HttpErrorResponse) => {
 						this.toastr.clear(startRequestToast.toastId)
@@ -74,5 +77,9 @@ export class SignInUpService {
 					}),
 
 			)
+	}
+
+	public logout(): void {
+		sessionStorage.clear();
 	}
 }

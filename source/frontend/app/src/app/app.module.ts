@@ -10,13 +10,14 @@ import { FilterBoxComponent } from './theme/components/filter-box/filter-box.com
 import { SearchBarComponent } from './theme/components/search-bar/search-bar.component';
 import { JobCardComponent } from './theme/components/job-card/job-card.component';
 import { SignInUpService } from './core/services/sign-in-up.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
 import { MaterialModule } from './material.module';
 import { ModalCreateVacancy } from './theme/components/modal-create-vacancy/modal-create-vacancy.component';
+import { TokenInterceptorService } from './core/services/token-interceptor.service';
 
 //
 
@@ -48,7 +49,8 @@ import { ModalCreateVacancy } from './theme/components/modal-create-vacancy/moda
 		}), // ToastrModule added
 	],
 	providers: [
-		SignInUpService
+		SignInUpService,
+		{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}
 	],
 	entryComponents: [
 		ModalCreateVacancy		

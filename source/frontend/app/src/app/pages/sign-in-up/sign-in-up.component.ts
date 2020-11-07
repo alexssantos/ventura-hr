@@ -61,11 +61,12 @@ export class SignInUpComponent implements OnInit {
 		
 		this.SignInUpService.SignUp(this.signUpForm.value).subscribe(
 			(res) => {				
-				this.router.navigate(['home']);
+				//this.router.navigate(['home']);
+				this.isSignIn = true;
 			},
 			(error: HttpErrorResponse) => {	}
 		);
-	}
+	}	
 
 	public checkTypeUser(): string {
 		return this.signUpForm.value.typeUser;

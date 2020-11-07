@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SignInUpService } from 'src/app/core/services/sign-in-up.service';
 
 const urlFakePhoto = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80";
 
@@ -14,13 +15,18 @@ export class HeaderComponent implements OnInit {
 	public urlFakePhoto = urlFakePhoto;
 
 	constructor(
-		private router: Router
+		private router: Router,
+		private signInUpService: SignInUpService
 	) { }
 
 	ngOnInit(): void {
 	}
 
-	public openProfileMenu():void {
+	public logout(): void {
+		this.signInUpService.logout();
+	}
+
+	public openProfileMenu(): void {
 		this.onProfileDrop = !this.onProfileDrop;
 	}
 
@@ -30,10 +36,10 @@ export class HeaderComponent implements OnInit {
 
 	public print(method: string): void {
 		console.log(method);
-	} 
+	}
 
-	public goToHome():void{
+	public goToHome(): void {
 		this.router.navigate(['/home']);
 	}
-	
+
 }

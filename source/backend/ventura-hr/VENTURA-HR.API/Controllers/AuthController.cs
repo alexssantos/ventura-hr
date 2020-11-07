@@ -10,7 +10,7 @@ namespace VENTURA_HR.API.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class AuthController : ControllerBase
+	public class AuthController : GenericController
 	{
 		private IUsuarioRepository UsuarioRepository { get; set; }
 		public AuthService AuthService { get; set; }
@@ -42,6 +42,7 @@ namespace VENTURA_HR.API.Controllers
 			return Ok(new
 			{
 				user = loginForm,
+				tipoUsuario = GetLoggedTypeUser(),
 				token = token
 			});
 		}

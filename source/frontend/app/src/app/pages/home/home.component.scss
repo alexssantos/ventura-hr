@@ -1,16 +1,26 @@
+$side-bar: 250px;
+
 .page-content{
-	background-color: aqua;
+	background-color: rgb(240, 240, 240);
 	overflow-y: auto;
 }
 
+.add-btn{
+	width: $side-bar;		
+	max-width: $side-bar - 35px;
+	button{
+		font-size: small;	
+	}
+}
 .search-bar{
-	
+	background-color: lightgoldenrodyellow;
 }
 
 .main{		
+
 	.sidebar{		
-		min-width: 250px;
-		max-height: fit-content;
+		width: $side-bar;
+		height: fit-content;		
 		
 		.filter{
 	
@@ -18,7 +28,7 @@
 	}
 	
 	.jobs-list{
-		background-color: aquamarine;
+		background-color: lightblue;
 	}
 }	
 

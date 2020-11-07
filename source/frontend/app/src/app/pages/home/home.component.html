@@ -1,33 +1,43 @@
-<div class="page-content debug-border p-2">
-	
-	<!-- SEARCH BAR -->
-    <div class="search-bar debug-border">
-        <app-search-bar></app-search-bar>
-    </div>
+<div class="page-content px-5 py-4 h-100">
 
-    <div class="main debug-border">
-		
+	<!-- SEARCH BAR -->
+	<div class="d-flex nowrap mx-0 mb-4">
+		<div class="add-btn d-flex justify-content-center align-content-center">
+			<button class="my-auto mx-auto shadow" type="button" mat-raised-button color="primary" (click)="createVacancy()">				
+				<span>Criar Vaga</span>
+			</button>
+		</div>
+
+		<div class="search-bar w-100 debug-border">
+			<app-search-bar></app-search-bar>
+		</div>
+	</div>
+
+	<div class="main d-flex flex-nowrap h-100 debug-border">
+
 		<!-- FILTERS -->
-        <div class="sidebar debug-border pr-8">
+		<div class="sidebar debug-border pr-5">
 			Filtros
 			<div class="filter">
-                <app-filter-box ></app-filter-box>
+				<app-filter-box></app-filter-box>
 			</div>
-			
-			<div class="filter">
-                <app-filter-box ></app-filter-box>
-			</div>
-			
-			<div class="filter">
-                <app-filter-box ></app-filter-box>
-			</div>
-			
-			<div class="filter">
-                <app-filter-box ></app-filter-box>
-            </div>
-        </div>
 
-        <!-- JOB CARDS -->
-        <div class="jobs-list debug-border w-full">Lista de vagas</div>
-    </div>
+			<div class="filter">
+				<app-filter-box></app-filter-box>
+			</div>
+
+			<div class="filter">
+				<app-filter-box></app-filter-box>
+			</div>
+
+			<div class="filter">
+				<app-filter-box></app-filter-box>
+			</div>
+		</div>
+
+		<!-- JOB CARDS -->
+		<div class="jobs-list debug-border w-100 h-100">
+			Lista de vagas
+		</div>
+	</div>
 </div>

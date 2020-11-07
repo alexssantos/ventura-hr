@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { VacancyService } from 'src/app/core/services/vacancy.service';
+import { Vacancy } from 'src/app/interfaces/vacancy.model';
+import { ModalCreateVacancy } from 'src/app/theme/components/modal-create-vacancy/modal-create-vacancy.component';
 
 @Component({
 	selector: 'app-home',
@@ -7,9 +11,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-	constructor() { }
+	constructor(
+		public dialog: MatDialog,
+		private vacancyService: VacancyService
+	) { }
 
 	ngOnInit(): void {
 	}
 
+	public createVacancy(): void{
+		const dialogRef = this.dialog.open(ModalCreateVacancy, {
+            height: 'auto',
+			width: '60%',
+			data:  new Vacancy()
+        });
+
+    	dialogRef.afterClosed().subscribe((newVacancy: Vacancy) => {				     			
+			this.postVacancy(newVacancy);			
+		});		
+	}
+
+	public postVacancy(vacancy: Vacancy):void  {
+		this.vacancyService.createVacancy(vacancy).subscribe(
+			(response) => {
+				console.log("Response Create vacancy", response);
+			},
+			(error) => console.error(error)
+		)
+	}
 }

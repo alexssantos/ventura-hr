@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
 import { MaterialModule } from './material.module';
+import { ModalCreateVacancy } from './theme/components/modal-create-vacancy/modal-create-vacancy.component';
 
 //
 
@@ -28,7 +29,8 @@ import { MaterialModule } from './material.module';
 		HeaderComponent,
 		FilterBoxComponent,
 		SearchBarComponent,
-		JobCardComponent
+		JobCardComponent,
+		ModalCreateVacancy
 	],
 	imports: [
 		BrowserModule,
@@ -47,6 +49,9 @@ import { MaterialModule } from './material.module';
 	],
 	providers: [
 		SignInUpService
+	],
+	entryComponents: [
+		ModalCreateVacancy		
 	],
 	bootstrap: [AppComponent]
 })

@@ -16,15 +16,14 @@ import { SignInUpService } from './../../core/services/sign-in-up.service';
 })
 export class SignInUpComponent implements OnInit {
 
-	private readonly USER_TYPE_ADMIN = 1;
-	private readonly USER_TYPE_CANDIDATE = 2;
-	private readonly USER_TYPE_COMPANY = 3
+	public readonly USER_TYPE_ADMIN = 1;
+	public readonly USER_TYPE_CANDIDATE = 2;
+	public readonly USER_TYPE_COMPANY = 3
 	
-	
-	
+
 	signInFrom: FormGroup = new FormGroup({
-		login: new FormControl('', [Validators.required]),
-		password: new FormControl('', [Validators.required]),
+		login: 		new FormControl('', [Validators.required]),
+		password: 	new FormControl('', [Validators.required]),
 	});
 
 	signUpForm: FormGroup = new FormGroup({

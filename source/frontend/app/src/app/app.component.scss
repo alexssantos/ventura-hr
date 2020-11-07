@@ -38,17 +38,9 @@ button {
     overflow: hidden;
     display: flex;
 	flex-direction: column;
+	background-color: white;
 	
 	.page-content{
 		@extend .h-100;
-		background-color: gray("200");	
 	}
-}
-
-app-home {
-	@apply flex;
-	flex-grow: 1;
-	flex-direction: column;
-	/* for Firefox */
-	min-height: 0;
 }

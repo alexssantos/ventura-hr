@@ -24,7 +24,7 @@ export class SignInUpService {
 			login: email,
 			senha: senha
 		}
-		let url = this.API_URL+ "auth/login";
+		let url = this.API_URL+ "/auth/login";
 		return this.http.post(url, body)
 			.pipe(
 				tap((res) => {
@@ -57,7 +57,7 @@ export class SignInUpService {
 			documento: form.document
 		}
 
-		let url = this.API_URL+ "usuario/cadastro";
+		let url = this.API_URL+ "/usuario/cadastro";
 		return this.http.post(url, body)
 			.pipe(
 				tap((res) => {		

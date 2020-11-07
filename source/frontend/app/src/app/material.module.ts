@@ -6,10 +6,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from "@angular/material/menu";
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import {MatRadioModule} from '@angular/material/radio';
-
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 const modulesList = [
 	MatToolbarModule,
@@ -20,7 +22,10 @@ const modulesList = [
 	MatInputModule,
 	MatDatepickerModule,
 	MatNativeDateModule,
-	MatRadioModule
+	MatRadioModule,
+	MatDialogModule,
+	MatFormFieldModule,
+	MatSelectModule
 ];
 
 @NgModule({

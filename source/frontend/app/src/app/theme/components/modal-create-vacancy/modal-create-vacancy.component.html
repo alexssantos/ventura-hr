@@ -45,6 +45,6 @@
 	</form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-	<button mat-button mat-dialog-close>Cancelar</button>
-	<button mat-button [mat-dialog-close]="newVacancy" cdkFocusInitial>Criar</button>
+	<button mat-button [mat-dialog-close]="null" color="gray">Cancelar</button>
+	<button mat-stroked-button [mat-dialog-close]="newVacancy" color="primary">Criar</button>
 </mat-dialog-actions>

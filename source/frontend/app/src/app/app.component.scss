@@ -38,9 +38,9 @@ button {
     overflow: hidden;
     display: flex;
 	flex-direction: column;
-	background-color: white;
 	
 	.page-content{
+		background-color: $gray-200;
 		@extend .h-100;
 	}
 }

@@ -26,8 +26,9 @@ export class HomeComponent implements OnInit {
 			data:  new Vacancy()
         });
 
-    	dialogRef.afterClosed().subscribe((newVacancy: Vacancy) => {				     			
-			this.postVacancy(newVacancy);			
+    	dialogRef.afterClosed().subscribe((newVacancy: Vacancy) => {
+			if (newVacancy)
+				this.postVacancy(newVacancy);			
 		});		
 	}
 

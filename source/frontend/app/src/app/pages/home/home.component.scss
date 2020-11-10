@@ -8,6 +8,7 @@ $side-bar: 250px;
 .add-btn{
 	width: $side-bar;		
 	max-width: $side-bar - 35px;
+	height: 60px;
 	button{
 		font-size: small;	
 	}
@@ -28,7 +29,7 @@ $side-bar: 250px;
 	}
 	
 	.jobs-list{
-		background-color: lightblue;
+		background-color: rgb(218, 243, 252);
 	}
 }	
 

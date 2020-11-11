@@ -18,8 +18,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { MaterialModule } from './material.module';
 import { ModalCreateVacancy } from './theme/components/modal-create-vacancy/modal-create-vacancy.component';
 import { TokenInterceptorService } from './core/services/token-interceptor.service';
+import { CommonModule } from '@angular/common';
 
-//
 
 
 @NgModule({
@@ -34,7 +34,8 @@ import { TokenInterceptorService } from './core/services/token-interceptor.servi
 		ModalCreateVacancy
 	],
 	imports: [
-		BrowserModule,
+		CommonModule,
+		BrowserModule,		
 		BrowserAnimationsModule,
 		AppRoutingModule, 
 		FormsModule,		

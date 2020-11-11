@@ -11,7 +11,6 @@ namespace VENTURA_HR.API.Controllers
 {
 	[Route("api/vaga")]
 	[ApiController]
-	[Authorize(Roles = "EMPRESA, CANDIDATO")]
 	public class VagaController : GenericController
 	{
 		private IVagaService VagaService { get; set; }
@@ -37,6 +36,7 @@ namespace VENTURA_HR.API.Controllers
 		}
 
 		[HttpPost]
+		[Authorize(Roles = "EMPRESA")]
 		public ActionResult Post([FromBody] CadastroVagaRequest vagaNova)
 		{
 			if (!ModelState.IsValid)
@@ -73,6 +73,7 @@ namespace VENTURA_HR.API.Controllers
 
 
 		[HttpGet("respondidas")]
+		[Authorize(Roles = "EMPRESA")]
 		public ActionResult ListarVagasRespondidas()
 		{
 

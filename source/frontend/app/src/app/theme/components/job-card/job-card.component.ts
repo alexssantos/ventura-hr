@@ -1,15 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Vacancy } from 'src/app/interfaces/vacancy.model';
 
 @Component({
-  selector: 'app-job-card',
-  templateUrl: './job-card.component.html',
-  styleUrls: ['./job-card.component.scss']
+	selector: 'job-card',
+	templateUrl: './job-card.component.html',
+	styleUrls: ['./job-card.component.scss']
 })
 export class JobCardComponent implements OnInit {
 
-  constructor() { }
+	@Input('cardData') cardVacancy: Vacancy;
 
-  ngOnInit(): void {
-  }
+	constructor() { }
 
+	ngOnInit(): void {
+		console.log(this.cardVacancy);
+	}
+
+	public candidateVacancy(): void {
+
+	}
+
+	public goTojobDetails(): void{
+		
+	}
 }

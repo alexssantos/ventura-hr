@@ -7,10 +7,10 @@
 		</div>
 	</div>
 
-	<div class="main d-flex flex-nowrap h-auto debug-border">
+	<div class="main d-flex justify-content-center h-auto debug-border">
 
 		<!-- FILTERS -->
-		<div class="sidebar debug-border">
+		<!-- <div class="sidebar debug-border">
 			<div class="add-btn d-flex">
 				<button class="align-self-center mx-auto btn btn-primary rounded-lg w-75" type="button" (click)="createVacancy()">
 					<span>Criar Vaga</span>
@@ -35,11 +35,15 @@
 					<app-filter-box></app-filter-box>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 		<!-- JOB CARDS -->
-		<div class="jobs-list debug-border w-100 h-auto">
-			Lista de vagas
+		<div class="container">
+			<div class="jobs-list debug-border h-auto">
+				<div class="my-4 mx-auto" *ngFor="let item of vacancyList">
+					<job-card [cardData]="item"></job-card>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

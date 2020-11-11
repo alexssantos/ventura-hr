@@ -1,1 +1,28 @@
-<p>job-card works!</p>
+<div class="job-card d-flex flex-column">
+	<div class="card-photo mb-3">
+		<img class="rounded shadow-sm" src="https://picsum.photos/seed/picsum/60" />
+	</div>
+	<div class="card-title my-2">
+		{{ cardVacancy.titulo}}
+	</div>
+	<div class="text-description mb-2">
+		{{cardVacancy.descricao}}
+	</div>
+	<div class="card-tags d-flex justify-content-start mb-2 flex-wrap mt-auto mb-2">		
+		<div *ngFor="let criterio of cardVacancy.criterios; let ix = index" class="tag border-primary border rounded-lg py-1 px-2">
+			<span>{{ criterio.titulo}}</span>
+		</div> 		
+	</div>
+	<div class="card-buttons d-flex align-content-end flex-nowrap mx-2 mt-auto">
+		<div class="card-btn w-100 mr-2">
+			<button class="my-auto mx-auto w-100 btn btn btn-primary rounded-lg" type="button" (click)="candidateVacancy()">
+				<span>Candidatar</span>
+			</button>
+		</div>
+		<div class="card-btn w-100 ml-2">
+			<button class="my-auto mx-auto w-100 btn btn rounded-lg btn-secondary" type="button" (click)="goTojobDetails()">
+				<span>Detalhes</span>
+			</button>
+		</div>
+	</div>
+</div>

@@ -1,11 +1,11 @@
 import { inject } from "@angular/core/testing";
 
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Vacancy } from 'src/app/interfaces/vacancy.model';
 
 @Injectable({
@@ -41,5 +41,31 @@ export class VacancyService {
 						}
 					}),
 			)
+	}
+
+	public getVacancies(): Observable<Vacancy[]>{
+		let startRequestToast = this.toastr.info("buscando vagas", "VenturaHR");
+
+		let url = this.API_URL+ "/vaga";
+		return this.http.get<Vacancy[]>(url).pipe(			
+			//map((result) => result.map(vac => vac as Vacancy)),
+			tap(
+				(res: Vacancy[]) => {	
+					this.toastr.clear(startRequestToast.toastId)
+					console.log('getVacancies done')
+					let totalVacancies = res.length;								
+					this.toastr.success(`${totalVacancies} vagas encontradas`, "VenturaHR");
+				},
+				(error: HttpErrorResponse) => {
+					this.toastr.clear(startRequestToast.toastId)
+					if (error.status == 404) {
+						let bodyError = error.error;
+						this.toastr.error(bodyError.message, "VenturaHR");	
+					}				
+					else{
+						this.toastr.error("Erro inesperado", "VenturaHR");
+					}
+				}),
+		)
 	}
 }

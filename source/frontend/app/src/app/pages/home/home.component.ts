@@ -11,12 +11,15 @@ import { ModalCreateVacancy } from 'src/app/theme/components/modal-create-vacanc
 })
 export class HomeComponent implements OnInit {
 
+	public vacancyList: Vacancy[] = [];
+
 	constructor(
 		public dialog: MatDialog,
 		private vacancyService: VacancyService
 	) { }
 
 	ngOnInit(): void {
+		this.loadVacancies();
 	}
 
 	public createVacancy(): void{
@@ -39,5 +42,14 @@ export class HomeComponent implements OnInit {
 			},
 			(error) => console.error(error)
 		)
+	}
+
+	public loadVacancies(): void {
+		this.vacancyService.getVacancies().subscribe((list: Vacancy[]) => {
+			let listObj: Vacancy[] = list.map((vac) => Object.assign( new Vacancy(), vac));
+			console.log('HOME => GetVacancies', listObj);
+			this.vacancyList = listObj;
+			console.log(this.vacancyList);
+		})
 	}
 }

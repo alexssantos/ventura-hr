@@ -46,10 +46,8 @@ export class HomeComponent implements OnInit {
 
 	public loadVacancies(): void {
 		this.vacancyService.getVacancies().subscribe((list: Vacancy[]) => {
-			let listObj: Vacancy[] = list.map((vac) => Object.assign( new Vacancy(), vac));
-			console.log('HOME => GetVacancies', listObj);
-			this.vacancyList = listObj;
-			console.log(this.vacancyList);
+			let listObj: Vacancy[] = list.map((vac) => Object.assign( new Vacancy(), vac));			
+			this.vacancyList = listObj;			
 		})
 	}
 }

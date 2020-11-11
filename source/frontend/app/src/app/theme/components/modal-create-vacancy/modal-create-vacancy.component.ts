@@ -16,6 +16,7 @@ export class ModalCreateVacancy implements OnInit {
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public newVacancy: Vacancy
 	) {
+		newVacancy.criterios = [];
 		newVacancy.criterios.push(new Criterio());
 	}
 

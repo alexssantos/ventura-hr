@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { SessionManagerService } from 'src/app/core/services/session-mng.service';
 import { VacancyService } from 'src/app/core/services/vacancy.service';
 import { Vacancy } from 'src/app/interfaces/vacancy.model';
 import { ModalCreateVacancy } from 'src/app/theme/components/modal-create-vacancy/modal-create-vacancy.component';
@@ -15,7 +16,8 @@ export class HomeComponent implements OnInit {
 
 	constructor(
 		public dialog: MatDialog,
-		private vacancyService: VacancyService
+		private vacancyService: VacancyService,
+		private sessionService: SessionManagerService
 	) { }
 
 	ngOnInit(): void {

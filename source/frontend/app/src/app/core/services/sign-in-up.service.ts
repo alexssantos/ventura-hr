@@ -3,8 +3,8 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import { catchError, map, tap } from 'rxjs/operators'
-import { empty } from 'rxjs/internal/observable/empty';
+import { tap } from 'rxjs/operators'
+import { SessionManagerService } from './session-mng.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -14,7 +14,8 @@ export class SignInUpService {
 
 	constructor(
 		private http: HttpClient,
-		private toastr: ToastrService
+		private toastr: ToastrService,
+		private sessionService: SessionManagerService
 	) { }
 
 	public SignIn(email, senha): Observable<any> {
@@ -31,8 +32,8 @@ export class SignInUpService {
 						this.toastr.clear(startRequestToast.toastId)
 						this.toastr.success("Login finalizado com secesso", "VenturaHR");
 						
-						sessionStorage.setItem('token_access', res.token);
-						sessionStorage.setItem('type_user', res.tipoUsuario);
+						this.sessionService.setToken(res.token);
+						this.sessionService.setTypeUser(res.tipoUsuario);
 					},
 					(error: HttpErrorResponse) => {
 						this.toastr.clear(startRequestToast.toastId)

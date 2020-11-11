@@ -42,7 +42,7 @@ namespace VENTURA_HR.API.Controllers
 			return Ok(new
 			{
 				user = loginForm,
-				tipoUsuario = GetLoggedTypeUser(),
+				tipoUsuario = user.TipoUsuario,
 				token = token
 			});
 		}

@@ -85,8 +85,6 @@ export class VacancyService {
 					console.log('searchVacancies done')
 					let totalVacancies = res.length;
 					this.toastr.success(`${totalVacancies} vagas encontradas`, "VenturaHR");
-
-					console.table(res);
 				},
 				(error: HttpErrorResponse) => {
 					this.toastr.clear(startRequestToast.toastId)

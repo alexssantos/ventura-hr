@@ -44,4 +44,8 @@ export class HeaderComponent implements OnInit {
 		this.router.navigate(['/home']);
 	}
 
+	public isUserLogged(){
+		return this.sessionService.checkUserLogged()
+	}
+
 }

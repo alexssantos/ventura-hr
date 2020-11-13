@@ -21,6 +21,7 @@ namespace VENTURA_HR.Repository.Repositories
 			var result = this.Query
 				.Include(x => x.Empresa)
 				.Include(x => x.Respostas)
+				.Include(x => x.Criterios)
 				.ToList();
 			return result;
 		}

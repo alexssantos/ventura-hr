@@ -20,13 +20,13 @@
 				<mat-icon>notifications_none</mat-icon>
 			</button>
 
-			<div *ngIf="!sessionService.checkUserLogged()">
+			<div *ngIf="!isUserLogged()">
 				<button mat-icon-button [routerLink]="['/access']">
 					<mat-icon>account_circle</mat-icon>
 				</button>
 			</div>
 
-			<div *ngIf="sessionService.checkUserLogged()">
+			<div *ngIf="isUserLogged()">
 				<button mat-icon-button [matMenuTriggerFor]="menu" class="example-icon" aria-label="Example icon-button with share icon">
 					<mat-icon>account_circle</mat-icon>
 				</button>

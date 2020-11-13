@@ -5,7 +5,7 @@
 		<div class="search-bar w-100 debug-border">
 			<app-search-bar></app-search-bar>
 		</div>
-		<div *ngIf="sessionService.checkCompanyLogged()" class="add-btn d-flex">
+		<div *ngIf="isCompanyLogged()" class="add-btn d-flex">
 			<button class="align-self-center mx-auto btn btn-primary rounded-lg w-75" type="button" (click)="createVacancy()">
 				<span>Criar Vaga</span>
 			</button>

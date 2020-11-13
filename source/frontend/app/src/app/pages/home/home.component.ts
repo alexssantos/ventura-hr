@@ -52,4 +52,8 @@ export class HomeComponent implements OnInit {
 			this.vacancyList = listObj;			
 		})
 	}
+
+	public isCompanyLogged(): boolean {
+		return this.sessionService.checkCompanyLogged();
+	}
 }

@@ -56,4 +56,11 @@ export class HomeComponent implements OnInit {
 	public isCompanyLogged(): boolean {
 		return this.sessionService.checkCompanyLogged();
 	}
+
+	public searchVacancies(keywords: string[]): void {
+		this.vacancyService.searchVacancies(keywords).subscribe((list: Vacancy[]) => {
+			let listObj: Vacancy[] = list.map((vac) => Object.assign( new Vacancy(), vac));			
+			this.vacancyList = listObj;			
+		})
+	}	
 }

@@ -55,13 +55,12 @@ namespace VENTURA_HR.Repository.Repositories
 				{
 					var queryBusca = Query
 						.Include(vaga => vaga.Criterios)
-						.Where(obj =>
-								obj.Titulo.Contains(busca)
-								|| obj.Criterios.Any(ctr => ctr.Titulo.Contains(busca)));
+						.Where(obj => obj.Titulo.Contains(busca)
+										|| obj.Criterios.Any(ctr => ctr.Titulo.Contains(busca)));
 
 					queryVaga = (queryVaga == null)
 						? queryBusca
-						: queryVaga.Concat(queryBusca);
+						: queryVaga.Intersect(queryBusca);
 				}
 
 				queryVaga = queryVaga.Distinct();
@@ -75,6 +74,7 @@ namespace VENTURA_HR.Repository.Repositories
 				.Include(vaga => vaga.Criterios)
 				.AsNoTracking();
 
+			//execute query.
 			var resultado = queryVaga.ToList();
 			return resultado;
 		}

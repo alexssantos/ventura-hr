@@ -32,4 +32,8 @@ Na pasta **documentoção** é mantida toda documentação do projeto, bem como 
 
 ## Fluxo de Implementação
 
+
+## Sonar Cloud
+
+
 ***(em construção)***

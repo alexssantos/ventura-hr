@@ -21,8 +21,8 @@ namespace VENTURA_HR.Repository.MapEntities
 				.IsRequired();
 
 			entity.Property(x => x.Descricao)
-				.HasColumnName("str_desc")
-				.IsRequired();
+				.HasColumnName("str_desc");
+
 
 			entity.Property(x => x.Ativo)
 				.HasColumnName("bl_ativo")

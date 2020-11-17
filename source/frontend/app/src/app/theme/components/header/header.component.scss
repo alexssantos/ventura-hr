@@ -1,0 +1,25 @@
+.page-content{		
+	mat-toolbar{
+		background-color: white;
+		height: 48px;
+	}
+
+	.spacer{
+		flex: 1 1 auto;
+	}
+
+	.center{
+	}
+
+	.right-side{
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+	}
+}
+
+button{	
+	&:focus {
+		outline:none;
+	}
+}

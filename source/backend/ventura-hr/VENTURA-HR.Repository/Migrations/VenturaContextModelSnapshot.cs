@@ -166,7 +166,6 @@ namespace VENTURA_HR.Repository.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Descricao")
-                        .IsRequired()
                         .HasColumnName("str_desc")
                         .HasColumnType("nvarchar(max)");
 

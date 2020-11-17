@@ -29,7 +29,6 @@ namespace VENTURA_HR.Services.Dtos.Requests
 			[DataMember(Name = "titulo")]
 			public string Titulo { get; set; }
 
-			[Required]
 			[DataMember(Name = "descricao")]
 			public string Descricao { get; set; }
 

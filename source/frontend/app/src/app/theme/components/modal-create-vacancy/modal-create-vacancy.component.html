@@ -1,0 +1,50 @@
+<h2 mat-dialog-title>Criar Vaga</h2>
+
+<mat-dialog-content class="mat-typography h-auto">
+	<!--  stepper -->
+
+	<form class="form">
+		<mat-form-field class="full-width">
+			<mat-label>Título</mat-label>
+			<input matInput placeholder="Ex. Desenvolvedor .NET" name="vacancyTitle" [(ngModel)]="newVacancy.titulo">
+		</mat-form-field>
+
+		<mat-form-field class="full-width">
+			<mat-label>Adicione uma descrição</mat-label>
+			<textarea matInput placeholder="Ex. Ter lançado um foguete..." name="vacancyDesc" [(ngModel)]="newVacancy.descricao"></textarea>
+		</mat-form-field>
+
+		<div class="criterios debug-border">
+
+			<div class="criterio-item p-2 m-2 d-flex flex-nowrap" *ngFor="let criterio of newVacancy.criterios; let ix = index">
+				<mat-form-field class="w-100 mr-1">
+					<mat-label>Critério</mat-label>
+					<input matInput placeholder="Angular" maxlength="20" name="titulo-{{ix}}" [(ngModel)]="criterio.titulo"/>
+				</mat-form-field>
+
+				<mat-form-field appearance="fill" class="dropdown mx-1">
+					<mat-label>PMD</mat-label>
+					<mat-select [(ngModel)]="criterio.perfilMin" name="pmd-{{ix}}" class="">
+						<mat-option *ngFor="let pmd of Pesos" [value]="pmd">{{pmd}}</mat-option>
+					</mat-select>
+				</mat-form-field>
+
+				<mat-form-field appearance="fill" class="dropdown mx-1">
+					<mat-label>Peso</mat-label>
+					<mat-select [(ngModel)]="criterio.peso" name="peso-{{ix}}">
+						<mat-option *ngFor="let peso of Pesos" [value]="peso">{{peso}}</mat-option>
+					</mat-select>
+				</mat-form-field>
+
+				<button mat-icon-button class="my-auto ml-2" color="warn" (click)="delCriterio(ix)">					
+					<mat-icon class="mx-2">delete_outline</mat-icon>
+				</button>
+			</div>
+		</div>			
+		<button mat-stroked-button class="my-2" color="primary" (click)="addCriterio()">Adicionar Criterio</button>
+	</form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button mat-button [mat-dialog-close]="null" color="gray">Cancelar</button>
+	<button mat-stroked-button [mat-dialog-close]="newVacancy" color="primary">Criar</button>
+</mat-dialog-actions>

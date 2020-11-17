@@ -1,0 +1,42 @@
+$side-bar: 250px;
+
+.page-content{
+	background-color: rgb(240, 240, 240);
+	overflow-y: auto;
+}
+
+.add-btn{
+	width: $side-bar;		
+	max-width: $side-bar - 35px;
+	height: 60px;
+	button{
+		font-size: small;	
+	}
+}
+.search-bar{
+	//background-color: lightgoldenrodyellow;
+}
+
+.main{		
+
+	.sidebar{		
+		width: $side-bar;
+		height: fit-content;		
+		
+		.filter{
+	
+		}
+	}
+	
+	.jobs-list{
+		//background-color: rgb(218, 243, 252);
+		display: flex;		
+		justify-content: flex-start;
+		flex-wrap: wrap;
+		flex-direction: row;
+	}
+}	
+
+
+
+

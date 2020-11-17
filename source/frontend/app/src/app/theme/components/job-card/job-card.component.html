@@ -5,8 +5,8 @@
 	<div class="card-title my-2">
 		{{ cardVacancy.titulo}}
 	</div>
-	<div class="text-description mb-2">
-		{{cardVacancy.descricao}}
+	<div class="description mb-2">		
+		{{cardVacancy.descricao | slice:0:100 }}		
 	</div>
 	<div class="card-tags d-flex justify-content-start mb-2 flex-wrap mt-auto mb-2">		
 		<div *ngFor="let criterio of cardVacancy.criterios; let ix = index" class="tag border-primary border rounded-lg py-1 px-2">

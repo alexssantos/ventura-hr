@@ -19,7 +19,7 @@
 			<div class="criterio-item p-2 m-2 d-flex flex-nowrap" *ngFor="let criterio of newVacancy.criterios; let ix = index">
 				<mat-form-field class="w-100 mr-1">
 					<mat-label>Critério</mat-label>
-					<input matInput placeholder="Angular" name="titulo-{{ix}}" [(ngModel)]="criterio.titulo"/>
+					<input matInput placeholder="Angular" maxlength="20" name="titulo-{{ix}}" [(ngModel)]="criterio.titulo"/>
 				</mat-form-field>
 
 				<mat-form-field appearance="fill" class="dropdown mx-1">

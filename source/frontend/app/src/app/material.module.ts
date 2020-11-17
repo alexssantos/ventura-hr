@@ -12,6 +12,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatChipsModule } from '@angular/material/chips';
 
 const modulesList = [
 	MatToolbarModule,
@@ -25,7 +26,8 @@ const modulesList = [
 	MatRadioModule,
 	MatDialogModule,
 	MatFormFieldModule,
-	MatSelectModule
+	MatSelectModule,
+	MatChipsModule
 ];
 
 @NgModule({

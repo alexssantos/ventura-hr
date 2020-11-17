@@ -65,7 +65,7 @@ namespace VENTURA_HR.API.Controllers
 			}
 			else
 			{
-				result = VagaService.Busca(palavrasQuery, GetLoggedUserId(), GetLoggedTypeUser());
+				result = VagaService.Busca(palavrasQuery);
 			}
 
 			return Ok(result);

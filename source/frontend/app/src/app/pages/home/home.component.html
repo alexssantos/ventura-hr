@@ -2,51 +2,23 @@
 
 	<!-- SEARCH BAR -->
 	<div class="d-flex nowrap mx-0 mb-4">
-		<div class="search-bar w-100 debug-border">
-			<app-search-bar></app-search-bar>
+		<div class="search-bar container w-100">
+			<search-home (searchChanges)="searchVacancies($event)"></search-home>
 		</div>
-		<div class="add-btn d-flex">
+		<div *ngIf="isCompanyLogged()" class="add-btn d-flex">
 			<button class="align-self-center mx-auto btn btn-primary rounded-lg w-75" type="button" (click)="createVacancy()">
 				<span>Criar Vaga</span>
 			</button>
 		</div>
 	</div>
 
-	<div class="main d-flex justify-content-center h-auto debug-border">
-
-		<!-- FILTERS -->
-		<!-- <div class="sidebar debug-border">
-			<div class="add-btn d-flex">
-				<button class="align-self-center mx-auto btn btn-primary rounded-lg w-75" type="button" (click)="createVacancy()">
-					<span>Criar Vaga</span>
-				</button>
-			</div>
-			<div class="pr-5">
-
-				Filtros
-				<div class="filter">
-					<app-filter-box></app-filter-box>
-				</div>
-
-				<div class="filter">
-					<app-filter-box></app-filter-box>
-				</div>
-
-				<div class="filter">
-					<app-filter-box></app-filter-box>
-				</div>
-
-				<div class="filter">
-					<app-filter-box></app-filter-box>
-				</div>
-			</div>
-		</div> -->
+	<div class="main d-flex justify-content-center h-auto">
 
 		<!-- JOB CARDS -->
 		<div class="container">
-			<div class="jobs-list debug-border h-auto">
-				<div class="my-4 mx-auto" *ngFor="let item of vacancyList">
-					<job-card [cardData]="item"></job-card>
+			<div class="jobs-list h-auto">
+				<div class="my-4 mx-auto" *ngFor="let vacancy of vacancyList">
+					<job-card [cardData]="vacancy"></job-card>
 				</div>
 			</div>
 		</div>

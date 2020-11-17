@@ -10,6 +10,12 @@
 
 	.center{
 	}
+
+	.right-side{
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+	}
 }
 
 button{	

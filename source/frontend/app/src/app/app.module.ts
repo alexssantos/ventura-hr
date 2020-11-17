@@ -19,6 +19,7 @@ import { MaterialModule } from './material.module';
 import { ModalCreateVacancy } from './theme/components/modal-create-vacancy/modal-create-vacancy.component';
 import { TokenInterceptorService } from './core/services/token-interceptor.service';
 import { CommonModule } from '@angular/common';
+import { SearchHomeComponent } from './theme/components/search-home/search-home.component';
 
 
 
@@ -31,7 +32,8 @@ import { CommonModule } from '@angular/common';
 		FilterBoxComponent,
 		SearchBarComponent,
 		JobCardComponent,
-		ModalCreateVacancy
+		ModalCreateVacancy,
+		SearchHomeComponent
 	],
 	imports: [
 		CommonModule,

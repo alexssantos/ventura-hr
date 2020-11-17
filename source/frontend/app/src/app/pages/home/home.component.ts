@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { SessionManagerService } from 'src/app/core/services/session-mng.service';
 import { VacancyService } from 'src/app/core/services/vacancy.service';
 import { Vacancy } from 'src/app/interfaces/vacancy.model';
 import { ModalCreateVacancy } from 'src/app/theme/components/modal-create-vacancy/modal-create-vacancy.component';
@@ -15,7 +16,8 @@ export class HomeComponent implements OnInit {
 
 	constructor(
 		public dialog: MatDialog,
-		private vacancyService: VacancyService
+		private vacancyService: VacancyService,
+		private sessionService: SessionManagerService
 	) { }
 
 	ngOnInit(): void {
@@ -50,4 +52,15 @@ export class HomeComponent implements OnInit {
 			this.vacancyList = listObj;			
 		})
 	}
+
+	public isCompanyLogged(): boolean {
+		return this.sessionService.checkCompanyLogged();
+	}
+
+	public searchVacancies(keywords: string[]): void {
+		this.vacancyService.searchVacancies(keywords).subscribe((list: Vacancy[]) => {
+			let listObj: Vacancy[] = list.map((vac) => Object.assign( new Vacancy(), vac));			
+			this.vacancyList = listObj;			
+		})
+	}	
 }

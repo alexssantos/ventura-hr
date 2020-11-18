@@ -1,35 +1,43 @@
 .job-card {
-	background-color: white;
-	width: 300px;
-	height: 310px;
-	border-radius: 12px;
-	padding: 14px;
+    background-color: white;
+    width: 300px;
+    height: 310px;
+    border-radius: 12px;
+    padding: 14px;
 
-	.card-title{
-		font-weight: 800;
-		font-size: larger;
-	}
+    .card-title {
+        font-weight: 800;
+        font-size: larger;
+    }
 
-	.description{		
-		font-size: smaller;
-		font-weight: 500;
-		color: rgb(185, 184, 184);
-		word-break: break-all;
-	}
+    .description {
+        font-size: smaller;
+        font-weight: 500;
+        color: rgb(185, 184, 184);
+        word-break: break-all;
+    }
 
-	.card-tags{
-		.tag{
-			font-size: x-small;
-			margin: 6px;
-		}
-	}
+    .card-tags {
+		display: flex;
+		justify-content: center;
+		align-items: flex-end;
+        .tag {
+            font-size: x-small;
+            margin: 3px;
 
-	.card-buttons{
-		.card-btn{
-			height: fit-content;
-			button {
-				font-size: smaller;
-			}
-		}
-	}
-}	
+            max-width: 120px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    .card-buttons {
+        .card-btn {
+            height: fit-content;
+            button {
+                font-size: smaller;
+            }
+        }
+    }
+}

@@ -10,6 +10,7 @@ import { Vacancy } from 'src/app/interfaces/vacancy.model';
 export class JobCardComponent implements OnInit {
 
 	@Input('cardData') cardVacancy: Vacancy;
+	public mouseOver: boolean;
 
 	constructor(
 		private sessionService: SessionManagerService
@@ -28,5 +29,9 @@ export class JobCardComponent implements OnInit {
 
 	public isCandidateLogged(){
 		return this.sessionService.checkCandidateLogged()
+	}
+
+	public isMouseOver(state: boolean): void{
+		this.mouseOver = state;
 	}
 }

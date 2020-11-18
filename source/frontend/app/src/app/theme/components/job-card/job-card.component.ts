@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { SessionManagerService } from 'src/app/core/services/session-mng.service';
 import { Vacancy } from 'src/app/interfaces/vacancy.model';
 
 @Component({
@@ -10,7 +11,9 @@ export class JobCardComponent implements OnInit {
 
 	@Input('cardData') cardVacancy: Vacancy;
 
-	constructor() { }
+	constructor(
+		private sessionService: SessionManagerService
+	) { }
 
 	ngOnInit(): void {
 	}
@@ -21,5 +24,9 @@ export class JobCardComponent implements OnInit {
 
 	public goTojobDetails(): void{
 		
+	}
+
+	public isCandidateLogged(){
+		return this.sessionService.checkCandidateLogged()
 	}
 }

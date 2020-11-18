@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SessionManagerService } from 'src/app/core/services/session-mng.service';
 import { Vacancy } from 'src/app/interfaces/vacancy.model';
 
@@ -13,7 +14,8 @@ export class JobCardComponent implements OnInit {
 	public mouseOver: boolean;
 
 	constructor(
-		private sessionService: SessionManagerService
+		private sessionService: SessionManagerService,
+		private router: Router
 	) { }
 
 	ngOnInit(): void {
@@ -24,7 +26,7 @@ export class JobCardComponent implements OnInit {
 	}
 
 	public goTojobDetails(): void{
-		
+		this.router.navigate(['/vacancy', this.cardVacancy.id]);
 	}
 
 	public isCandidateLogged(){

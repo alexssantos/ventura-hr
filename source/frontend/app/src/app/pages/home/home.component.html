@@ -1,4 +1,4 @@
-<div class="page-content px-5 py-4 h-100">
+<div class="page-content px-5 py-4">
 
 	<!-- SEARCH BAR -->
 	<div class="d-flex nowrap mx-0 mb-4">
@@ -16,7 +16,7 @@
 
 		<!-- JOB CARDS -->
 		<div class="container">
-			<div class="jobs-list h-auto">
+			<div class="jobs-list mb-5">
 				<div class="my-4 mx-auto" *ngFor="let vacancy of vacancyList">
 					<job-card [cardData]="vacancy"></job-card>
 				</div>

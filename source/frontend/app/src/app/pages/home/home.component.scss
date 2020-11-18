@@ -1,8 +1,9 @@
 $side-bar: 250px;
 
 .page-content{
+	height: 100vh;
 	background-color: rgb(240, 240, 240);
-	overflow-y: auto;
+	overflow-y: scroll;
 }
 
 .add-btn{

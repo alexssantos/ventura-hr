@@ -1,5 +1,8 @@
 //@import "node_modules/bootstrap/scss/variables";
-
+:host{
+	min-height: 700px;
+	overflow-y: auto;
+}
 
 .sign-content{	
 	display: flex;
@@ -14,6 +17,6 @@
 		}
 	}
 	.card-signup{
-		width: 700px;
+		width: 650px;
 	}
 }

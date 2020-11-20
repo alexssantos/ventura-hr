@@ -92,5 +92,15 @@ namespace VENTURA_HR.Services.VagaServices
 			int mudancas = Repository.FinalizarVaga(vagaId);
 			return (mudancas > 0);
 		}
+
+		public Vaga PegarVagaDetalhada(Guid vagaId)
+		{
+			string[] inclues = new string[] { "Respostas.Candidato.Usuario" };
+			Vaga vaga = Repository.GetOneWithIncludes(vagaId, inclues);
+
+
+
+			return vaga;
+		}
 	}
 }

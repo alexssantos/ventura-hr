@@ -109,5 +109,20 @@ namespace VENTURA_HR.API.Controllers
 				data = vagaId
 			});
 		}
+
+		[HttpGet("detalhe/{id}")]
+		public ActionResult GetVagaDetalhada(Guid id)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(id);
+			}
+
+			this.GetLoggedUserRole();
+
+			var vagaDetalhe = VagaService.PegarVagaDetalhada(id);
+
+			return Ok(vagaDetalhe);
+		}
 	}
 }

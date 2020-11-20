@@ -16,6 +16,7 @@ namespace VENTURA_HR.DOMAIN.VagaAggregate.Entities
 
 		public string Titulo { get; set; }
 		public string Descricao { get; set; }
+		public bool Finalizada { get; set; }
 
 		public DateTime DataExpiracao
 		{

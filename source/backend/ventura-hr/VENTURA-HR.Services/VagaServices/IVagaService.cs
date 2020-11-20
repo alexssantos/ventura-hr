@@ -14,5 +14,6 @@ namespace VENTURA_HR.Services.VagaServices
 		public Vaga PegarComCriterios(Guid vagaId);
 		public IList<Vaga> PegarRespondidasPorCandidato(Guid usuarioId);
 		public bool FinalizarVaga(Guid vagaId, Guid empresaId);
+		public Vaga PegarVagaDetalhada(Guid vagaId);
 	}
 }

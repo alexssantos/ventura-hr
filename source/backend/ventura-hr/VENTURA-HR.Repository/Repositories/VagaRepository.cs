@@ -62,7 +62,9 @@ namespace VENTURA_HR.Repository.Repositories
 		private IQueryable<Vaga> FilterVacancyAvailable(IQueryable<Vaga> query)
 		{
 			DateTime today = DateTime.Now.Date;
-			return query.Where(vaga => vaga.DataExpiracao.Date > today);
+			return query.Where(vaga =>
+				(vaga.DataExpiracao.Date >= today) &&
+				(vaga.Finalizada == false));
 		}
 
 		public IList<Vaga> GetAllAnsweredByCandidate(Guid candidatoId)
@@ -113,8 +115,10 @@ namespace VENTURA_HR.Repository.Repositories
 		{
 			Vaga vaga = this.Query.Where(vaga => vaga.Id == vagaId).FirstOrDefault();
 			vaga.DataExpiracao = DateTime.Now;
+			vaga.Finalizada = true;
 			int mudancas = Context.SaveChanges();
 			return mudancas;
 		}
+
 	}
 }

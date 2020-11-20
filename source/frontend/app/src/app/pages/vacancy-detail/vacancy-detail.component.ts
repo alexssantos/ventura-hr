@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SessionManagerService } from 'src/app/core/services/session-mng.service';
 import { VacancyService } from 'src/app/core/services/vacancy.service';
 
@@ -18,7 +18,8 @@ export class VacancyDetailComponent implements OnInit {
 	constructor(
 		private route: ActivatedRoute,
 		private sessionService: SessionManagerService,
-		private vacancyService: VacancyService
+		private vacancyService: VacancyService,
+		private router: Router
 	) { }
 
 	ngOnInit(): void {
@@ -41,13 +42,14 @@ export class VacancyDetailComponent implements OnInit {
 	}
 
 	public finalizeVancancy(): void{
-		this.vacancyService.finalizeVacancy(this.id).subscribe(() => {
+		this.vacancyService.finalizeVacancy(this.id).subscribe(
 			(success) => {
 				console.log('SUCESSO');
-			}
+				this.router.navigate(['/home']);
+			},
 			(error) => {
 				console.log('ERROR');
 			}
-		})
+		)
 	}
 }

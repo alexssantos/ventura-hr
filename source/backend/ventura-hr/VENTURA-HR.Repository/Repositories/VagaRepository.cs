@@ -16,13 +16,15 @@ namespace VENTURA_HR.Repository.Repositories
 		{
 		}
 
-		public IList<Vaga> GetAllWitIncludes()
+		public IList<Vaga> GeManyWitIncludes(IList<string> propNavLista = null)
 		{
-			var result = this.Query
-				.Include(x => x.Empresa)
-				.Include(x => x.Respostas)
-				.Include(x => x.Criterios)
-				.ToList();
+			var query = this.FilterVacancyAvailable(Query.AsQueryable<Vaga>());
+			if (propNavLista != null && propNavLista.Any())
+			{
+				query = this.AddIncludes(query, propNavLista);
+			}
+
+			IList<Vaga> result = query.ToList();
 			return result;
 		}
 
@@ -41,20 +43,26 @@ namespace VENTURA_HR.Repository.Repositories
 			var query = this.Query.Where(vaga => vaga.Id == vagaId);
 			if (propNavLista != null && propNavLista.Any())
 			{
-				query = this.CarregarPropriedade(query, propNavLista);
+				query = this.AddIncludes(query, propNavLista);
 			}
 
 			Vaga result = query.FirstOrDefault();
 			return result;
 		}
 
-		private IQueryable<Vaga> CarregarPropriedade(IQueryable<Vaga> query, IList<string> propNavLista)
+		private IQueryable<Vaga> AddIncludes(IQueryable<Vaga> query, IList<string> propNavLista)
 		{
 			for (int i = 0; i < propNavLista.Count; i++)
 			{
 				query = query.Include(propNavLista[i]);
 			}
 			return query;
+		}
+
+		private IQueryable<Vaga> FilterVacancyAvailable(IQueryable<Vaga> query)
+		{
+			DateTime today = DateTime.Now.Date;
+			return query.Where(vaga => vaga.DataExpiracao.Date > today);
 		}
 
 		public IList<Vaga> GetAllAnsweredByCandidate(Guid candidatoId)
@@ -68,14 +76,14 @@ namespace VENTURA_HR.Repository.Repositories
 
 		public List<Vaga> BuscaPorPalavras(List<string> buscaTermos)
 		{
-
+			var startQuery = Query.AsQueryable<Vaga>();
 			IQueryable<Vaga> queryVaga = null;
 
 			if (buscaTermos.Any())
 			{
 				foreach (string busca in buscaTermos)
 				{
-					var queryBusca = Query
+					var queryBusca = startQuery
 						.Include(vaga => vaga.Criterios)
 						.Where(obj => obj.Titulo.Contains(busca)
 										|| obj.Criterios.Any(ctr => ctr.Titulo.Contains(busca)));
@@ -89,7 +97,7 @@ namespace VENTURA_HR.Repository.Repositories
 			}
 			else
 			{
-				queryVaga = Query;
+				queryVaga = startQuery;
 			}
 
 			queryVaga = queryVaga

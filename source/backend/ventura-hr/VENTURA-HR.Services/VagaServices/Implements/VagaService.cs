@@ -54,7 +54,11 @@ namespace VENTURA_HR.Services.VagaServices
 			return Repository.Save(vaga);
 		}
 
-		public IList<Vaga> PegarTodosComInclusos() => Repository.GetAllWitIncludes();
+		public IList<Vaga> ListarVagasDisponiveis()
+		{
+			string[] inclues = new string[] { "Criterios" };
+			return Repository.GeManyWitIncludes(inclues);
+		}
 
 		public Vaga PegarComCriterios(Guid vagaId) => Repository.GetIncludeCriterios(vagaId);
 

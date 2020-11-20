@@ -9,7 +9,7 @@ namespace VENTURA_HR.Services.VagaServices
 	public interface IVagaService : IServiceBase<Vaga>
 	{
 		Vaga CadastrarVaga(CadastroVagaRequest vagaNova, Guid empresaId);
-		public IList<Vaga> PegarTodosComInclusos();
+		public IList<Vaga> ListarVagasDisponiveis();
 		public List<Vaga> Busca(List<string> buscaTermos);
 		public Vaga PegarComCriterios(Guid vagaId);
 		public IList<Vaga> PegarRespondidasPorCandidato(Guid usuarioId);

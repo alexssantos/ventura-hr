@@ -23,7 +23,7 @@ namespace VENTURA_HR.API.Controllers
 		[HttpGet]
 		public ActionResult PegarTodas()
 		{
-			var result = VagaService.PegarTodosComInclusos();
+			var result = VagaService.ListarVagasDisponiveis();
 			return Ok(result);
 		}
 
@@ -61,7 +61,7 @@ namespace VENTURA_HR.API.Controllers
 			IList<Vaga> result;
 			if (!palavrasQuery.Any())
 			{
-				result = VagaService.PegarTodosComInclusos();
+				result = VagaService.ListarVagasDisponiveis();
 			}
 			else
 			{

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using VENTURA_HR.DOMAIN.Shared;
 using VENTURA_HR.DOMAIN.VagaAggregate.Entities;
+using VENTURA_HR.DOMAIN.VagaAggregate.ValueObjects;
 using VENTURA_HR.Services.Dtos.Requests;
 
 namespace VENTURA_HR.Services.VagaServices
@@ -14,6 +15,6 @@ namespace VENTURA_HR.Services.VagaServices
 		public Vaga PegarComCriterios(Guid vagaId);
 		public IList<Vaga> PegarRespondidasPorCandidato(Guid usuarioId);
 		public bool FinalizarVaga(Guid vagaId, Guid empresaId);
-		public Vaga PegarVagaDetalhada(Guid vagaId);
+		public VagaDetalhe PegarVagaDetalhada(Guid vagaId);
 	}
 }

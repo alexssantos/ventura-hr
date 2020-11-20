@@ -5,6 +5,7 @@ using VENTURA_HR.DOMAIN.UsuarioAggregate.Entities;
 using VENTURA_HR.DOMAIN.VagaAggregate.Entities;
 using VENTURA_HR.DOMAIN.VagaAggregate.Enums;
 using VENTURA_HR.DOMAIN.VagaAggregate.Repositories;
+using VENTURA_HR.DOMAIN.VagaAggregate.ValueObjects;
 using VENTURA_HR.Services.Dtos.Requests;
 using VENTURA_HR.Services.UsuarioServices;
 
@@ -93,14 +94,33 @@ namespace VENTURA_HR.Services.VagaServices
 			return (mudancas > 0);
 		}
 
-		public Vaga PegarVagaDetalhada(Guid vagaId)
+		public VagaDetalhe PegarVagaDetalhada(Guid vagaId)
 		{
-			string[] inclues = new string[] { "Respostas.Candidato.Usuario" };
-			Vaga vaga = Repository.GetOneWithIncludes(vagaId, inclues);
+			VagaDetalhe vaga = Repository.GetVagaDetalhe(vagaId);
 
-
+			foreach (var candidato in vaga.Candidatos)
+			{
+				candidato.Pontuacao = CalculaPontuacaoCandidato(vaga.Criterios, candidato.ParValorCriterio);
+			}
 
 			return vaga;
+		}
+
+		private decimal CalculaPontuacaoCandidato(IList<Criterio> criterios, IList<ParValorCriterio> parLista)
+		{
+			int somaNotas = 0;
+			int somaPesos = 0;
+
+			foreach (var parItem in parLista)
+			{
+				Criterio criterio = criterios.First(crit => crit.Id == parItem.IdCriterio);
+				somaNotas += parItem.ValorReposta * criterio.Peso;
+				somaPesos += criterio.Peso;
+			}
+
+			decimal pontuacao = decimal.Divide(somaNotas, somaPesos);
+			pontuacao = decimal.Round(pontuacao, 2);
+			return pontuacao;
 		}
 	}
 }

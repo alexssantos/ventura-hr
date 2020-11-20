@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using VENTURA_HR.DOMAIN.VagaAggregate.Entities;
 using VENTURA_HR.DOMAIN.VagaAggregate.Repositories;
+using VENTURA_HR.DOMAIN.VagaAggregate.ValueObjects;
 using VENTURA_HT.Repository.Context;
 using VENTURA_HT.Repository.Repositories;
 
@@ -120,5 +121,42 @@ namespace VENTURA_HR.Repository.Repositories
 			return mudancas;
 		}
 
+		public VagaDetalhe GetVagaDetalhe(Guid vagaId)
+		{
+			string[] propNavLista = new string[] { }; // { "Respostas.Candidato.Usuario", "Respostas.RespostaCriterios" };
+
+			var query = this.Query.Where(vaga => vaga.Id == vagaId);
+			if (propNavLista != null && propNavLista.Any())
+			{
+				query = this.AddIncludes(query, propNavLista);
+			}
+
+
+			VagaDetalhe result = query
+				.Select(vaga => new VagaDetalhe()
+				{
+					DataExpiracao = vaga.DataExpiracao,
+					Finalizada = vaga.Finalizada,
+					EmpresaId = vaga.EmpresaId,
+					TotalCandidatos = vaga.Respostas.Count,
+					Criterios = vaga.Criterios,
+					Candidatos = vaga.Respostas.Select(resp => new CandidatoRanqueado()
+					{
+						CandidatoId = resp.CandidatoId,
+						Email = resp.Candidato.Usuario.Email,
+						Nome = resp.Candidato.Usuario.Nome,
+						Telefone = "(--) ----- ----",
+						Pontuacao = decimal.Zero,
+						ParValorCriterio = resp.RespostaCriterios.Select(rc => new ParValorCriterio()
+						{
+							IdCriterio = rc.CriterioId,
+							ValorReposta = rc.Valor
+						}).ToList()
+					}).ToList()
+				}).FirstOrDefault();
+
+			//result.
+			return result;
+		}
 	}
 }

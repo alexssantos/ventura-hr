@@ -36,7 +36,7 @@ namespace VENTURA_HR.DOMAIN.VagaAggregate.Entities
 		public Guid EmpresaId { get; set; }
 		public Empresa Empresa { get; set; }
 
-		public virtual IList<Resposta> Respostas { get; set; }
-		public virtual IList<Criterio> Criterios { get; set; }
+		public IList<Resposta> Respostas { get; set; }
+		public IList<Criterio> Criterios { get; set; }
 	}
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using VENTURA_HR.DOMAIN.Shared;
 using VENTURA_HR.DOMAIN.VagaAggregate.Entities;
+using VENTURA_HR.DOMAIN.VagaAggregate.ValueObjects;
 
 namespace VENTURA_HR.DOMAIN.VagaAggregate.Repositories
 {
@@ -13,5 +14,6 @@ namespace VENTURA_HR.DOMAIN.VagaAggregate.Repositories
 		IList<Vaga> GetAllAnsweredByCandidate(Guid candidatoId);
 		int FinalizarVaga(Guid vagaId);
 		Vaga GetOneWithIncludes(Guid vagaId, IList<string> navigatonPropertyList = null);
+		VagaDetalhe GetVagaDetalhe(Guid vagaId);
 	}
 }

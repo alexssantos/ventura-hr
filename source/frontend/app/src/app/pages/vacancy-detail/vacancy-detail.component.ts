@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SessionManagerService } from 'src/app/core/services/session-mng.service';
 
 @Component({
 	selector: 'app-vacancy-detail',
@@ -9,10 +10,12 @@ import { ActivatedRoute } from '@angular/router';
 export class VacancyDetailComponent implements OnInit {
 	
 	id: string;
+	public cardImgBg = '/assets/img/vacancy-details-bg.jpg';
 	private sub: any;
 	
 	constructor(
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private sessionService: SessionManagerService
 	) { }
 
 	ngOnInit(): void {
@@ -22,4 +25,7 @@ export class VacancyDetailComponent implements OnInit {
 		})
 	}
 
+	public isUserLogged(): boolean {
+		return this.sessionService.checkUserLogged();
+	}
 }

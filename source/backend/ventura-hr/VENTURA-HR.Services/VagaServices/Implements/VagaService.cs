@@ -75,5 +75,18 @@ namespace VENTURA_HR.Services.VagaServices
 			var vagasLista = Repository.BuscaPorPalavras(buscaTermos);
 			return vagasLista;
 		}
+
+		public bool FinalizarVaga(Guid vagaId, Guid usuarioId)
+		{
+			string[] inclues = new string[] { "Empresa" };
+			Vaga vaga = Repository.GetOneWithIncludes(vagaId, inclues);
+			if (vaga.Empresa.UsuarioId != usuarioId)
+			{
+				return false;
+			}
+
+			int mudancas = Repository.FinalizarVaga(vagaId);
+			return (mudancas > 0);
+		}
 	}
 }

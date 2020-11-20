@@ -51,15 +51,15 @@
 
 			</div>
 			<div class="card-footer d-flex justify-content-between">
-				<div>
-					<button mat-button class="btn btn-outline-secondary rounded-lg mx-1" type="button">
+				<div *ngIf="isCompanyLogged()">
+					<button mat-button class="btn btn-outline-secondary rounded-lg mx-1" type="button" [disabled]="true">
 						<span  class="small font-weight-bold">Editar</span>
 					</button>
-					<button mat-button class="btn btn-outline-danger rounded-lg mx-1" type="button">
+					<button mat-button class="btn btn-outline-danger rounded-lg mx-1" type="button" (click)="finalizeVancancy()" [disabled]="checkVacancyFinalized()">
 						<span class="small font-weight-bold">Finalizar</span>
 					</button>
 				</div>
-				<button *ngIf="isUserLogged()" mat-stroked-button class="btn btn-primary" type="button">
+				<button *ngIf="isCandidateLogged()" mat-stroked-button class="btn btn-primary ml-auto" type="button" [disabled]="checkVacancyFinalized()">
 					<span class="small font-weight-bold">Aplicar</span>
 				</button>
 			</div>

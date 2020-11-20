@@ -81,5 +81,33 @@ namespace VENTURA_HR.API.Controllers
 
 			return Ok(result);
 		}
+
+		[HttpDelete]
+		[Authorize(Roles = "EMPRESA")]
+		public ActionResult FinalizarVaga(
+			[FromQuery(Name = "id")] Guid vagaId)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(vagaId);
+			}
+
+			bool statusOk = VagaService.FinalizarVaga(vagaId, GetLoggedUserId());
+
+			if (!statusOk)
+			{
+				return Conflict(new
+				{
+					message = "Você não tem permissão para finaliar esta vaga.",
+					data = vagaId
+				});
+			}
+
+			return Ok(new
+			{
+				message = "Vaga finalizada com sucesso.",
+				data = vagaId
+			});
+		}
 	}
 }

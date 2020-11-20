@@ -31,8 +31,30 @@ namespace VENTURA_HR.Repository.Repositories
 			var result = this.Query
 				.Where(vaga => vaga.Id == vagaId)
 				.Include(x => x.Criterios)
+				.Include(x => x.Empresa)
 				.FirstOrDefault();
 			return result;
+		}
+
+		public Vaga GetOneWithIncludes(Guid vagaId, IList<string> propNavLista = null)
+		{
+			var query = this.Query.Where(vaga => vaga.Id == vagaId);
+			if (propNavLista != null && propNavLista.Any())
+			{
+				query = this.CarregarPropriedade(query, propNavLista);
+			}
+
+			Vaga result = query.FirstOrDefault();
+			return result;
+		}
+
+		private IQueryable<Vaga> CarregarPropriedade(IQueryable<Vaga> query, IList<string> propNavLista)
+		{
+			for (int i = 0; i < propNavLista.Count; i++)
+			{
+				query = query.Include(propNavLista[i]);
+			}
+			return query;
 		}
 
 		public IList<Vaga> GetAllAnsweredByCandidate(Guid candidatoId)
@@ -77,6 +99,14 @@ namespace VENTURA_HR.Repository.Repositories
 			//execute query.
 			var resultado = queryVaga.ToList();
 			return resultado;
+		}
+
+		public int FinalizarVaga(Guid vagaId)
+		{
+			Vaga vaga = this.Query.Where(vaga => vaga.Id == vagaId).FirstOrDefault();
+			vaga.DataExpiracao = DateTime.Now;
+			int mudancas = Context.SaveChanges();
+			return mudancas;
 		}
 	}
 }

@@ -86,17 +86,18 @@ namespace VENTURA_HR.API
 			//	});
 			//});
 
+			services.AddMvc();
 			services.AddCors(options =>
 			{
-				options.AddDefaultPolicy(builder =>
+				options.AddPolicy("CORS_POLICY", builder =>
+
 					builder.SetIsOriginAllowed(_ => true)
-						//builder => builder.AllowAnyOrigin()
+						//builder.AllowAnyOrigin()
 						.AllowAnyMethod()
 						.AllowAnyHeader()
 						.AllowCredentials());
 			});
 
-			services.AddMvc();
 
 			services.AddControllers()
 				.AddNewtonsoftJson(options =>
@@ -152,13 +153,13 @@ namespace VENTURA_HR.API
 			//	//context.Database.EnsureCreated();
 			//}
 
-			app.UseHttpsRedirection();
+			//app.UseHttpsRedirection();
 			//app.UseStaticFiles();
 			// app.UseCookiePolicy();
 
 			app.UseRouting();
 			// app.UseRequestLocalization();
-			app.UseCors();
+			app.UseCors("CORS_POLICY");
 
 			//CORS Enable ALL
 			//app.UseCors(options => options

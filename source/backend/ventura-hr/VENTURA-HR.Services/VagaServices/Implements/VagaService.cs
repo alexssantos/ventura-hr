@@ -63,6 +63,13 @@ namespace VENTURA_HR.Services.VagaServices
 
 		public Vaga PegarComCriterios(Guid vagaId) => Repository.GetIncludeCriterios(vagaId);
 
+		public Vaga PegarPorId(Guid vagaId)
+		{
+			string[] inclues = new string[] { "Criterios" };
+			Vaga vaga = Repository.GetOneWithIncludes(vagaId, inclues);
+			return vaga;
+		}
+
 		public IList<Vaga> PegarRespondidasPorCandidato(Guid usuarioId)
 		{
 			var candidato = CandidatoService.PegarUmPorCriterio(cand => cand.UsuarioId == usuarioId);

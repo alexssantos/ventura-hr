@@ -86,16 +86,30 @@ namespace VENTURA_HR.API
 			//	});
 			//});
 
+			//services.AddCors(options =>
+			//{
+			//	options.AddPolicy("CORS_POLICY", builder =>
+			//	builder.WithOrigins("http://localhost:4200", "http://192.168.1.95:4200", "http://192.168.1.95:4200")
+			//			//builder.SetIsOriginAllowed(_ => true)
+			//			//builder.AllowAnyOrigin()
+			//			.AllowAnyMethod()
+			//			.AllowAnyHeader()
+			//			.AllowCredentials());
+			//});
+
 			services.AddCors(options =>
 			{
-				options.AddDefaultPolicy(builder =>
+				options.AddPolicy("CORS_POLICY", builder =>
+
 					builder.SetIsOriginAllowed(_ => true)
-						//builder => builder.AllowAnyOrigin()
+						//.AllowAnyOrigin()
 						.AllowAnyMethod()
 						.AllowAnyHeader()
-						.AllowCredentials());
+						.AllowCredentials()
+				);
 			});
 
+			//NOTE: acesso externo - Nao faz diferença ficar acuma do AddCors().
 			services.AddMvc();
 
 			services.AddControllers()
@@ -152,13 +166,14 @@ namespace VENTURA_HR.API
 			//	//context.Database.EnsureCreated();
 			//}
 
-			app.UseHttpsRedirection();
+
+			//app.UseHttpsRedirection();  // NOTE: Erro para acesso externo.
 			//app.UseStaticFiles();
 			// app.UseCookiePolicy();
 
 			app.UseRouting();
 			// app.UseRequestLocalization();
-			app.UseCors();
+			app.UseCors("CORS_POLICY");
 
 			//CORS Enable ALL
 			//app.UseCors(options => options

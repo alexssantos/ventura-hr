@@ -9,7 +9,7 @@
 			</div>
 			<div class="card-body">
 				<div class="row pl-3 pr-2 mb-2">
-					<h5 class="font-weight-bold mb-4 my-auto">Engenheiro de software</h5>
+					<h5 class="font-weight-bold mb-4 my-auto">{{ vacancy?.titulo || " --- "}}</h5>
 					<div class="ml-auto">
 						<!-- Favorite -->
 						<button mat-icon-button>
@@ -25,16 +25,25 @@
 					<span class="small font-weight-bold text-primary mr-1">Local:</span>
 					<span class="small text-black-50">{{'Rio de Janeiro, Centro'}}</span>
 					<div class="ml-auto">
-						<span class="small text-black-50 mr-2">Postado 8 dias atrás</span>
-						<span class="small font-weight-bold">13 candidatos</span>
+						<span class="small text-black-50 mr-2">Postado {{ getAmountDaysOffCreated() }} dias atrás</span>
+						<span class="small font-weight-bold">{{ totalCandidatos }} candidatos</span>
 					</div>
 
 				</div>
 				<div class="row px-3 mb-4">
-					<div class="col border border-selver text-center rounded-left">
-						<span class="small">Criterio 1</span>
+					<div *ngIf="!isCriterioLoaded()" class="col border border-selver text-center rounded-left rounded-right">
+						<span class="small">{{ " --- " }}</span>
 					</div>
-					<div class="col border border-silver text-center">
+
+					<div *ngFor="let item of vacancy?.criterios; let i=index" 
+						class="col border border-selver text-center"						
+					>
+						<span class="small">{{ item?.titulo }}</span>
+					</div>
+					
+					
+					
+					<!-- <div class="col border border-silver text-center">
 						<span class="small">Criterio 2</span>
 					</div>
 					<div class="col border border-selver text-center">
@@ -42,11 +51,13 @@
 					</div>
 					<div class="col border border-selver text-center rounded-right">
 						<span class="small">Criterio 4</span>
-					</div>
+					</div> -->
 				</div>
 				<div class="description mb-4">
 					<p class="mb-1 ">Descrição:</p>
-					<p class="card-text small text-black-50">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					<p class="card-text small text-black-50">
+						{{vacancy?.descricao || "---"}} 
+					</p>
 				</div>
 
 			</div>

@@ -119,4 +119,49 @@ export class VacancyService {
 		)
 	}
 
+	public getVacancyDetail(vacancyId: string): Observable<any> {
+		
+		return this.http.get(`${this.baseUrlVacancy}/detalhe/${vacancyId}`).pipe(
+			tap(
+				(res) => {					
+					this.toastr.success(res.message, "VenturaHR");
+					console.log(res.message, res.data);
+				},
+				(error: HttpErrorResponse) => {
+					let bodyError = error.error;
+					if (error.status == 404) {
+						this.toastr.error(bodyError.message, "VenturaHR");
+					}
+					else if(error.status == 409) {						
+						this.toastr.error(bodyError.message, "VenturaHR");						
+					}
+					else {
+						this.toastr.error("Erro inesperado", "VenturaHR");
+					}
+				}),
+		)
+	}
+
+	public getVacancyById(vacancyId: string): Observable<any> {
+		
+		return this.http.get(`${this.baseUrlVacancy}/${vacancyId}`).pipe(
+			tap(
+				(res) => {					
+					this.toastr.success("Vaga carregada", "VenturaHR");
+					console.log(res);
+				},
+				(error: HttpErrorResponse) => {
+					let bodyError = error.error;
+					if (error.status == 404) {
+						this.toastr.error(bodyError.message, "VenturaHR");
+					}
+					else if(error.status == 409) {						
+						this.toastr.error(bodyError.message, "VenturaHR");						
+					}
+					else {
+						this.toastr.error("Erro inesperado", "VenturaHR");
+					}
+				}),
+		)
+	}
 }

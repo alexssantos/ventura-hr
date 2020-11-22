@@ -22,12 +22,11 @@ namespace VENTURA_HR.API.Controllers
 
 		// POST api/resposta
 		[HttpPost]
-		[Authorize(Roles = "EMPRESA, CANDIDATO")]
+		[Authorize(Roles = "CANDIDATO")]
 		[Route("vaga/{vagaid}")]
-		public ActionResult ResponderVaga(
+		public ActionResult CandidatarVaga(
 			Guid vagaid,
-			[FromBody] PublicarRespostaRequest request
-		)
+			[FromBody] PublicarRespostaRequest request)
 		{
 			if (!ModelState.IsValid) return BadRequest();
 

@@ -111,6 +111,7 @@ namespace VENTURA_HR.API.Controllers
 		}
 
 		[HttpGet("detalhe/{vagaId}")]
+		[Authorize(Roles = "EMPRESA")]
 		public ActionResult GetVagaDetalhada(Guid vagaId)
 		{
 			if (!ModelState.IsValid)

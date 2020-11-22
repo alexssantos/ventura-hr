@@ -23,9 +23,9 @@
 				<div class="row px-3 mb-4">
 					<span class="small font-weight-bold text-primary mr-1">Local:</span>
 					<span class="small text-black-50">{{'Rio de Janeiro, Centro'}}</span>
-					<div class="ml-auto">
-						<span class="small text-black-50 mr-2">Postado {{ getAmountDaysOffCreated() }} dias atrás</span>
-						<span class="small font-weight-bold">{{ vacancyDetails?.totalCandidatos || "0"}} candidatos</span>
+					<div class="ml-auto d-flex flex-column">
+						<span class="small text-black-50 ml-auto">Postado: {{ criationDate | date }}</span>
+						<span class="small font-weight-bold ml-auto">{{ vacancyDetails?.totalCandidatos || "0"}} candidatos</span>
 					</div>
 
 				</div>
@@ -46,7 +46,7 @@
 				</div>
 
 			</div>
-			<div class="card-footer d-flex justify-content-between">
+			<div *ngIf="isLogged()" class="card-footer d-flex justify-content-between">
 				<div *ngIf="isCompanyLogged()">
 					<button mat-button class="btn btn-outline-secondary rounded-lg mx-1" type="button" [disabled]="true">
 						<span class="small font-weight-bold">Editar</span>
@@ -62,7 +62,7 @@
 		</div>
 
 		<!-- ranked candidates -->
-		<div class="my-5">
+		<div *ngIf="isCompanyLogged()" class="my-5">
 			<table mat-table [dataSource]="candidateList" class="mat-elevation-z4">
 
 				<!--- Note that these columns can be defined in any order.

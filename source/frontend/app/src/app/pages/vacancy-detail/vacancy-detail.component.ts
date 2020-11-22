@@ -25,6 +25,7 @@ export class VacancyDetailComponent implements OnInit {
 	candidateList = [];
 
 	id: string;
+	public criationDate: Date;
 	public totalCandidatos: number = 0;
 	public vacancy: Vacancy;
 	public cardImgBg = '/assets/img/vacancy-details-bg.jpg';
@@ -44,6 +45,7 @@ export class VacancyDetailComponent implements OnInit {
 		const state = this.router.getCurrentNavigation().extras.state;
 		if (state) {
 			this.vacancy = state.vacancyData;
+			this.criationDate = new Date(this.vacancy.dataCriacao);
 		}
 		//caso pagina recarregada com F5
 		else {
@@ -63,6 +65,10 @@ export class VacancyDetailComponent implements OnInit {
 
 	public isCompanyLogged(): boolean {
 		return this.sessionService.checkCompanyLogged();
+	}
+
+	public isLogged(): boolean {
+		return this.sessionService.checkUserLogged();
 	}
 
 	public checkVacancyFinalized(): boolean {

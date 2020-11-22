@@ -3,8 +3,7 @@
 
 		<!-- vacancy details -->
 		<div class="card mat-elevation-z1">
-			<div class="card-img-top">
-				<!-- <img class="card-img" src="https://www.franquiaeducacional.com/wp-content/uploads/2020/04/photo-1454165804606-c3d57bc86b40.jpg"> -->
+			<div class="card-img-top">				
 				<img class="card-img" [src]="cardImgBg">
 			</div>
 			<div class="card-body">
@@ -26,7 +25,7 @@
 					<span class="small text-black-50">{{'Rio de Janeiro, Centro'}}</span>
 					<div class="ml-auto">
 						<span class="small text-black-50 mr-2">Postado {{ getAmountDaysOffCreated() }} dias atrás</span>
-						<span class="small font-weight-bold">{{ totalCandidatos }} candidatos</span>
+						<span class="small font-weight-bold">{{ vacancyDetails?.totalCandidatos || "0"}} candidatos</span>
 					</div>
 
 				</div>
@@ -35,28 +34,14 @@
 						<span class="small">{{ " --- " }}</span>
 					</div>
 
-					<div *ngFor="let item of vacancy?.criterios; let i=index" 
-						class="col border border-selver text-center"						
-					>
+					<div *ngFor="let item of vacancy?.criterios; let i=index" class="col border border-selver text-center">
 						<span class="small">{{ item?.titulo }}</span>
 					</div>
-					
-					
-					
-					<!-- <div class="col border border-silver text-center">
-						<span class="small">Criterio 2</span>
-					</div>
-					<div class="col border border-selver text-center">
-						<span class="small">Criterio 3</span>
-					</div>
-					<div class="col border border-selver text-center rounded-right">
-						<span class="small">Criterio 4</span>
-					</div> -->
 				</div>
 				<div class="description mb-4">
 					<p class="mb-1 ">Descrição:</p>
 					<p class="card-text small text-black-50">
-						{{vacancy?.descricao || "---"}} 
+						{{vacancy?.descricao || "---"}}
 					</p>
 				</div>
 
@@ -64,7 +49,7 @@
 			<div class="card-footer d-flex justify-content-between">
 				<div *ngIf="isCompanyLogged()">
 					<button mat-button class="btn btn-outline-secondary rounded-lg mx-1" type="button" [disabled]="true">
-						<span  class="small font-weight-bold">Editar</span>
+						<span class="small font-weight-bold">Editar</span>
 					</button>
 					<button mat-button class="btn btn-outline-danger rounded-lg mx-1" type="button" (click)="finalizeVancancy()" [disabled]="checkVacancyFinalized()">
 						<span class="small font-weight-bold">Finalizar</span>
@@ -75,8 +60,47 @@
 				</button>
 			</div>
 		</div>
-		
-		<!-- ranked candidates -->
 
+		<!-- ranked candidates -->
+		<div class="my-5">
+			<table mat-table [dataSource]="candidateList" class="mat-elevation-z4">
+
+				<!--- Note that these columns can be defined in any order.
+					The actual rendered columns are set as a property on the row definition" -->
+
+				<!-- Position Column -->
+				<ng-container matColumnDef="position">
+					<th mat-header-cell *matHeaderCellDef> No. </th>
+					<td mat-cell *matCellDef="let candidate"> {{candidate.position}} </td>
+				</ng-container>
+
+				<!-- Symbol Column -->
+				<ng-container matColumnDef="score">
+					<th mat-header-cell *matHeaderCellDef> Pts </th>
+					<td mat-cell *matCellDef="let candidate"> {{candidate.score}} </td>
+				</ng-container>
+
+				<!-- Weight Column -->
+				<ng-container matColumnDef="email">
+					<th mat-header-cell *matHeaderCellDef> Email </th>
+					<td mat-cell *matCellDef="let candidate"> {{candidate.email}} </td>
+				</ng-container>
+
+				<!-- Name Column -->
+				<ng-container matColumnDef="name">
+					<th mat-header-cell *matHeaderCellDef> Nome </th>
+					<td mat-cell *matCellDef="let candidate"> {{candidate.name}} </td>
+				</ng-container>
+
+				<!-- Tel Column -->
+				<ng-container matColumnDef="tel">
+					<th mat-header-cell *matHeaderCellDef> Tel </th>
+					<td mat-cell *matCellDef="let candidate"> {{candidate.tel}} </td>
+				</ng-container>
+
+				<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+				<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+			</table>
+		</div>
 	</div>
 </div>

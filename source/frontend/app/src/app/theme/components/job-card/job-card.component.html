@@ -1,6 +1,6 @@
-<div class="job-card d-flex flex-column" (mouseover)='isMouseOver(true)' (mouseout)='isMouseOver(false)' [ngClass]="{'shadow': mouseOver}">
-	<div class="card-photo mb-3">
-		<img class="rounded shadow-sm" src="https://picsum.photos/seed/picsum/60" />
+<div class="job-card d-flex flex-column mat-elevation-z1" (mouseover)='isMouseOver(true)' (mouseout)='isMouseOver(false)' [ngClass]="{'shadow': mouseOver}">
+	<div class="card-photo mb-2">
+		<img class="rounded shadow-sm" height="60px" width="60px" src="https://logo.clearbit.com/baremetrics.com?size=60" />
 	</div>
 	<div class="card-title my-2">
 		{{ cardVacancy.titulo}}

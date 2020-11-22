@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SessionManagerService } from 'src/app/core/services/session-mng.service';
+import { VacancyService } from 'src/app/core/services/vacancy.service';
 
 @Component({
 	selector: 'app-vacancy-detail',
@@ -9,10 +11,15 @@ import { ActivatedRoute } from '@angular/router';
 export class VacancyDetailComponent implements OnInit {
 	
 	id: string;
+	public cardImgBg = '/assets/img/vacancy-details-bg.jpg';
 	private sub: any;
+	public vacancyDetails: any;
 	
 	constructor(
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private sessionService: SessionManagerService,
+		private vacancyService: VacancyService,
+		private router: Router
 	) { }
 
 	ngOnInit(): void {
@@ -22,4 +29,27 @@ export class VacancyDetailComponent implements OnInit {
 		})
 	}
 
+	public isCandidateLogged(): boolean {
+		return this.sessionService.checkCandidateLogged();
+	}
+
+	public isCompanyLogged(): boolean {
+		return this.sessionService.checkCompanyLogged();
+	}
+
+	public checkVacancyFinalized(): boolean{
+		return false;
+	}
+
+	public finalizeVancancy(): void{
+		this.vacancyService.finalizeVacancy(this.id).subscribe(
+			(success) => {
+				console.log('SUCESSO');
+				this.router.navigate(['/home']);
+			},
+			(error) => {
+				console.log('ERROR');
+			}
+		)
+	}
 }

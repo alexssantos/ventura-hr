@@ -1,1 +1,71 @@
-<p>vacancy-detail works!</p>
+<div class="box-vd">
+	<div class="content-vd h-100 pt-4 pb-4">
+
+		<!-- vacancy details -->
+		<div class="card mat-elevation-z1">
+			<div class="card-img-top">
+				<!-- <img class="card-img" src="https://www.franquiaeducacional.com/wp-content/uploads/2020/04/photo-1454165804606-c3d57bc86b40.jpg"> -->
+				<img class="card-img" [src]="cardImgBg">
+			</div>
+			<div class="card-body">
+				<div class="row pl-3 pr-2 mb-2">
+					<h5 class="font-weight-bold mb-4 my-auto">Engenheiro de software</h5>
+					<div class="ml-auto">
+						<!-- Favorite -->
+						<button mat-icon-button>
+							<mat-icon>favorite_border</mat-icon>
+						</button>
+						<!-- Indication -->
+						<button mat-icon-button>
+							<mat-icon>open_in_new</mat-icon>
+						</button>
+					</div>
+				</div>
+				<div class="row px-3 mb-4">
+					<span class="small font-weight-bold text-primary mr-1">Local:</span>
+					<span class="small text-black-50">{{'Rio de Janeiro, Centro'}}</span>
+					<div class="ml-auto">
+						<span class="small text-black-50 mr-2">Postado 8 dias atrás</span>
+						<span class="small font-weight-bold">13 candidatos</span>
+					</div>
+
+				</div>
+				<div class="row px-3 mb-4">
+					<div class="col border border-selver text-center rounded-left">
+						<span class="small">Criterio 1</span>
+					</div>
+					<div class="col border border-silver text-center">
+						<span class="small">Criterio 2</span>
+					</div>
+					<div class="col border border-selver text-center">
+						<span class="small">Criterio 3</span>
+					</div>
+					<div class="col border border-selver text-center rounded-right">
+						<span class="small">Criterio 4</span>
+					</div>
+				</div>
+				<div class="description mb-4">
+					<p class="mb-1 ">Descrição:</p>
+					<p class="card-text small text-black-50">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				</div>
+
+			</div>
+			<div class="card-footer d-flex justify-content-between">
+				<div *ngIf="isCompanyLogged()">
+					<button mat-button class="btn btn-outline-secondary rounded-lg mx-1" type="button" [disabled]="true">
+						<span  class="small font-weight-bold">Editar</span>
+					</button>
+					<button mat-button class="btn btn-outline-danger rounded-lg mx-1" type="button" (click)="finalizeVancancy()" [disabled]="checkVacancyFinalized()">
+						<span class="small font-weight-bold">Finalizar</span>
+					</button>
+				</div>
+				<button *ngIf="isCandidateLogged()" mat-stroked-button class="btn btn-primary ml-auto" type="button" [disabled]="checkVacancyFinalized()">
+					<span class="small font-weight-bold">Aplicar</span>
+				</button>
+			</div>
+		</div>
+		
+		<!-- ranked candidates -->
+
+	</div>
+</div>

@@ -74,14 +74,29 @@ namespace VENTURA_HR.API
 			services.AddTransient<ICandidatoService, CandidatoService>();
 			services.AddTransient<IRespostaService, RespostaService>();
 
+			//services.AddCors(options =>
+			//{
+			//	options.AddPolicy("CorsApiPolicy",
+			//	builder =>
+			//	{
+			//		builder.WithOrigins("http://localhost:4200")
+			//			.WithHeaders(new[] { "authorization", "content-type", "accept" })
+			//			.WithMethods(new[] { "GET", "POST", "PUT", "DELETE", "OPTIONS" })
+			//			;
+			//	});
+			//});
+
 			services.AddCors(options =>
 			{
 				options.AddDefaultPolicy(builder =>
 					builder.SetIsOriginAllowed(_ => true)
+						//builder => builder.AllowAnyOrigin()
 						.AllowAnyMethod()
 						.AllowAnyHeader()
 						.AllowCredentials());
 			});
+
+			services.AddMvc();
 
 			services.AddControllers()
 				.AddNewtonsoftJson(options =>
@@ -119,8 +134,6 @@ namespace VENTURA_HR.API
 						ValidateAudience = false
 					};
 				});
-
-
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -140,14 +153,24 @@ namespace VENTURA_HR.API
 			//}
 
 			app.UseHttpsRedirection();
+			//app.UseStaticFiles();
+			// app.UseCookiePolicy();
 
 			app.UseRouting();
-
+			// app.UseRequestLocalization();
 			app.UseCors();
 
-			//Auth Configs
+			//CORS Enable ALL
+			//app.UseCors(options => options
+			//	.AllowAnyOrigin()
+			//	.AllowAnyHeader()
+			//	.AllowAnyMethod()
+			//);
+
 			app.UseAuthentication();
 			app.UseAuthorization();
+			// app.UseSession();
+			// app.UseResponseCaching();
 
 			app.UseEndpoints(endpoints => endpoints.MapControllers());
 		}

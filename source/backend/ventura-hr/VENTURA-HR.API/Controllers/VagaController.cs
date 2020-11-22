@@ -23,7 +23,7 @@ namespace VENTURA_HR.API.Controllers
 		[HttpGet]
 		public ActionResult PegarTodas()
 		{
-			var result = VagaService.PegarTodosComInclusos();
+			var result = VagaService.ListarVagasDisponiveis();
 			return Ok(result);
 		}
 
@@ -61,7 +61,7 @@ namespace VENTURA_HR.API.Controllers
 			IList<Vaga> result;
 			if (!palavrasQuery.Any())
 			{
-				result = VagaService.PegarTodosComInclusos();
+				result = VagaService.ListarVagasDisponiveis();
 			}
 			else
 			{
@@ -80,6 +80,49 @@ namespace VENTURA_HR.API.Controllers
 			IList<Vaga> result = VagaService.PegarRespondidasPorCandidato(GetLoggedUserId());
 
 			return Ok(result);
+		}
+
+		[HttpDelete]
+		[Authorize(Roles = "EMPRESA")]
+		public ActionResult FinalizarVaga(
+			[FromQuery(Name = "id")] Guid vagaId)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(vagaId);
+			}
+
+			bool statusOk = VagaService.FinalizarVaga(vagaId, GetLoggedUserId());
+
+			if (!statusOk)
+			{
+				return Conflict(new
+				{
+					message = "Você não tem permissão para finaliar esta vaga.",
+					data = vagaId
+				});
+			}
+
+			return Ok(new
+			{
+				message = "Vaga finalizada com sucesso.",
+				data = vagaId
+			});
+		}
+
+		[HttpGet("detalhe/{id}")]
+		public ActionResult GetVagaDetalhada(Guid id)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(id);
+			}
+
+			this.GetLoggedUserRole();
+
+			var vagaDetalhe = VagaService.PegarVagaDetalhada(id);
+
+			return Ok(vagaDetalhe);
 		}
 	}
 }

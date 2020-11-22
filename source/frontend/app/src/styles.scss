@@ -71,6 +71,17 @@
 // --------------------------------------------------------------------------------------------
 
 
+
+
+// --------------------------------------------------------------------------------------------
+//	 		GLOBAL VARIAVEIS
+// --------------------------------------------------------------------------------------------
+
+$header-height: 48px;
+
+
+
+
 * {
 	font-family: 'Poppins', sans-serif;
 	//font-weight: 600;
@@ -83,13 +94,24 @@ body{
     height: 100vh;
 }
 
-//debug-color
-// @each $color, $value in $theme-colors {
-// 	.debug-#{$color} {
-// 		//border: 1px dashed $color;	  
-// 		border: 1px dashed $color;	  
-// 	}
-// }
 .debug-border{	
 	border: 1px dashed $red;	
+}
+
+.page-config {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+
+	//ativando o scroll: width 100% -> 100vh
+	//overflow-y: scroll;
+
+ 	min-width: 550px;
+	min-height: 70vh;
+
+	height: calc(100vh - #{$header-height});
+
+	// padding-top: 70px;
+	// padding-bottom: 70px;
 }

@@ -2,28 +2,35 @@ $header-height: 48px;
 $padding: 20px;
 $border-radios: 10px;
 
-.box-vd {	
-	height: calc(100vh - #{$header-height});
-	padding: 0 10px;
-	//margin: 0 $padding;
-	overflow-y: auto;
+.box-vd {
+    height: calc(100vh - #{$header-height});
+    padding: 0 10px;
+    //margin: 0 $padding;
+    overflow-y: auto;
 
-	.content-vd {
-		display: flex;
-		justify-content: center;
+    .content-vd {
+        display: flex;		
+		align-items: center;
+		flex-direction: column;
 
-		.card{
-			width: 600px;
-			min-width: 500px;					
-			border-radius: $border-radios;
-			height: fit-content;
-			
-			.card-img, .card-img-top {				
-				border-radius: $border-radios $border-radios 0 0;
-				width: 100%;
-				height: 200px;
-				object-fit: cover;
-			}			
-		}
-	}
+        .card {
+            width: 600px;
+            min-width: 500px;
+            border-radius: $border-radios;
+            height: fit-content;
+
+            .card-img,
+            .card-img-top {
+                border-radius: $border-radios $border-radios 0 0;
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+            }
+        }
+    }
+}
+
+table {
+	width: 600px;
+	min-width: 500px;
 }

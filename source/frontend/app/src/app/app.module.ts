@@ -38,8 +38,8 @@ import { VacancyDetailComponent } from './pages/vacancy-detail/vacancy-detail.co
 		VacancyDetailComponent
 	],
 	imports: [
-		CommonModule,
 		BrowserModule,		
+		CommonModule,
 		BrowserAnimationsModule,
 		AppRoutingModule, 
 		FormsModule,		

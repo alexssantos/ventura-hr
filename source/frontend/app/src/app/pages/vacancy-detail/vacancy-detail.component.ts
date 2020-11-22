@@ -1,9 +1,19 @@
-import { dashCaseToCamelCase } from '@angular/compiler/src/util';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { EmailValidator } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SessionManagerService } from 'src/app/core/services/session-mng.service';
 import { VacancyService } from 'src/app/core/services/vacancy.service';
 import { Vacancy } from 'src/app/interfaces/vacancy.model';
+
+
+export interface RankedCandidate {
+	position: number;
+	name: string;
+	email: number;
+	score: string;
+	tel: string;
+}
+
 
 @Component({
 	selector: 'app-vacancy-detail',
@@ -11,13 +21,16 @@ import { Vacancy } from 'src/app/interfaces/vacancy.model';
 	styleUrls: ['./vacancy-detail.component.scss']
 })
 export class VacancyDetailComponent implements OnInit {
+	displayedColumns: string[] = ['position', 'score', 'email', 'name', 'tel'];
+	candidateList = [];
 
 	id: string;
+	public criationDate: Date;
 	public totalCandidatos: number = 0;
 	public vacancy: Vacancy;
 	public cardImgBg = '/assets/img/vacancy-details-bg.jpg';
 	public vacancyDetails: any;
-	public AmountDaysOffCreated: number= 0;	
+	public AmountDaysOffCreated: number = 0;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -27,15 +40,15 @@ export class VacancyDetailComponent implements OnInit {
 	) {
 		this.route.params.subscribe((params) => {
 			this.id = params['id'];
-		});
-		console.log(this.id);
+		});		
 
 		const state = this.router.getCurrentNavigation().extras.state;
-		if (state) {			
-			this.vacancy = state.vacancyData;			
+		if (state) {
+			this.vacancy = state.vacancyData;
+			this.criationDate = new Date(this.vacancy.dataCriacao);
 		}
 		//caso pagina recarregada com F5
-		else{
+		else {
 			this.getVacancyById(this.id);
 		}
 	}
@@ -54,8 +67,12 @@ export class VacancyDetailComponent implements OnInit {
 		return this.sessionService.checkCompanyLogged();
 	}
 
+	public isLogged(): boolean {
+		return this.sessionService.checkUserLogged();
+	}
+
 	public checkVacancyFinalized(): boolean {
-		return (this.vacancy) ? false: true;
+		return (this.vacancy) ? false : true;
 	}
 
 	public finalizeVancancy(): void {
@@ -72,8 +89,13 @@ export class VacancyDetailComponent implements OnInit {
 
 	public getVacancyDetail(): void {
 		this.vacancyService.getVacancyDetail(this.id).subscribe(
-			(success) => {
-				console.log('SUCESSO getVacancyDetail');				
+			(res) => {
+				console.log('SUCESSO getVacancyDetail');
+				this.vacancyDetails = res.data;
+				let candidates = res.data.candidatos;
+				if (candidates && candidates.length > 0) {
+					this.candidateList = this.extractCandidateList(candidates);					
+				}
 			},
 			(error) => {
 				console.log('ERROR getVacancyDetail');
@@ -93,23 +115,36 @@ export class VacancyDetailComponent implements OnInit {
 		)
 	}
 
-	public isCriterioLoaded(): boolean {		
+	public isCriterioLoaded(): boolean {
 		return (this.vacancy?.criterios) && (this.vacancy?.criterios.length > 0);
 	}
 
-	public getAmountDaysOffCreated():number{
+	public getAmountDaysOffCreated(): number {
 		let dateValue = this.vacancy?.dataCriacao;
-		let daysDiff = (dateValue) 
-			? this.DaysDiff(new Date(dateValue)) 
+		let daysDiff = (dateValue)
+			? this.DaysDiff(new Date(dateValue))
 			: 0;
 		return daysDiff;
 	}
 
-	private DaysDiff(date1: Date): number{
+	private DaysDiff(date1: Date): number {
 		let today = new Date();
 		var diff = Math.abs(date1.getTime() - today.getTime());
-		var diffDays = Math.round(diff / (1000 * 3600 * 24)); 
+		var diffDays = Math.round(diff / (1000 * 3600 * 24));
 		return diffDays;
-		
+	}
+
+	private extractCandidateList(list: any[]): RankedCandidate[] {
+		let rankedItens = list.map((item, index) => {
+			let mappedItem: RankedCandidate = {
+				email: item.email,
+				tel: item.telefone,
+				name: item.nome,
+				score: item.pontuacao,
+				position: index+1
+			}
+			return mappedItem;
+		});		
+		return rankedItens;
 	}
 }

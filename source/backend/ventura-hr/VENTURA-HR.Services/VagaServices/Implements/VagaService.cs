@@ -65,7 +65,7 @@ namespace VENTURA_HR.Services.VagaServices
 
 		public Vaga PegarPorId(Guid vagaId)
 		{
-			string[] inclues = new string[] { "Criterios" };
+			string[] inclues = new string[] { "Criterios", "Respostas" };
 			Vaga vaga = Repository.GetOneWithIncludes(vagaId, inclues);
 			return vaga;
 		}
@@ -109,6 +109,8 @@ namespace VENTURA_HR.Services.VagaServices
 			{
 				candidato.Pontuacao = CalculaPontuacaoCandidato(vaga.Criterios, candidato.ParValorCriterio);
 			}
+
+			vaga.Candidatos = vaga.Candidatos.OrderBy(item => item.Pontuacao).ToList();
 
 			return vaga;
 		}

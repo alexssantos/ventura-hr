@@ -55,7 +55,7 @@ export class VacancyDetailComponent implements OnInit {
 	}
 
 	public checkVacancyFinalized(): boolean {
-		return false;
+		return (this.vacancy) ? false: true;
 	}
 
 	public finalizeVancancy(): void {

@@ -31,13 +31,13 @@ namespace VENTURA_HR.API.Controllers
 		public ActionResult PegarVaga(Guid vagaId)
 		{
 			//não retorna empresa agregada, somente empresaId.
-			var result = VagaService.Pegar(vagaId);
+			var result = VagaService.PegarComCriterios(vagaId);
 			return Ok(result);
 		}
 
 		[HttpPost]
 		[Authorize(Roles = "EMPRESA")]
-		public ActionResult Post([FromBody] CadastroVagaRequest vagaNova)
+		public ActionResult CriarVaga([FromBody] CadastroVagaRequest vagaNova)
 		{
 			if (!ModelState.IsValid)
 			{
@@ -110,19 +110,23 @@ namespace VENTURA_HR.API.Controllers
 			});
 		}
 
-		[HttpGet("detalhe/{id}")]
-		public ActionResult GetVagaDetalhada(Guid id)
+		[HttpGet("detalhe/{vagaId}")]
+		public ActionResult GetVagaDetalhada(Guid vagaId)
 		{
 			if (!ModelState.IsValid)
 			{
-				return BadRequest(id);
+				return BadRequest(vagaId);
 			}
 
 			this.GetLoggedUserRole();
 
-			var vagaDetalhe = VagaService.PegarVagaDetalhada(id);
+			var vagaDetalhe = VagaService.PegarVagaDetalhada(vagaId);
 
-			return Ok(vagaDetalhe);
+			return Ok(new
+			{
+				message = "Detalhes de vaga carregados com sucesso.",
+				data = vagaDetalhe,
+			});
 		}
 	}
 }

@@ -26,7 +26,9 @@ export class JobCardComponent implements OnInit {
 	}
 
 	public goTojobDetails(): void{
-		this.router.navigate(['/vacancy', this.cardVacancy.id]);
+		this.router.navigate(['/vacancy', this.cardVacancy.id] ,{
+			state: { vacancyData: this.cardVacancy }
+		});
 	}
 
 	public isCandidateLogged(){

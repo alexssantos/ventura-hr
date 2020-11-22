@@ -14,7 +14,7 @@ export class VacancyDetailComponent implements OnInit {
 
 	id: string;
 	public totalCandidatos: number = 0;
-	public vacancy: Vacancy = new Vacancy();
+	public vacancy: Vacancy;
 	public cardImgBg = '/assets/img/vacancy-details-bg.jpg';
 	public vacancyDetails: any;
 	public AmountDaysOffCreated: number= 0;	
@@ -94,11 +94,11 @@ export class VacancyDetailComponent implements OnInit {
 	}
 
 	public isCriterioLoaded(): boolean {		
-		return (this.vacancy.criterios) && (this.vacancy.criterios.length > 0);
+		return (this.vacancy?.criterios) && (this.vacancy?.criterios.length > 0);
 	}
 
 	public getAmountDaysOffCreated():number{
-		let dateValue = this.vacancy.dataCriacao;
+		let dateValue = this.vacancy?.dataCriacao;
 		let daysDiff = (dateValue) 
 			? this.DaysDiff(new Date(dateValue)) 
 			: 0;

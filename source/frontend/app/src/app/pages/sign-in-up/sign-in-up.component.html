@@ -1,16 +1,16 @@
 <div class="sign-content h-100">
 
-	<mat-card [ngClass]="isSignIn ? 'd-block' : 'd-none'" class="card-signin">
+	<mat-card [ngClass]="isSignIn ? '' : 'd-none'" class="card-signin">
 		<mat-card-title>Login</mat-card-title>
 		<div class="w-25 my-2 mx-auto">
-			<img [src]="companyLogo"/>
+			<img [src]="companyLogo" />
 		</div>
 		<mat-card-header class="d-flex flex-column align-items-center my-4">
 			<mat-card-title class="text-center">Ventura HR</mat-card-title>
 			<mat-card-subtitle>Conectando pessoas e empresas</mat-card-subtitle>
 		</mat-card-header>
-		<mat-card-content>
 
+		<mat-card-content>
 			<form class="login-form d-flex flex-column align-items-center my-4" autocomplete="chrome-off" [formGroup]="signInFrom">
 
 				<mat-form-field class="w-100">
@@ -26,7 +26,7 @@
 					</mat-error>
 				</mat-form-field>
 
-				<button class="w-100 my-2" type="button" mat-raised-button color="primary" (click)="login()">
+				<button class="w-100 my-2" type="button" mat-raised-button color="primary" (click)="login()" [disabled]="signInFrom.invalid">
 					<mat-icon inline="true" class="my-auto">lock</mat-icon>
 					<span>Login</span>
 				</button>
@@ -37,15 +37,55 @@
 
 	<mat-card [ngClass]="isSignIn ? 'd-none' : 'd-block'" class="card-signup">
 		<mat-card-title>Cadastro</mat-card-title>
+
+		<div class="w-25 my-2 mx-auto">
+			<img [src]="companyLogo" />
+		</div>
 		<mat-card-header class="d-flex flex-column align-items-center my-4">
 			<!-- <div mat-card-avatar class="example-header-image"></div> -->
 			<mat-card-title class="text-center">Ventura HR</mat-card-title>
 			<mat-card-subtitle>Conectando pessoas e empresas</mat-card-subtitle>
 		</mat-card-header>
-		<mat-card-content>
 
-			<form class="login-form d-flex flex-column align-items-center" [formGroup]="signUpForm">
-				<div class="d-flex flex-nowrap">
+		<mat-card-content>
+			<form class="signup-form d-flex flex-column align-items-center" [formGroup]="signUpForm">
+				<div class="signup-box d-flex flex-column flex-nowrap w-100 mb-4">
+					<mat-form-field class="w-100">
+						<input type="text" matInput placeholder="Nome" formControlName="name">
+					</mat-form-field>
+
+					<mat-form-field class="w-100">
+						<input type="text" matInput placeholder="Login" formControlName="login">
+					</mat-form-field>
+
+
+					<mat-form-field class="w-100">
+						<input type="password" matInput placeholder="Senha" formControlName="password">
+					</mat-form-field>
+
+					<mat-form-field class="w-100">
+						<input type="email" matInput placeholder="Email" formControlName="email">
+					</mat-form-field>
+
+
+					<mat-form-field class="w-100">
+						<input type="text" matInput placeholder="Documento" formControlName="document">
+					</mat-form-field>
+
+					<mat-radio-group class="w-100 d-flex justify-content-around my-2" required="true" formControlName="typeUser">
+						<mat-radio-button [value]="USER_TYPE_CANDIDATE">Candidato</mat-radio-button>
+						<mat-radio-button [value]="USER_TYPE_COMPANY">Empresa</mat-radio-button>
+					</mat-radio-group>
+
+					<mat-form-field color="accent" appearance="fill" class="w-100">
+						<mat-label>Data nascimento</mat-label>
+						<input matInput [matDatepicker]="picker2" formControlName="birthDate">
+						<mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+						<mat-datepicker #picker2 color="primary"></mat-datepicker>
+					</mat-form-field>
+				</div>
+
+				<!-- <div class="d-flex flex-nowrap">
 					<div class="col">
 						<mat-form-field class="w-100">
 							<input type="text" matInput placeholder="Nome" formControlName="name">
@@ -82,14 +122,14 @@
 						</mat-form-field>
 
 					</div>
-				</div>
+				</div> -->
 
-				<button class="w-50 my-2" type="button" mat-raised-button color="primary" (click)="signUp()" [disabled]="signUpForm.invalid">
+				<button class="w-100 my-2" type="button" mat-raised-button color="primary" (click)="signUp()" [disabled]="signUpForm.invalid">
 					<mat-icon inline="true" class="my-auto">assignment_ind</mat-icon>
 					<span>Cadastro</span>
 				</button>
 
-				<button class="w-50 my-2" mat-stroked-button color="primary" (click)="switchForm()">Login</button>
+				<button class="w-100 my-2" mat-stroked-button color="primary" (click)="switchForm()">Login</button>
 			</form>
 		</mat-card-content>
 	</mat-card>

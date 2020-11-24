@@ -180,4 +180,8 @@ export class VacancyDetailComponent implements OnInit {
 			(error) => console.error(error)
 		)
 	}
+
+	public isMinimumProfileScore(score: number): boolean{
+		return score > this.vacancyDetails.perfilMinimoDesejado;
+	}
 }

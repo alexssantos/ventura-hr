@@ -10,6 +10,7 @@ namespace VENTURA_HR.DOMAIN.VagaAggregate.ValueObjects
 		public bool Finalizada { get; set; }
 		public Guid EmpresaId { get; set; }
 		public int TotalCandidatos { get; set; }
+		public decimal PerfilMinimoDesejado { get; set; }
 
 		public IList<Criterio> Criterios { get; set; }
 		public IList<CandidatoRanqueado> Candidatos { get; set; }

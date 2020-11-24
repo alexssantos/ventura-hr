@@ -115,7 +115,8 @@ namespace VENTURA_HR.Services.VagaServices
 				candidato.Pontuacao = CalculaPontuacaoCandidato(vaga.Criterios, candidato.ParValorCriterio);
 			}
 
-			vaga.Candidatos = vaga.Candidatos.OrderBy(item => item.Pontuacao).ToList();
+			vaga.Candidatos = vaga.Candidatos.OrderBy(item => item.Pontuacao).Reverse().ToList();
+			vaga.PerfilMinimoDesejado = CalculaPerfilMinimoDesejado(vaga.Criterios);
 
 			return vaga;
 		}
@@ -136,5 +137,22 @@ namespace VENTURA_HR.Services.VagaServices
 			pontuacao = decimal.Round(pontuacao, 2);
 			return pontuacao;
 		}
+
+		private decimal CalculaPerfilMinimoDesejado(IList<Criterio> criterios)
+		{
+			int somaNotas = 0;
+			int somaPesos = 0;
+
+			foreach (var criterio in criterios)
+			{
+				somaNotas += ((int)criterio.PMD) * criterio.Peso;
+				somaPesos += criterio.Peso;
+			}
+
+			decimal pontuacao = decimal.Divide(somaNotas, somaPesos);
+			pontuacao = decimal.Round(pontuacao, 2);
+			return pontuacao;
+		}
+
 	}
 }

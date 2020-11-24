@@ -61,7 +61,12 @@ namespace VENTURA_HR.Services.VagaServices
 			return Repository.GeManyWitIncludes(inclues);
 		}
 
-		public Vaga PegarComCriterios(Guid vagaId) => Repository.GetIncludeCriterios(vagaId);
+		public Vaga PegarVagaParaIncluirResposta(Guid vagaId)
+		{
+			string[] inclues = new string[] { "Criterios", "Respostas", "Empresa" };
+			Vaga vaga = Repository.GetOneWithIncludes(vagaId, inclues);
+			return vaga;
+		}
 
 		public Vaga PegarPorId(Guid vagaId)
 		{

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionManagerService } from 'src/app/core/services/session-mng.service';
 import { Vacancy } from 'src/app/interfaces/vacancy.model';
@@ -11,6 +11,7 @@ import { Vacancy } from 'src/app/interfaces/vacancy.model';
 export class JobCardComponent implements OnInit {
 
 	@Input('cardData') cardVacancy: Vacancy;
+	@Output('applyBtn') applyEvent: EventEmitter<Vacancy> = new EventEmitter();
 	public mouseOver: boolean;
 
 	constructor(
@@ -19,10 +20,6 @@ export class JobCardComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
-	}
-
-	public candidateVacancy(): void {
-
 	}
 
 	public goTojobDetails(): void{
@@ -37,5 +34,9 @@ export class JobCardComponent implements OnInit {
 
 	public isMouseOver(state: boolean): void{
 		this.mouseOver = state;
+	}
+
+	public applyVacancy(): void {
+		this.applyEvent.emit(this.cardVacancy);		
 	}
 }

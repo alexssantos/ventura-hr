@@ -25,7 +25,7 @@
 					<span class="small text-black-50">{{'Rio de Janeiro, Centro'}}</span>
 					<div class="ml-auto d-flex flex-column">
 						<span class="small text-black-50 ml-auto">Postado: {{ criationDate | date }}</span>
-						<span class="small font-weight-bold ml-auto">{{ vacancyDetails?.totalCandidatos || "0"}} candidatos</span>
+						<span class="small font-weight-bold ml-auto">{{ getAmountAppliers() }} candidatos</span>
 					</div>
 
 				</div>

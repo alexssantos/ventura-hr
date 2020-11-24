@@ -14,6 +14,9 @@ import { Vacancy } from 'src/app/interfaces/vacancy.model';
 export class VacancyService {
 	private API_URL = environment.API_URL;
 	private baseUrlVacancy = this.API_URL + "/vaga";
+	private baseUrlAnswer = this.API_URL + "/resposta";
+
+
 	constructor(
 		private http: HttpClient,
 		private toastr: ToastrService
@@ -162,6 +165,34 @@ export class VacancyService {
 						this.toastr.error("Erro inesperado", "VenturaHR");
 					}
 				}),
+		)
+	}
+
+	public applyVacancy(vacancyId: string, body: any): Observable<any> {
+		
+		let url = `${this.baseUrlAnswer}/vaga/${vacancyId}`;
+		return this.http.post(url, body).pipe(
+			tap(
+				(res) => {					
+					this.toastr.success(res.message, "VenturaHR");
+					console.log(res.message, res.data);
+				},
+				(error: HttpErrorResponse) => {
+					console.log(error)
+					let bodyError = error.error;
+					if (error.status == 404) {
+						this.toastr.error(bodyError.message, "VenturaHR");
+					}
+					else if(error.status == 409) {						
+						this.toastr.error(bodyError.message, "VenturaHR");						
+					}
+					else {
+						//Exception
+						this.toastr.error(`Usuário já aplicou para a vaga: ${vacancyId}`, "VenturaHR");
+						//this.toastr.error("Erro inesperado", "VenturaHR");
+					}
+				}
+			),
 		)
 	}
 }

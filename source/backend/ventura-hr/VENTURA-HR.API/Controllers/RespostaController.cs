@@ -34,7 +34,8 @@ namespace VENTURA_HR.API.Controllers
 
 			return Ok(new
 			{
-				msg = $"Resposta publicada com sucesso para a vaga: {vagaid}"
+				message = $"Resposta publicada com sucesso para a vaga: {vagaid}",
+				data = request
 			});
 		}
 

@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>Aplicar vaga</h2>
+
+<mat-dialog-content class="mat-typography h-auto">
+	<form class="form">
+		<h3 class="mb-3">{{'Titulo da Vaga'}}</h3>
+		<span> {{'id vaga'}}</span>
+		
+		<div class="criterios debug-border">
+			<div class="criterio-item p-2 m-2 d-flex flex-nowrap justify-content-center" *ngFor="let criterio of vacancy.criterios; let ix = index">
+				<mat-form-field class="w-100 mr-2">
+					<mat-label>Critério</mat-label>
+					<input matInput placeholder="Angular" maxlength="20" name="titulo-{{ix}}" [(ngModel)]="criterio.titulo" disabled/>
+				</mat-form-field>
+
+				<mat-form-field appearance="fill" class="dropdown mx-1">
+					<mat-label>Resposta</mat-label>
+					<mat-select [(ngModel)]="criterio.resposta" #selectItem (ngModelChange)="setAnswer(ix, criterio.id, selectItem.value)" name="pmd-{{ix}}" class="">
+						<mat-option *ngFor="let respValue of Respostas" [value]="respValue">{{getTitleAnswer(respValue)}}</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+		</div>					
+	</form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button mat-button [mat-dialog-close]="null" color="gray">Cancelar</button>
+	<button mat-stroked-button  [mat-dialog-close]="answersData" color="primary" [disabled]="!checkAnswersOk()">Aplicar</button>
+</mat-dialog-actions>

@@ -108,6 +108,7 @@ export class VacancyDetailComponent implements OnInit {
 			(success) => {
 				console.log('SUCESSO getVacancyById');
 				this.vacancy = success as Vacancy;
+				this.criationDate = new Date(this.vacancy.dataCriacao);
 			},
 			(error) => {
 				console.log('ERROR getVacancyById');
@@ -146,5 +147,9 @@ export class VacancyDetailComponent implements OnInit {
 			return mappedItem;
 		});		
 		return rankedItens;
+	}
+
+	public getAmountAppliers(): any {
+		return (this.vacancy) ? this.vacancy.respostas.length : "---";
 	}
 }

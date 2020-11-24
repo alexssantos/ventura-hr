@@ -18,7 +18,7 @@
 		<div class="container">
 			<div class="jobs-list mb-5">
 				<div class="my-3 mx-3" *ngFor="let vacancy of vacancyList">
-					<job-card [cardData]="vacancy"></job-card>
+					<job-card [cardData]="vacancy" (applyBtn)="applyVacancy($event)"></job-card>
 				</div>
 			</div>
 		</div>

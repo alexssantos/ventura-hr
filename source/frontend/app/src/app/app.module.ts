@@ -15,12 +15,13 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
-import { MaterialModule } from './material.module';
+import { MaterialModule } from './material/material.module';
 import { ModalCreateVacancy } from './theme/components/modal-create-vacancy/modal-create-vacancy.component';
 import { TokenInterceptorService } from './core/services/token-interceptor.service';
 import { CommonModule } from '@angular/common';
 import { SearchHomeComponent } from './theme/components/search-home/search-home.component';
 import { VacancyDetailComponent } from './pages/vacancy-detail/vacancy-detail.component';
+import { ModalApplyVacancy } from './theme/components/modal-apply-vacancy/modal-apply-vacancy.component';
 
 
 
@@ -35,7 +36,8 @@ import { VacancyDetailComponent } from './pages/vacancy-detail/vacancy-detail.co
 		JobCardComponent,
 		ModalCreateVacancy,
 		SearchHomeComponent,
-		VacancyDetailComponent
+		VacancyDetailComponent,
+		ModalApplyVacancy
 	],
 	imports: [
 		BrowserModule,		
@@ -58,7 +60,8 @@ import { VacancyDetailComponent } from './pages/vacancy-detail/vacancy-detail.co
 		{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}
 	],
 	entryComponents: [
-		ModalCreateVacancy		
+		ModalCreateVacancy,
+		ModalApplyVacancy	
 	],
 	bootstrap: [AppComponent]
 })

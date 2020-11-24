@@ -5,6 +5,8 @@ export class Criterio{
 		this.peso = 0;		
 	}
 	
+	id: string;
+	vagaId: string;
 	titulo: string;	
 	perfilMin: number;
 	peso: number;

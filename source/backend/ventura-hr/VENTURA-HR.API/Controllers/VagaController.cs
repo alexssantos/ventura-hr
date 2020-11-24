@@ -31,7 +31,7 @@ namespace VENTURA_HR.API.Controllers
 		public ActionResult PegarVaga(Guid vagaId)
 		{
 			//não retorna empresa agregada, somente empresaId.
-			var result = VagaService.PegarComCriterios(vagaId);
+			var result = VagaService.PegarPorId(vagaId);
 			return Ok(result);
 		}
 

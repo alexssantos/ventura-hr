@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { EmailValidator } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SessionManagerService } from 'src/app/core/services/session-mng.service';
 import { VacancyService } from 'src/app/core/services/vacancy.service';
 import { Vacancy } from 'src/app/interfaces/vacancy.model';
+import { ModalApplyVacancy } from 'src/app/theme/components/modal-apply-vacancy/modal-apply-vacancy.component';
 
 
 export interface RankedCandidate {
@@ -36,7 +38,8 @@ export class VacancyDetailComponent implements OnInit {
 		private route: ActivatedRoute,
 		private sessionService: SessionManagerService,
 		private vacancyService: VacancyService,
-		private router: Router
+		private router: Router,
+		public dialog: MatDialog,
 	) {
 		this.route.params.subscribe((params) => {
 			this.id = params['id'];
@@ -151,5 +154,30 @@ export class VacancyDetailComponent implements OnInit {
 
 	public getAmountAppliers(): any {
 		return (this.vacancy) ? this.vacancy.respostas.length : "---";
+	}
+
+	public applyVacancy(): void{
+				
+		const dialogRef = this.dialog.open(ModalApplyVacancy, {
+            height: 'auto',
+			width: '60%',
+			data: this.vacancy
+        });
+
+    	dialogRef.afterClosed().subscribe((answers: any[]) => {			
+			if (answers){
+				let body = { criterios: answers	}
+				this.postApplyVacancy(this.vacancy.id, body);
+			}
+		});		
+	}
+
+	private postApplyVacancy(vacancyId: string, body: any): void {
+		this.vacancyService.applyVacancy(vacancyId , body).subscribe(
+			(response) => {
+				console.log("Response Create vacancy", response);
+			},
+			(error) => console.error(error)
+		)
 	}
 }

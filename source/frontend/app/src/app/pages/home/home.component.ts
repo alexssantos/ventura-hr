@@ -39,8 +39,7 @@ export class HomeComponent implements OnInit {
 	}
 
 	public applyVacancy(vacancy: Vacancy): void{
-		console.log('btn apply', vacancy);
-		
+				
 		const dialogRef = this.dialog.open(ModalApplyVacancy, {
             height: 'auto',
 			width: '60%',

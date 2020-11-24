@@ -2,8 +2,8 @@
 
 <mat-dialog-content class="mat-typography h-auto">
 	<form class="form">
-		<h3 class="mb-3">{{'Titulo da Vaga'}}</h3>
-		<span> {{'id vaga'}}</span>
+		<h3 class="mb-3">{{ vacancy.titulo || "---"}}</h3>
+		<span class="small text-black-50"> id: {{ vacancy.id || "---" }}</span>
 		
 		<div class="criterios debug-border">
 			<div class="criterio-item p-2 m-2 d-flex flex-nowrap justify-content-center" *ngFor="let criterio of vacancy.criterios; let ix = index">

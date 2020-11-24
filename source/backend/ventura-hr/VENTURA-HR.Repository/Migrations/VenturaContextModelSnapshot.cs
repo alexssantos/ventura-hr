@@ -285,6 +285,12 @@ namespace VENTURA_HR.Repository.Migrations
                         .HasColumnName("id_empresaid")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("Finalizada")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("bl_finalizada")
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
                     b.Property<string>("Titulo")
                         .IsRequired()
                         .HasColumnName("str_titulo")

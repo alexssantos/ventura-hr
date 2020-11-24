@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AnimationService } from 'src/app/theme/animations/animation.service';
 import { SignInUpService } from './../../core/services/sign-in-up.service';
 
+
 @Component({
 	selector: 'app-sign-in-up',
 	templateUrl: './sign-in-up.component.html',
@@ -16,6 +17,7 @@ import { SignInUpService } from './../../core/services/sign-in-up.service';
 })
 export class SignInUpComponent implements OnInit {
 
+	public readonly companyLogo = '/assets/ventura-hr-logo.svg';
 	public readonly USER_TYPE_ADMIN = 1;
 	public readonly USER_TYPE_CANDIDATE = 2;
 	public readonly USER_TYPE_COMPANY = 3

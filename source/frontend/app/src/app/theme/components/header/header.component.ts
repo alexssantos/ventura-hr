@@ -12,6 +12,7 @@ const urlFakePhoto = "https://images.unsplash.com/photo-1472099645785-5658abf4ff
 })
 export class HeaderComponent implements OnInit {
 
+	public readonly companyLogo = '/assets/ventura-hr-logo.svg';
 	public onProfileDrop: boolean = false;
 	public urlFakePhoto = urlFakePhoto;
 

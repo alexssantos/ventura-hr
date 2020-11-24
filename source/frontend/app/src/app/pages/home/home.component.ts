@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { SessionManagerService } from 'src/app/core/services/session-mng.service';
 import { VacancyService } from 'src/app/core/services/vacancy.service';
 import { Vacancy } from 'src/app/interfaces/vacancy.model';
+import { ModalApplyVacancy } from 'src/app/theme/components/modal-apply-vacancy/modal-apply-vacancy.component';
 import { ModalCreateVacancy } from 'src/app/theme/components/modal-create-vacancy/modal-create-vacancy.component';
 
 @Component({
@@ -37,6 +38,22 @@ export class HomeComponent implements OnInit {
 		});		
 	}
 
+	public applyVacancy(vacancy: Vacancy): void{
+				
+		const dialogRef = this.dialog.open(ModalApplyVacancy, {
+            height: 'auto',
+			width: '60%',
+			data: vacancy
+        });
+
+    	dialogRef.afterClosed().subscribe((answers: any[]) => {			
+			if (answers){
+				let body = { criterios: answers	}
+				this.postApplyVacancy(vacancy.id, body);
+			}
+		});		
+	}
+
 	public postVacancy(vacancy: Vacancy):void  {
 		this.vacancyService.createVacancy(vacancy).subscribe(
 			(response) => {
@@ -63,4 +80,13 @@ export class HomeComponent implements OnInit {
 			this.vacancyList = listObj;			
 		})
 	}	
+
+	private postApplyVacancy(vacancyId: string, body: any): void {
+		this.vacancyService.applyVacancy(vacancyId , body).subscribe(
+			(response) => {
+				console.log("Response Create vacancy", response);
+			},
+			(error) => console.error(error)
+		)
+	}
 }

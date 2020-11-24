@@ -5,6 +5,7 @@ using VENTURA_HR.DOMAIN.UsuarioAggregate.Entities;
 using VENTURA_HR.DOMAIN.VagaAggregate.Entities;
 using VENTURA_HR.DOMAIN.VagaAggregate.Enums;
 using VENTURA_HR.DOMAIN.VagaAggregate.Repositories;
+using VENTURA_HR.DOMAIN.VagaAggregate.ValueObjects;
 using VENTURA_HR.Services.Dtos.Requests;
 using VENTURA_HR.Services.UsuarioServices;
 
@@ -54,9 +55,25 @@ namespace VENTURA_HR.Services.VagaServices
 			return Repository.Save(vaga);
 		}
 
-		public IList<Vaga> PegarTodosComInclusos() => Repository.GetAllWitIncludes();
+		public IList<Vaga> ListarVagasDisponiveis()
+		{
+			string[] inclues = new string[] { "Criterios" };
+			return Repository.GeManyWitIncludes(inclues);
+		}
 
-		public Vaga PegarComCriterios(Guid vagaId) => Repository.GetIncludeCriterios(vagaId);
+		public Vaga PegarVagaParaIncluirResposta(Guid vagaId)
+		{
+			string[] inclues = new string[] { "Criterios", "Respostas", "Empresa" };
+			Vaga vaga = Repository.GetOneWithIncludes(vagaId, inclues);
+			return vaga;
+		}
+
+		public Vaga PegarPorId(Guid vagaId)
+		{
+			string[] inclues = new string[] { "Criterios", "Respostas" };
+			Vaga vaga = Repository.GetOneWithIncludes(vagaId, inclues);
+			return vaga;
+		}
 
 		public IList<Vaga> PegarRespondidasPorCandidato(Guid usuarioId)
 		{
@@ -75,5 +92,67 @@ namespace VENTURA_HR.Services.VagaServices
 			var vagasLista = Repository.BuscaPorPalavras(buscaTermos);
 			return vagasLista;
 		}
+
+		public bool FinalizarVaga(Guid vagaId, Guid usuarioId)
+		{
+			string[] inclues = new string[] { "Empresa" };
+			Vaga vaga = Repository.GetOneWithIncludes(vagaId, inclues);
+			if (vaga.Empresa.UsuarioId != usuarioId)
+			{
+				return false;
+			}
+
+			int mudancas = Repository.FinalizarVaga(vagaId);
+			return (mudancas > 0);
+		}
+
+		public VagaDetalhe PegarVagaDetalhada(Guid vagaId)
+		{
+			VagaDetalhe vaga = Repository.GetVagaDetalhe(vagaId);
+
+			foreach (var candidato in vaga.Candidatos)
+			{
+				candidato.Pontuacao = CalculaPontuacaoCandidato(vaga.Criterios, candidato.ParValorCriterio);
+			}
+
+			vaga.Candidatos = vaga.Candidatos.OrderBy(item => item.Pontuacao).Reverse().ToList();
+			vaga.PerfilMinimoDesejado = CalculaPerfilMinimoDesejado(vaga.Criterios);
+
+			return vaga;
+		}
+
+		private decimal CalculaPontuacaoCandidato(IList<Criterio> criterios, IList<ParValorCriterio> parLista)
+		{
+			int somaNotas = 0;
+			int somaPesos = 0;
+
+			foreach (var parItem in parLista)
+			{
+				Criterio criterio = criterios.First(crit => crit.Id == parItem.IdCriterio);
+				somaNotas += parItem.ValorReposta * criterio.Peso;
+				somaPesos += criterio.Peso;
+			}
+
+			decimal pontuacao = decimal.Divide(somaNotas, somaPesos);
+			pontuacao = decimal.Round(pontuacao, 2);
+			return pontuacao;
+		}
+
+		private decimal CalculaPerfilMinimoDesejado(IList<Criterio> criterios)
+		{
+			int somaNotas = 0;
+			int somaPesos = 0;
+
+			foreach (var criterio in criterios)
+			{
+				somaNotas += ((int)criterio.PMD) * criterio.Peso;
+				somaPesos += criterio.Peso;
+			}
+
+			decimal pontuacao = decimal.Divide(somaNotas, somaPesos);
+			pontuacao = decimal.Round(pontuacao, 2);
+			return pontuacao;
+		}
+
 	}
 }

@@ -33,6 +33,10 @@ namespace VENTURA_HR.Repository.MapEntities
 				.HasColumnName("id_empresaid")
 				.IsRequired();
 
+			entity.Property(x => x.Finalizada)
+				.HasColumnName("bl_finalizada")
+				.HasDefaultValue(false);
+
 			//====== Aditamento ======
 
 			entity.Property(x => x.DataCriacao)
@@ -41,7 +45,6 @@ namespace VENTURA_HR.Repository.MapEntities
 
 			entity.Property(x => x.DataUltimaAtualizacao)
 				.HasColumnName("dt_atualizacao");
-
 
 
 			//====== REALATONSHIPS ======

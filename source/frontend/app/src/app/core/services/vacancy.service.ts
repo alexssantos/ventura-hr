@@ -14,6 +14,9 @@ import { Vacancy } from 'src/app/interfaces/vacancy.model';
 export class VacancyService {
 	private API_URL = environment.API_URL;
 	private baseUrlVacancy = this.API_URL + "/vaga";
+	private baseUrlAnswer = this.API_URL + "/resposta";
+
+
 	constructor(
 		private http: HttpClient,
 		private toastr: ToastrService
@@ -21,7 +24,7 @@ export class VacancyService {
 
 	public createVacancy(newVacancy: Vacancy): Observable<any> {
 		let startRequestToast = this.toastr.info("Crating Vacancy iniciado", "VenturaHR");
-		
+
 		return this.http.post<Vacancy>(this.baseUrlVacancy, newVacancy)
 			.pipe(
 				tap((res) => {
@@ -45,19 +48,45 @@ export class VacancyService {
 	public getVacancies(): Observable<Vacancy[]> {
 		let startRequestToast = this.toastr.info("buscando vagas", "VenturaHR");
 
-		return this.http.get<Vacancy[]>(this.baseUrlVacancy).pipe(
-			//map((result) => result.map(vac => vac as Vacancy)),
+		return this.http.get<Vacancy[]>(this.baseUrlVacancy).pipe(			
 			tap(
 				(res: Vacancy[]) => {
-					this.toastr.clear(startRequestToast.toastId)
-					console.log('getVacancies done')
+					this.toastr.clear(startRequestToast.toastId)					
 					let totalVacancies = res.length;
-					this.toastr.success(`${totalVacancies} vagas encontradas`, "VenturaHR");
-
-					console.table(res);
+					this.toastr.success(`${totalVacancies} vagas encontradas`, "VenturaHR");					
 				},
 				(error: HttpErrorResponse) => {
 					this.toastr.clear(startRequestToast.toastId)
+					if (error.status == 404) {
+						let bodyError = error.error;
+						this.toastr.error(bodyError.message, "VenturaHR");
+					}
+					else if(error.status == 0){
+						this.toastr.warning("Servidor indisponível no momento. Tente mais tarde!", "VenturaHR");
+					}
+					else {
+						this.toastr.error("Erro inesperado", "VenturaHR");
+					}
+				}),
+		)
+	}
+
+	public searchVacancies(keywords: string[]): Observable<Vacancy[]> {
+		this.toastr.info("buscando vagas", "VenturaHR");
+
+		let params = '?';
+		for (let key of Object.keys(keywords)) {
+			params += `words=${keywords[key]}&`;
+		}
+		params = params.slice(0, -1);
+		let url = this.baseUrlVacancy + "/busca" + params;
+		return this.http.get<Vacancy[]>(url).pipe(
+			tap(
+				(res: Vacancy[]) => {
+					let totalVacancies = res.length;
+					this.toastr.success(`${totalVacancies} vagas encontradas`, "VenturaHR");
+				},
+				(error: HttpErrorResponse) => {
 					if (error.status == 404) {
 						let bodyError = error.error;
 						this.toastr.error(bodyError.message, "VenturaHR");
@@ -69,33 +98,101 @@ export class VacancyService {
 		)
 	}
 
-	public searchVacancies(keywords: string[]): Observable<Vacancy[]> {
-		let startRequestToast = this.toastr.info("buscando vagas", "VenturaHR");
-		
-		let params = '?';
-		for (let key of Object.keys(keywords)) {
-			params += `words=${keywords[key]}&`;
-		}
-		params = params.slice(0, -1);
-		let url = this.baseUrlVacancy + "/busca" + params;
-		return this.http.get<Vacancy[]>(url).pipe(		
+	public finalizeVacancy(vacancyId: string): Observable<any> {
+		let requestParams = new HttpParams().set("id", vacancyId);
+
+		return this.http.delete(this.baseUrlVacancy, { params: requestParams }).pipe(
 			tap(
-				(res: Vacancy[]) => {
-					this.toastr.clear(startRequestToast.toastId)
-					console.log('searchVacancies done')
-					let totalVacancies = res.length;
-					this.toastr.success(`${totalVacancies} vagas encontradas`, "VenturaHR");
+				(res) => {					
+					this.toastr.success(res.message, "VenturaHR");
+					console.log(res.message, res.data);
 				},
 				(error: HttpErrorResponse) => {
-					this.toastr.clear(startRequestToast.toastId)
+					let bodyError = error.error;
 					if (error.status == 404) {
-						let bodyError = error.error;
 						this.toastr.error(bodyError.message, "VenturaHR");
+					}
+					else if(error.status == 409) {						
+						this.toastr.error(bodyError.message, "VenturaHR");						
 					}
 					else {
 						this.toastr.error("Erro inesperado", "VenturaHR");
 					}
 				}),
+		)
+	}
+
+	public getVacancyDetail(vacancyId: string): Observable<any> {
+		
+		return this.http.get(`${this.baseUrlVacancy}/detalhe/${vacancyId}`).pipe(
+			tap(
+				(res) => {					
+					this.toastr.success(res.message, "VenturaHR");
+					console.log(res.message, res.data);
+				},
+				(error: HttpErrorResponse) => {
+					let bodyError = error.error;
+					if (error.status == 404) {
+						this.toastr.error(bodyError.message, "VenturaHR");
+					}
+					else if(error.status == 409) {						
+						this.toastr.error(bodyError.message, "VenturaHR");						
+					}
+					else {
+						this.toastr.error("Erro inesperado", "VenturaHR");
+					}
+				}),
+		)
+	}
+
+	public getVacancyById(vacancyId: string): Observable<any> {
+		
+		return this.http.get(`${this.baseUrlVacancy}/${vacancyId}`).pipe(
+			tap(
+				(res) => {					
+					this.toastr.success("Vaga carregada", "VenturaHR");
+					console.log(res);
+				},
+				(error: HttpErrorResponse) => {
+					let bodyError = error.error;
+					if (error.status == 404) {
+						this.toastr.error(bodyError.message, "VenturaHR");
+					}
+					else if(error.status == 409) {						
+						this.toastr.error(bodyError.message, "VenturaHR");						
+					}
+					else {
+						this.toastr.error("Erro inesperado", "VenturaHR");
+					}
+				}),
+		)
+	}
+
+	public applyVacancy(vacancyId: string, body: any): Observable<any> {
+		
+		let url = `${this.baseUrlAnswer}/vaga/${vacancyId}`;
+		return this.http.post(url, body).pipe(
+			tap(
+				(res) => {					
+					this.toastr.success(res.message, "VenturaHR");
+					console.log(res.message, res.data);
+				},
+				(error: HttpErrorResponse) => {
+					console.log(error)
+					let bodyError = error.error;
+					if (error.status == 404) {
+						this.toastr.error(bodyError.message, "VenturaHR");
+					}
+					else if(error.status == 409) {						
+						this.toastr.error(bodyError.message, "VenturaHR");						
+					}
+					else {
+						//Exception
+						this.toastr.error(`Usuário já aplicou para a vaga: ${vacancyId}`, "VenturaHR");
+						//this.toastr.error("Erro inesperado", "VenturaHR");
+					}
+				}
+			),
 		)
 	}
 }

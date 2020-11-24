@@ -1,14 +1,18 @@
 <div class="page-content mx-5">
 	<mat-toolbar class="d-flex justify-content-between px-0">
 		<div class="left-side">
-			<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-				<p>Logo</p>
-			</button>
+			<a [routerLink]="['/home']">
+				<img [src]="companyLogo" class="img-logo mr-2 mt-n1">				
+			</a>			
 			<span>Ventura HR</span>
 		</div>
 
 		<div class="center d-flex flex-nowrap">
-			<button mat-button [routerLink]="['/home']">Empregos</button>
+			<button	mat-button 
+				[routerLink]="['/home']" 
+				routerLinkActive="active">
+				Vagas
+			</button>
 			<button mat-button>Candidato</button>
 			<button mat-button>Empresas</button>
 
@@ -28,7 +32,7 @@
 
 			<div *ngIf="isUserLogged()">
 				<button mat-icon-button [matMenuTriggerFor]="menu" class="example-icon" aria-label="Example icon-button with share icon">
-					<mat-icon>account_circle</mat-icon>
+					<mat-icon>person</mat-icon>
 				</button>
 
 				<mat-menu #menu="matMenu">					

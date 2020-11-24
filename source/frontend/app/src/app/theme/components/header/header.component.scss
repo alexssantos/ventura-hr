@@ -1,7 +1,14 @@
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+
 .page-content{		
 	mat-toolbar{
 		background-color: white;
 		height: 48px;
+	}
+	.left-side, .img-logo{
+		height: 30px;
+		width: 30px;		
 	}
 
 	.spacer{
@@ -19,6 +26,10 @@
 }
 
 button{	
+	&.active{
+		font-weight: 800;
+		color: theme-color("primary");;
+	}
 	&:focus {
 		outline:none;
 	}

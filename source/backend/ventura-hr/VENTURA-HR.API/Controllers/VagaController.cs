@@ -23,7 +23,7 @@ namespace VENTURA_HR.API.Controllers
 		[HttpGet]
 		public ActionResult PegarTodas()
 		{
-			var result = VagaService.PegarTodosComInclusos();
+			var result = VagaService.ListarVagasDisponiveis();
 			return Ok(result);
 		}
 
@@ -31,13 +31,13 @@ namespace VENTURA_HR.API.Controllers
 		public ActionResult PegarVaga(Guid vagaId)
 		{
 			//não retorna empresa agregada, somente empresaId.
-			var result = VagaService.Pegar(vagaId);
+			var result = VagaService.PegarPorId(vagaId);
 			return Ok(result);
 		}
 
 		[HttpPost]
 		[Authorize(Roles = "EMPRESA")]
-		public ActionResult Post([FromBody] CadastroVagaRequest vagaNova)
+		public ActionResult CriarVaga([FromBody] CadastroVagaRequest vagaNova)
 		{
 			if (!ModelState.IsValid)
 			{
@@ -61,7 +61,7 @@ namespace VENTURA_HR.API.Controllers
 			IList<Vaga> result;
 			if (!palavrasQuery.Any())
 			{
-				result = VagaService.PegarTodosComInclusos();
+				result = VagaService.ListarVagasDisponiveis();
 			}
 			else
 			{
@@ -80,6 +80,54 @@ namespace VENTURA_HR.API.Controllers
 			IList<Vaga> result = VagaService.PegarRespondidasPorCandidato(GetLoggedUserId());
 
 			return Ok(result);
+		}
+
+		[HttpDelete]
+		[Authorize(Roles = "EMPRESA")]
+		public ActionResult FinalizarVaga(
+			[FromQuery(Name = "id")] Guid vagaId)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(vagaId);
+			}
+
+			bool statusOk = VagaService.FinalizarVaga(vagaId, GetLoggedUserId());
+
+			if (!statusOk)
+			{
+				return Conflict(new
+				{
+					message = "Você não tem permissão para finaliar esta vaga.",
+					data = vagaId
+				});
+			}
+
+			return Ok(new
+			{
+				message = "Vaga finalizada com sucesso.",
+				data = vagaId
+			});
+		}
+
+		[HttpGet("detalhe/{vagaId}")]
+		[Authorize(Roles = "EMPRESA")]
+		public ActionResult GetVagaDetalhada(Guid vagaId)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(vagaId);
+			}
+
+			this.GetLoggedUserRole();
+
+			var vagaDetalhe = VagaService.PegarVagaDetalhada(vagaId);
+
+			return Ok(new
+			{
+				message = "Detalhes de vaga carregados com sucesso.",
+				data = vagaDetalhe,
+			});
 		}
 	}
 }

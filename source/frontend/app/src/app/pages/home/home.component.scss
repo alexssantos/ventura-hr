@@ -1,8 +1,9 @@
 $side-bar: 250px;
 
 .page-content{
+	height: 100vh;
 	background-color: rgb(240, 240, 240);
-	overflow-y: auto;
+	overflow-y: scroll;
 }
 
 .add-btn{
@@ -31,7 +32,7 @@ $side-bar: 250px;
 	.jobs-list{
 		//background-color: rgb(218, 243, 252);
 		display: flex;		
-		justify-content: flex-start;
+		justify-content: center;
 		flex-wrap: wrap;
 		flex-direction: row;
 	}

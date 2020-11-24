@@ -74,14 +74,43 @@ namespace VENTURA_HR.API
 			services.AddTransient<ICandidatoService, CandidatoService>();
 			services.AddTransient<IRespostaService, RespostaService>();
 
+			//services.AddCors(options =>
+			//{
+			//	options.AddPolicy("CorsApiPolicy",
+			//	builder =>
+			//	{
+			//		builder.WithOrigins("http://localhost:4200")
+			//			.WithHeaders(new[] { "authorization", "content-type", "accept" })
+			//			.WithMethods(new[] { "GET", "POST", "PUT", "DELETE", "OPTIONS" })
+			//			;
+			//	});
+			//});
+
+			//services.AddCors(options =>
+			//{
+			//	options.AddPolicy("CORS_POLICY", builder =>
+			//	builder.WithOrigins("http://localhost:4200", "http://192.168.1.95:4200", "http://192.168.1.95:4200")
+			//			//builder.SetIsOriginAllowed(_ => true)
+			//			//builder.AllowAnyOrigin()
+			//			.AllowAnyMethod()
+			//			.AllowAnyHeader()
+			//			.AllowCredentials());
+			//});
+
 			services.AddCors(options =>
 			{
-				options.AddDefaultPolicy(builder =>
+				options.AddPolicy("CORS_POLICY", builder =>
+
 					builder.SetIsOriginAllowed(_ => true)
+						//.AllowAnyOrigin()
 						.AllowAnyMethod()
 						.AllowAnyHeader()
-						.AllowCredentials());
+						.AllowCredentials()
+				);
 			});
+
+			//NOTE: acesso externo - Nao faz diferença ficar acuma do AddCors().
+			services.AddMvc();
 
 			services.AddControllers()
 				.AddNewtonsoftJson(options =>
@@ -119,8 +148,6 @@ namespace VENTURA_HR.API
 						ValidateAudience = false
 					};
 				});
-
-
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -139,15 +166,26 @@ namespace VENTURA_HR.API
 			//	//context.Database.EnsureCreated();
 			//}
 
-			app.UseHttpsRedirection();
+
+			//app.UseHttpsRedirection();  // NOTE: Erro para acesso externo.
+			//app.UseStaticFiles();
+			// app.UseCookiePolicy();
 
 			app.UseRouting();
+			// app.UseRequestLocalization();
+			app.UseCors("CORS_POLICY");
 
-			app.UseCors();
+			//CORS Enable ALL
+			//app.UseCors(options => options
+			//	.AllowAnyOrigin()
+			//	.AllowAnyHeader()
+			//	.AllowAnyMethod()
+			//);
 
-			//Auth Configs
 			app.UseAuthentication();
 			app.UseAuthorization();
+			// app.UseSession();
+			// app.UseResponseCaching();
 
 			app.UseEndpoints(endpoints => endpoints.MapControllers());
 		}

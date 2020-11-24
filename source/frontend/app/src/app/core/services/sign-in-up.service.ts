@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { tap } from 'rxjs/operators'
 import { SessionManagerService } from './session-mng.service';
+import { Router } from '@angular/router';
 
 @Injectable({
 	providedIn: 'root'
@@ -15,7 +16,8 @@ export class SignInUpService {
 	constructor(
 		private http: HttpClient,
 		private toastr: ToastrService,
-		private sessionService: SessionManagerService
+		private sessionService: SessionManagerService,
+		private router: Router
 	) { }
 
 	public SignIn(email, senha): Observable<any> {
@@ -82,5 +84,7 @@ export class SignInUpService {
 
 	public logout(): void {
 		sessionStorage.clear();
+		this.router.navigate(['/access']);
+		this.toastr.success("Logout realizado com sucesso", "VenturaHR");	
 	}
 }

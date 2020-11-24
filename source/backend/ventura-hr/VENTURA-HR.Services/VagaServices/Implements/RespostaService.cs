@@ -26,11 +26,15 @@ namespace VENTURA_HR.Services.VagaServices.Implements
 		{
 			var candidato = CandidatoService.PegarUmPorCriterio(cand => cand.UsuarioId == usuarioId);
 
-			var vaga = VagaService.PegarComCriterios(vagaId);
+			var vaga = VagaService.PegarVagaParaIncluirResposta(vagaId);
 			if (vaga == null)
 			{
 				throw new Exception($"Vaga não encontrada com ID: {vagaId}");
 			}
+
+			var respondido = vaga.Respostas.Any(res => res.CandidatoId == candidato.Id);
+			if (respondido)
+				throw new Exception($"Candidato já aplicou para a vaga: {vagaId}");
 
 			var qtddVaga = vaga.Criterios.Count;
 			var qtddRest = request.Criterios.Count;

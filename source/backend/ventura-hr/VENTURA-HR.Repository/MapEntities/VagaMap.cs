@@ -1,4 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿/*
+ * Obs: IEntityTypeConfiguration é um padrao Mapper para os ORMs (IEntityTypeConfiguration)
+
+
+*/
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using VENTURA_HR.DOMAIN.VagaAggregate.Entities;
 

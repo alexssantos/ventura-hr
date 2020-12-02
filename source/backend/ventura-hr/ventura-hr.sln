@@ -11,7 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VENTURA-HR.Services", "VENT
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{4BFC5CBF-08C1-4BF9-A133-8C6707DEB60C}"
 	ProjectSection(SolutionItems) = preProject
-		VENTURA-HR.DOMAIN\2020-10-11-VenturaHR-Domain-ClassDiagram.cd = VENTURA-HR.DOMAIN\2020-10-11-VenturaHR-Domain-ClassDiagram.cd
+		VENTURA-HR.API\api-diagram-24-11-20.cd = VENTURA-HR.API\api-diagram-24-11-20.cd
+		VENTURA-HR.DOMAIN\domain-diagram-24-11-20.cd = VENTURA-HR.DOMAIN\domain-diagram-24-11-20.cd
+		VENTURA-HR.Repository\repository-diagram-24-11-20.cd = VENTURA-HR.Repository\repository-diagram-24-11-20.cd
+		VENTURA-HR.Services\service-diagram-24-11-20.cd = VENTURA-HR.Services\service-diagram-24-11-20.cd
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VENTURA-HR.Repository", "VENTURA-HR.Repository\VENTURA-HR.Repository.csproj", "{671CD497-FF3F-41DC-8C76-47E2477A08D8}"

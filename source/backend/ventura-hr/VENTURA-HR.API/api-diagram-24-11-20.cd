@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="VENTURA_HR.API.Program">
+    <Position X="0.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.API.Startup">
+    <Position X="2.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAgAAACAAAAAA=</HashCode>
+      <FileName>Startup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.API.Controllers.AuthController">
+    <Position X="7.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAACAAAAAAAAAAAAACAABAAEAAAAQAAAAAAQ=</HashCode>
+      <FileName>Controllers\AuthController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.API.Controllers.CriterioController">
+    <Position X="11.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgCAEAgAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Controllers\CriterioController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.API.Controllers.EmpresaController">
+    <Position X="0.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAACAEAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Controllers\EmpresaController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.API.Controllers.GenericController">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAIAAAAAAABAAAAAAAAAAAE=</HashCode>
+      <FileName>Controllers\GenericController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.API.Controllers.HomeController">
+    <Position X="9.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAACAEAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.API.Controllers.RespostaController">
+    <Position X="14" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAABAAAAAEAAAAAEAAAAAAAAAg=</HashCode>
+      <FileName>Controllers\RespostaController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.API.Controllers.UsuarioController">
+    <Position X="2.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAgAIAAAAACA=</HashCode>
+      <FileName>Controllers\UsuarioController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.API.Controllers.VagaController">
+    <Position X="4.5" Y="3" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAIAAAAAAAYAAAIAAAAAAQAAAAEE=</HashCode>
+      <FileName>Controllers\VagaController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

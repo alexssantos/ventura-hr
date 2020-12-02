@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="VENTURA_HR.DOMAIN.Shared.Entity">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAI=</HashCode>
+      <FileName>Shared\Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.DOMAIN.Shared.ValueObject" Collapsed="true">
+    <Position X="0.75" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Shared\ValuesObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.DOMAIN.UsuarioAggregate.Entities.Administrador">
+    <Position X="0.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAIAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>UsuarioAggregate\Entities\Administrador.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.DOMAIN.UsuarioAggregate.Entities.Candidato">
+    <Position X="5.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAACAAIAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>UsuarioAggregate\Entities\Candidato.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.DOMAIN.UsuarioAggregate.Entities.Empresa">
+    <Position X="3" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAIAIAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>UsuarioAggregate\Entities\Empresa.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.DOMAIN.UsuarioAggregate.Entities.Usuario">
+    <Position X="7.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAgAAAAAAIAAAACAAAQAAEAAAA=</HashCode>
+      <FileName>UsuarioAggregate\Entities\Usuario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.DOMAIN.UsuarioAggregate.Factories.CandidatoFactory">
+    <Position X="7" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UsuarioAggregate\Factories\CandidatoFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.DOMAIN.UsuarioAggregate.Factories.EmpresaFactory">
+    <Position X="3" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UsuarioAggregate\Factories\EmpresaFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.DOMAIN.UsuarioAggregate.Factories.UsuarioFactory">
+    <Position X="5" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UsuarioAggregate\Factories\UsuarioFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.DOMAIN.VagaAggregate.Entities.Criterio">
+    <Position X="12" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABBAAgAAAEAIEAAAAAAAAAAAACAAAAAABA=</HashCode>
+      <FileName>VagaAggregate\Entities\Criterio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.DOMAIN.VagaAggregate.Entities.Resposta">
+    <Position X="14.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAgAAAAAAEAAAAABAAAAAACAAAAAAAA=</HashCode>
+      <FileName>VagaAggregate\Entities\Resposta.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.DOMAIN.VagaAggregate.Entities.RespostaCriterio">
+    <Position X="16.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIIAAEAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>VagaAggregate\Entities\RespostaCriterio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.DOMAIN.VagaAggregate.Entities.Vaga">
+    <Position X="9.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABgQAIAAEAABAAAAAAAAAAAAAAAAAAACIAAAAAQAABA=</HashCode>
+      <FileName>VagaAggregate\Entities\Vaga.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.DOMAIN.VagaAggregate.ValueObjects.VagaDetalhe">
+    <Position X="10.75" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAEAAAAAAAAAAAAAAAAAAAIAACAAAAACQAAAA=</HashCode>
+      <FileName>VagaAggregate\ValueObjects\VagaDetalhe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.DOMAIN.VagaAggregate.ValueObjects.CandidatoRanqueado">
+    <Position X="14.5" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAgCAAAAAAAAABAAAAAAAAAAAAAAAAAQEAAAA=</HashCode>
+      <FileName>VagaAggregate\ValueObjects\VagaDetalhe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.DOMAIN.VagaAggregate.ValueObjects.ParValorCriterio">
+    <Position X="12.75" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>VagaAggregate\ValueObjects\VagaDetalhe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="VENTURA_HR.DOMAIN.Shared.IRepositoryBase&lt;T&gt;">
+    <Position X="7.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAAAAAAAAABAAAAAAAAAEACAAAAgAAoAAgAAA=</HashCode>
+      <FileName>Shared\IRepositoryBase.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VENTURA_HR.DOMAIN.Shared.IServiceBase&lt;T&gt;">
+    <Position X="1.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAECBAQAABAAAAAAAAAAAAAAAAAAAAAAAAAIAQAAA=</HashCode>
+      <FileName>Shared\IServiceBase.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VENTURA_HR.DOMAIN.UsuarioAggregate.Repositories.IAdministradorRepository">
+    <Position X="7.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UsuarioAggregate\Repositories\IAdministradorRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VENTURA_HR.DOMAIN.UsuarioAggregate.Repositories.ICandidatoRepository">
+    <Position X="11.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UsuarioAggregate\Repositories\ICandidatoRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VENTURA_HR.DOMAIN.UsuarioAggregate.Repositories.IEmpresaRepository">
+    <Position X="0.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UsuarioAggregate\Repositories\IEmpresaRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VENTURA_HR.DOMAIN.UsuarioAggregate.Repositories.IUsuarioRepository">
+    <Position X="2.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UsuarioAggregate\Repositories\IUsuarioRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VENTURA_HR.DOMAIN.VagaAggregate.Repositories.ICriterioRepository">
+    <Position X="5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>VagaAggregate\Repositories\ICriterioRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VENTURA_HR.DOMAIN.VagaAggregate.Repositories.IRespostaRepository">
+    <Position X="9.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>VagaAggregate\Repositories\IRespostaRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VENTURA_HR.DOMAIN.VagaAggregate.Repositories.IVagaRepository">
+    <Position X="14" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAEAQAAAAAJAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>VagaAggregate\Repositories\IVagaRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="VENTURA_HR.DOMAIN.UsuarioAggregate.Enums.EUsuarioTipo">
+    <Position X="2.5" Y="19.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAEAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>UsuarioAggregate\Enums\EUsuarioTipo.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="VENTURA_HR.DOMAIN.VagaAggregate.Enums.EPerfilCriterio">
+    <Position X="0.75" Y="19.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIBAAAAAAAAAABAAGAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>VagaAggregate\Enums\EPerfilCriterio.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

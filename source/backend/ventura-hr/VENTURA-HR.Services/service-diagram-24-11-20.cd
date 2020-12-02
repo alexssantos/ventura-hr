@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="VENTURA_HR.Services.ServiceBase&lt;E, IR&gt;">
+    <Position X="7.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAECJAQAABAAAAAAAAAAAAAAAAAAAAAAAAAIAQAAA=</HashCode>
+      <FileName>ServiceBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VENTURA_HR.Services.AuthServices.AuthService">
+    <Position X="16" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AuthServices\AuthService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.Services.Dtos.Requests.AddCriterioRequest">
+    <Position X="0.5" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Dtos\Requests\AddCriterioRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.Services.Dtos.Requests.CadastroRequest">
+    <Position X="2.5" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAACIAAAACAAAQAAEAAAQ=</HashCode>
+      <FileName>Dtos\Requests\CadastroRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.Services.Dtos.Requests.CadastroVagaRequest">
+    <Position X="8.25" Y="12.75" Width="1.5" />
+    <NestedTypes>
+      <Class Name="VENTURA_HR.Services.Dtos.Requests.CadastroVagaRequest.CriterioItem" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Dtos\Requests\CadastroVagaRequest.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Dtos\Requests\CadastroVagaRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.Services.Dtos.Requests.LoginForm">
+    <Position X="6.5" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Dtos\Requests\LoginForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.Services.Dtos.Requests.PublicarRespostaRequest">
+    <Position X="4.5" Y="12.75" Width="1.5" />
+    <NestedTypes>
+      <Class Name="VENTURA_HR.Services.Dtos.Requests.PublicarRespostaRequest.PairResposta" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Dtos\Requests\PublicarRespostaRequest.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Dtos\Requests\PublicarRespostaRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.Services.Dtos.Response.VagaDetalheResponse">
+    <Position X="10" Y="12.75" Width="1.5" />
+    <NestedTypes>
+      <Class Name="VENTURA_HR.Services.Dtos.Response.VagaDetalheResponse.CandidatoRanqueado" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Dtos\Response\VagaDetalheResponse.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Dtos\Response\VagaDetalheResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VENTURA_HR.Services.UsuarioServices.CandidatoService">
+    <Position X="5.75" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UsuarioServices\Implements\CandidatoService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VENTURA_HR.Services.UsuarioServices.EmpresaService">
+    <Position X="8.25" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>UsuarioServices\Implements\EmpresaService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VENTURA_HR.Services.UsuarioServices.UsuarioService">
+    <Position X="0.5" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAACAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>UsuarioServices\Implements\UsuarioService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VENTURA_HR.Services.VagaServices.CriterioService">
+    <Position X="10.75" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAEAAAAAgAAACAAgAAAEAAA=</HashCode>
+      <FileName>VagaServices\Implements\CriterioService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VENTURA_HR.Services.VagaServices.VagaService">
+    <Position X="3" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAACAEAAAAIAAAgCAAIAAAIAACAgAABAQAAA=</HashCode>
+      <FileName>VagaServices\Implements\VagaService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VENTURA_HR.Services.VagaServices.Implements.RespostaService">
+    <Position X="13.5" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAEAAAAAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>VagaServices\Implements\RespostaService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="VENTURA_HR.Services.UsuarioServices.ICandidatoService">
+    <Position X="5.75" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UsuarioServices\ICandidatoService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VENTURA_HR.Services.UsuarioServices.IEmpresaService">
+    <Position X="8.25" Y="6.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UsuarioServices\IEmpresaService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VENTURA_HR.Services.UsuarioServices.IUsuarioService">
+    <Position X="0.5" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UsuarioServices\IUsuarioService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VENTURA_HR.Services.VagaServices.ICriterioService">
+    <Position X="10.75" Y="7.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAgAAAAAAgAAAAAAA=</HashCode>
+      <FileName>VagaServices\ICriterioService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VENTURA_HR.Services.VagaServices.IRespostaService">
+    <Position X="13.5" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>VagaServices\IRespostaService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VENTURA_HR.Services.VagaServices.IVagaService">
+    <Position X="3" Y="8.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAIAAAgAAAIAAAIAAAAgAABAQAAA=</HashCode>
+      <FileName>VagaServices\IVagaService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

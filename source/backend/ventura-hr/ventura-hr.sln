@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{4BFC5CBF-0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VENTURA-HR.Repository", "VENTURA-HR.Repository\VENTURA-HR.Repository.csproj", "{671CD497-FF3F-41DC-8C76-47E2477A08D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VENTURA-HR.Tests", "VENTURA-HR.Tests\VENTURA-HR.Tests.csproj", "{F4C9BB92-DFD9-4060-90A2-D8D083A49F77}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{671CD497-FF3F-41DC-8C76-47E2477A08D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{671CD497-FF3F-41DC-8C76-47E2477A08D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{671CD497-FF3F-41DC-8C76-47E2477A08D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4C9BB92-DFD9-4060-90A2-D8D083A49F77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4C9BB92-DFD9-4060-90A2-D8D083A49F77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4C9BB92-DFD9-4060-90A2-D8D083A49F77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4C9BB92-DFD9-4060-90A2-D8D083A49F77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
